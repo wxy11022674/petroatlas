@@ -1,0 +1,121 @@
+{
+  "id": "mud-report-lab",
+  "sceneId": "m5",
+  "title": "录井报告自动生成",
+  "methods": [
+    "nlp"
+  ],
+  "status": "ready",
+  "version": "2.0.0",
+  "updated": "2026-10-30",
+  "tabs": {
+    "background": {
+      "label": "专业背景",
+      "lede": "让报告中的每一个结论，都能回到原始记录。",
+      "sections": [
+        {
+          "no": 1,
+          "en": "CONCEPT",
+          "title": "先读懂专业概念",
+          "html": "<figure style=\"margin:18px 0;padding:18px;border:1px solid #d7e6de;border-radius:10px;background:#f5f9f6\"><div style=\"overflow-x:auto\" tabindex=\"0\" aria-label=\"专业示意图，窄屏可横向查看\"><svg viewBox=\"0 0 800 250\" role=\"img\" aria-label=\"把专业场景画出来\" style=\"display:block;width:100%;min-width:600px;font-family:system-ui,Microsoft YaHei,sans-serif\"><defs><marker id=\"arrow-把专业场景画出来\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"3\" orient=\"auto\"><path d=\"M0 0L6 3 0 6\" fill=\"none\" stroke=\"#4a967c\"/></marker></defs><text x=\"20\" y=\"27\" font-size=\"16\" font-weight=\"600\" fill=\"#2d715a\">把专业场景画出来</text><rect x=\"30\" y=\"75\" width=\"220\" height=\"130\" rx=\"8\" fill=\"#fff\" stroke=\"#b7cfc0\"/><text x=\"47\" y=\"101\" font-size=\"13\" fill=\"#62816d\">现场记录</text><rect x=\"43\" y=\"113\" width=\"192\" height=\"28\" rx=\"4\" fill=\"#e0efe3\"/><text x=\"50\" y=\"132\" font-size=\"12\" fill=\"#428364\">全烃连续异常 / 砂岩 / 荧光</text><text x=\"49\" y=\"162\" font-size=\"12\" fill=\"#7e9485\">井段：原文提取</text><text x=\"49\" y=\"188\" font-size=\"12\" fill=\"#ab925f\">缺失字段：待补充</text><path d=\"M263 140h55m-7-6 7 6-7 6\" fill=\"none\" stroke=\"#4d947a\" stroke-width=\"2\"/><rect x=\"330\" y=\"90\" width=\"160\" height=\"100\" rx=\"8\" fill=\"#e7efe4\"/><text x=\"350\" y=\"119\" font-size=\"12\" fill=\"#53755e\">固定词表 → 词向量</text><text x=\"350\" y=\"145\" font-size=\"13\" fill=\"#32805f\">MLP 意图分类</text><text x=\"350\" y=\"171\" font-size=\"11\" fill=\"#81947f\">学习选择复核方向</text><path d=\"M502 140h45m-7-6 7 6-7 6\" fill=\"none\" stroke=\"#4d947a\" stroke-width=\"2\"/><rect x=\"560\" y=\"75\" width=\"205\" height=\"130\" rx=\"8\" fill=\"#fff\" stroke=\"#b7cfc0\"/><text x=\"580\" y=\"103\" font-size=\"13\" fill=\"#4d7b60\">受控报告初稿</text><text x=\"580\" y=\"133\" font-size=\"12\" fill=\"#698373\">事实：保留原文依据</text><text x=\"580\" y=\"158\" font-size=\"12\" fill=\"#698373\">建议：显示复核</text><text x=\"580\" y=\"184\" font-size=\"12\" fill=\"#ab925f\">人工审核后使用</text></svg></div><figcaption style=\"font-size:12px;color:#6a8275;margin-top:9px;line-height:1.8\">神经网络只负责三种教学意图的分类；实体抽取、检索和模板报告保留可追溯的原文。意图分数不能证明地质事实，缺失值不由模型猜测补齐。</figcaption></figure><div class=\"p-diagram\" style=\"padding:16px;background:#f4f8f6;border:1px solid #dce7e1;border-radius:10px\"><svg viewBox=\"0 0 685 125\" role=\"img\" aria-label=\"录井报告自动生成概念流程\"><rect x=\"18\" y=\"30\" width=\"145\" height=\"70\" rx=\"9\" fill=\"#e5f0e9\"/><text x=\"31\" y=\"51\" font-size=\"10\" fill=\"#81958d\">01</text><text x=\"90\" y=\"78\" text-anchor=\"middle\" font-size=\"14\" fill=\"#38594f\">现场记录</text><path d=\"M167 65h14m-5-4 5 4-5 4\" stroke=\"#8da59a\" fill=\"none\"/><rect x=\"186\" y=\"30\" width=\"145\" height=\"70\" rx=\"9\" fill=\"#e8eff5\"/><text x=\"199\" y=\"51\" font-size=\"10\" fill=\"#81958d\">02</text><text x=\"258\" y=\"78\" text-anchor=\"middle\" font-size=\"14\" fill=\"#38594f\">实体抽取</text><path d=\"M335 65h14m-5-4 5 4-5 4\" stroke=\"#8da59a\" fill=\"none\"/><rect x=\"354\" y=\"30\" width=\"145\" height=\"70\" rx=\"9\" fill=\"#eceaf5\"/><text x=\"367\" y=\"51\" font-size=\"10\" fill=\"#81958d\">03</text><text x=\"426\" y=\"78\" text-anchor=\"middle\" font-size=\"14\" fill=\"#38594f\">参考检索</text><path d=\"M503 65h14m-5-4 5 4-5 4\" stroke=\"#8da59a\" fill=\"none\"/><rect x=\"522\" y=\"30\" width=\"145\" height=\"70\" rx=\"9\" fill=\"#f4edde\"/><text x=\"535\" y=\"51\" font-size=\"10\" fill=\"#81958d\">04</text><text x=\"594\" y=\"78\" text-anchor=\"middle\" font-size=\"14\" fill=\"#38594f\">报告初稿</text></svg></div><div><p><b>现场记录：</b>输入井号、深度、岩性、全烃与荧光记录，保留原文供追溯。</p><p><b>实体抽取：</b>用词典和正则规则抽取实体；未识别的信息明确显示为待补充。</p><p><b>参考检索：</b>对三条教学参考建议计算 TF-IDF 余弦相似度，展示排序。</p><p><b>报告初稿：</b>用固定模板组织已抽取信息，进行范围与完整性检查。</p></div>"
+        },
+        {
+          "no": 2,
+          "en": "PROBLEM",
+          "title": "业务问题与方法介入点",
+          "html": "<p>从多份现场记录整理报告时，容易遗漏字段或混淆单位。自动生成若补造缺失值，表面流畅却会破坏报告可追溯性。</p><p><b>本例实现：</b>示范实现轻量 NLP 链路：正则抽取五类字段；行业词典计数建立 TF-IDF 向量；余弦相似度检索建议；模板生成报告并逐项检查。原文高亮展示每个字段来自哪里。 学习实验实际训练 文本 MLP：固定 24 词表二值向量 → 20 单元 ReLU → 12 单元 ReLU → 三种复核意图；学习显示复核、工况排查和层界复核三种意图，与词向量 k-NN 对照。报告实体抽取和模板初稿仍保留原文依据。 训练集 144、验证集 48、测试集 72；Adam、交叉熵、批量 12。按验证损失选轮数后再验收测试集，并与相同划分的 k-NN 比较。</p>"
+        },
+        {
+          "no": 3,
+          "en": "DATA",
+          "title": "实验数据与验证边界",
+          "html": "<ul><li>可编辑的教学现场记录，不含真实井资料</li><li>5 个目标实体：井号、井段、岩性、全烃、荧光</li><li>3 条内置参考建议；TF-IDF 词表与得分均可解释</li><li>独立学习实验：144 个训练源样本、48 个验证源样本、72 个测试源样本；不同集合由独立种子生成，词表与输入缩放范围预先固定。</li></ul><p>所有数值为教学构造，可通过导出数据核查；现场应用需独立真实数据验证。</p>"
+        },
+        {
+          "no": 4,
+          "en": "NEXT STEP",
+          "title": "从示范走向真实智能化",
+          "html": "<p>已实现浏览器端 文本 MLP 训练与推理，卷积或全连接权重确实更新。意图分类不是文本生成，没有调用大语言模型；低分、陌生表达和混合意图需人工复核。 演示数据为教学合成，现场应用仍需独立真实资料、按井/样品分组验证与专业复核。</p><p>专业概念参考：<a href=\"https://www.slb.com/resource-library/oilfield-review/defining-series/defining-mud-logging\" target=\"_blank\" rel=\"noopener noreferrer\">SLB · Defining Mud Logging</a>。算法原理参考：<a href=\"https://www.tensorflow.org/tutorials/images/cnn\" target=\"_blank\" rel=\"noopener noreferrer\">TensorFlow CNN 教程</a>、<a href=\"https://scikit-learn.org/stable/modules/neural_networks_supervised.html\" target=\"_blank\" rel=\"noopener noreferrer\">MLP 与反向传播</a>、<a href=\"https://scikit-learn.org/stable/common_pitfalls.html\" target=\"_blank\" rel=\"noopener noreferrer\">防止数据泄漏</a>。本项目用原生 JavaScript 实现，并未加载这些库；合成数据与指标由本项目计算。</p>"
+        }
+      ]
+    },
+    "workflow": {
+      "label": "案例流程",
+      "title": "录井报告自动生成的可复现实验流程",
+      "lead": [
+        "让报告中的每一个结论，都能回到原始记录。",
+        "每一步都说明输入、处理方法、可观察结果与常见陷阱。"
+      ],
+      "stats": [
+        [
+          "关键步骤",
+          "4"
+        ],
+        [
+          "执行位置",
+          "浏览器"
+        ],
+        [
+          "数据类型",
+          "教学样本"
+        ]
+      ],
+      "steps": [
+        {
+          "name": "接收原始记录",
+          "role": "数据",
+          "do": "输入教学记录并保留原文。",
+          "effect": "让所有报告字段具有可核对来源。",
+          "trap": "该简化解析器仅支持界面示例的字段格式。"
+        },
+        {
+          "name": "抽取与校验实体",
+          "role": "特征",
+          "do": "识别目标字段，检查深度顺序、全烃范围与荧光级别。",
+          "effect": "缺失项显示待补充，异常值给出提示。",
+          "trap": "规则漏识别时不能猜测补值。"
+        },
+        {
+          "name": "机器学习与深度学习对照",
+          "role": "学习",
+          "do": "保留原有专业基线；另用相同划分比较 k-NN 和 文本 MLP。固定 24 词表二值向量 → 20 单元 ReLU → 12 单元 ReLU → 三种复核意图。",
+          "effect": "观察实际训练/验证损失、网络激活和参数变化。",
+          "trap": "训练集更新权重，验证集选轮数；测试集不参与二者。"
+        },
+        {
+          "name": "冻结模型与独立验收",
+          "role": "验收",
+          "do": "恢复验证损失最低轮的权重，对 72 个测试样本推理；生成两种方法的混淆矩阵、准确率与宏平均 F1。",
+          "effect": "浏览误判样本，导出数据、逐轮损失和模型权重。",
+          "trap": "指标只对应合成任务；反复看测试集后再调参会削弱其独立验收意义。"
+        }
+      ],
+      "metrics": {
+        "title": "看见训练过程，再判断结果",
+        "html": "<figure style=\"margin:18px 0;padding:18px;border:1px solid #d7e6de;border-radius:10px;background:#f5f9f6\"><div style=\"overflow-x:auto\" tabindex=\"0\" aria-label=\"专业示意图，窄屏可横向查看\"><svg viewBox=\"0 0 800 250\" role=\"img\" aria-label=\"看清模型怎样学习\" style=\"display:block;width:100%;min-width:600px;font-family:system-ui,Microsoft YaHei,sans-serif\"><defs><marker id=\"arrow-看清模型怎样学习\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"3\" orient=\"auto\"><path d=\"M0 0L6 3 0 6\" fill=\"none\" stroke=\"#4a967c\"/></marker></defs><text x=\"20\" y=\"27\" font-size=\"16\" font-weight=\"600\" fill=\"#2d715a\">看清模型怎样学习</text><rect x=\"20\" y=\"62\" width=\"170\" height=\"64\" rx=\"8\" fill=\"#dfeee3\"/><text x=\"38\" y=\"88\" fill=\"#3b765a\" font-size=\"13\">训练 144 / 标签参与</text><text x=\"38\" y=\"110\" fill=\"#698c78\" font-size=\"11\">输入 → 前向计算 → 损失</text><path d=\"M202 94h54m-7-6 7 6-7 6\" fill=\"none\" stroke=\"#4d947a\" stroke-width=\"2\"/><rect x=\"265\" y=\"62\" width=\"255\" height=\"64\" rx=\"8\" fill=\"#e0e9f1\"/><text x=\"285\" y=\"87\" fill=\"#456d87\" font-size=\"13\">反向传播 · Adam 更新参数</text><text x=\"285\" y=\"109\" fill=\"#698393\" font-size=\"11\">每批 12 个样本 / 实时记录交叉熵</text><path d=\"M390 138v30H107v-30m-6 8 6-8 6 8\" fill=\"none\" stroke=\"#789c89\" stroke-width=\"2\"/><text x=\"145\" y=\"191\" fill=\"#6b8e77\" font-size=\"12\">重复训练，权重与损失真实变化</text><rect x=\"556\" y=\"62\" width=\"220\" height=\"64\" rx=\"8\" fill=\"#f1e9d8\"/><text x=\"574\" y=\"88\" fill=\"#99835c\" font-size=\"13\">验证 48 / 选择最低损失轮次</text><text x=\"574\" y=\"110\" fill=\"#99835c\" font-size=\"11\">不进入梯度，不更新权重</text><rect x=\"556\" y=\"160\" width=\"220\" height=\"64\" rx=\"8\" fill=\"#e1ece8\"/><text x=\"574\" y=\"186\" fill=\"#527a65\" font-size=\"13\">测试 72 / 冻结权重后验收</text><text x=\"574\" y=\"208\" fill=\"#789783\" font-size=\"11\">混淆矩阵 · 准确率 · 宏平均 F1</text><path d=\"M666 133v20m-6-8 6 8 6-8\" fill=\"none\" stroke=\"#789c89\" stroke-width=\"2\"/></svg></div><figcaption style=\"font-size:12px;color:#6a8275;margin-top:9px;line-height:1.8\"><b>文本 MLP：</b>固定 24 词表二值向量 → 20 单元 ReLU → 12 单元 ReLU → 三种复核意图。学习显示复核、工况排查和层界复核三种意图，与词向量 k-NN 对照。报告实体抽取和模板初稿仍保留原文依据。</figcaption></figure><p>字段完整度 = 已抽取字段 / 5。质量提示统计缺失字段、反向井段、超范围全烃和荧光值。余弦相似度只反映词向量接近程度；不存在模型准确率承诺。 神经网络实验与原专业基线使用不同教学数据，各自独立评估。新实验准确率为正确分类数/72，宏平均 F1 为各类 F1 的均值；只比较同一新实验中的 k-NN 和神经网络。</p><div class=\"p-diagram\" style=\"padding:16px;background:#f4f8f6;border:1px solid #dce7e1;border-radius:10px\"><svg viewBox=\"0 0 685 125\" role=\"img\" aria-label=\"录井报告自动生成概念流程\"><rect x=\"18\" y=\"30\" width=\"145\" height=\"70\" rx=\"9\" fill=\"#e5f0e9\"/><text x=\"31\" y=\"51\" font-size=\"10\" fill=\"#81958d\">01</text><text x=\"90\" y=\"78\" text-anchor=\"middle\" font-size=\"14\" fill=\"#38594f\">现场记录</text><path d=\"M167 65h14m-5-4 5 4-5 4\" stroke=\"#8da59a\" fill=\"none\"/><rect x=\"186\" y=\"30\" width=\"145\" height=\"70\" rx=\"9\" fill=\"#e8eff5\"/><text x=\"199\" y=\"51\" font-size=\"10\" fill=\"#81958d\">02</text><text x=\"258\" y=\"78\" text-anchor=\"middle\" font-size=\"14\" fill=\"#38594f\">实体抽取</text><path d=\"M335 65h14m-5-4 5 4-5 4\" stroke=\"#8da59a\" fill=\"none\"/><rect x=\"354\" y=\"30\" width=\"145\" height=\"70\" rx=\"9\" fill=\"#eceaf5\"/><text x=\"367\" y=\"51\" font-size=\"10\" fill=\"#81958d\">03</text><text x=\"426\" y=\"78\" text-anchor=\"middle\" font-size=\"14\" fill=\"#38594f\">参考检索</text><path d=\"M503 65h14m-5-4 5 4-5 4\" stroke=\"#8da59a\" fill=\"none\"/><rect x=\"522\" y=\"30\" width=\"145\" height=\"70\" rx=\"9\" fill=\"#f4edde\"/><text x=\"535\" y=\"51\" font-size=\"10\" fill=\"#81958d\">04</text><text x=\"594\" y=\"78\" text-anchor=\"middle\" font-size=\"14\" fill=\"#38594f\">报告初稿</text></svg></div>"
+      },
+      "fails": [
+        {
+          "name": "不规范表达",
+          "why": "目前按示例格式解析，不支持所有自然语言变体。"
+        },
+        {
+          "name": "字段矛盾",
+          "why": "有文本不等于有效数据，需要范围与逻辑检查。"
+        },
+        {
+          "name": "参考库覆盖不足",
+          "why": "无相关词时不输出臆造建议，交给人工补充。"
+        }
+      ]
+    },
+    "demo": {
+      "mode": "page",
+      "html": "demo/index.html",
+      "js": "demo/demo.js",
+      "label": "交互演示",
+      "intro": "让报告中的每一个结论，都能回到原始记录。",
+      "height": 1100
+    }
+  }
+}

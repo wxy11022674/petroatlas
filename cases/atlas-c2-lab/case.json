@@ -1,0 +1,121 @@
+{
+  "id": "atlas-c2-lab",
+  "sceneId": "c2",
+  "title": "注水泥参数优化",
+  "methods": [
+    "opt"
+  ],
+  "status": "ready",
+  "version": "2.0.0",
+  "updated": "2026-10-29",
+  "tabs": {
+    "background": {
+      "label": "专业背景",
+      "lede": "顶替更充分与井底压力更低，往往需要在同一张参数图上权衡。",
+      "sections": [
+        {
+          "no": 1,
+          "en": "CONCEPT",
+          "title": "专业概念：先看懂问题",
+          "html": "<div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"顶替更充分与井底压力更低，往往需要在同一张参数图上权衡。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><rect x=\"24\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(190,220,190)\"/><rect x=\"41\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(180,220,190)\"/><rect x=\"58\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(170,220,190)\"/><rect x=\"75\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(160,220,190)\"/><rect x=\"92\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(150,220,190)\"/><rect x=\"109\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(140,220,190)\"/><rect x=\"126\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(130,220,190)\"/><rect x=\"143\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(120,220,190)\"/><rect x=\"160\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(110,220,190)\"/><rect x=\"177\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(100,220,190)\"/><rect x=\"24\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(190,211,190)\"/><rect x=\"41\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(180,211,190)\"/><rect x=\"58\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(170,211,190)\"/><rect x=\"75\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(160,211,190)\"/><rect x=\"92\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(150,211,190)\"/><rect x=\"109\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(140,211,190)\"/><rect x=\"126\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(130,211,190)\"/><rect x=\"143\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(120,211,190)\"/><rect x=\"160\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(110,211,190)\"/><rect x=\"177\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(100,211,190)\"/><rect x=\"24\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(190,202,190)\"/><rect x=\"41\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(180,202,190)\"/><rect x=\"58\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(170,202,190)\"/><rect x=\"75\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(160,202,190)\"/><rect x=\"92\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(150,202,190)\"/><rect x=\"109\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(140,202,190)\"/><rect x=\"126\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(130,202,190)\"/><rect x=\"143\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(120,202,190)\"/><rect x=\"160\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(110,202,190)\"/><rect x=\"177\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(100,202,190)\"/><rect x=\"24\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(190,193,190)\"/><rect x=\"41\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(180,193,190)\"/><rect x=\"58\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(170,193,190)\"/><rect x=\"75\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(160,193,190)\"/><rect x=\"92\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(150,193,190)\"/><rect x=\"109\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(140,193,190)\"/><rect x=\"126\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(130,193,190)\"/><rect x=\"143\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(120,193,190)\"/><rect x=\"160\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(110,193,190)\"/><rect x=\"177\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(100,193,190)\"/><rect x=\"24\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(190,184,190)\"/><rect x=\"41\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(180,184,190)\"/><rect x=\"58\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(170,184,190)\"/><rect x=\"75\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(160,184,190)\"/><rect x=\"92\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(150,184,190)\"/><rect x=\"109\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(140,184,190)\"/><rect x=\"126\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(130,184,190)\"/><rect x=\"143\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(120,184,190)\"/><rect x=\"160\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(110,184,190)\"/><rect x=\"177\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(100,184,190)\"/><rect x=\"24\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(190,175,190)\"/><rect x=\"41\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(180,175,190)\"/><rect x=\"58\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(170,175,190)\"/><rect x=\"75\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(160,175,190)\"/><rect x=\"92\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(150,175,190)\"/><rect x=\"109\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(140,175,190)\"/><rect x=\"126\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(130,175,190)\"/><rect x=\"143\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(120,175,190)\"/><rect x=\"160\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(110,175,190)\"/><rect x=\"177\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(100,175,190)\"/><path d=\"M60 100 135 8\" stroke=\"#c38c50\" stroke-width=\"2\" stroke-dasharray=\"5 4\"/><text x=\"245\" y=\"40\" font-size=\"14\">收益与约束一起看</text><text x=\"245\" y=\"66\" font-size=\"12\">可行域内寻找更好组合</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">顶替排量</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">浆体密度</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">压力约束</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">可行参数区</text></svg></div><p><b>顶替排量：</b>排量改变环空流动条件，是顶替过程的一项设计变量。</p><p><b>浆体密度：</b>浆体密度影响静液柱压力；本例把它与排量共同作为代理模型输入。</p><p><b>压力约束：</b>教学压力上限把部分高响应组合排除，说明优化必须先考虑约束。</p><p><b>可行参数区：</b>在允许范围内搜索代理响应较好的网格点，并观察边界随上限移动。 实际排序使用归一化代理响应减去资源惩罚权重乘约束代价。</p>"
+        },
+        {
+          "no": 2,
+          "en": "METHOD",
+          "title": "业务问题与本例算法",
+          "html": "<p>注水泥设计要确定水泥浆密度、流变性、排量与替浆方案，目标是在不漏失的前提下实现全封固。</p><p><b>业务难点：</b>设计多沿用邻井经验，遇到窄密度窗口（孔隙压力与破裂压力接近）时容易漏失或留窜槽。</p><p><b>实际实现：</b>以 72 个合成观测拟合含 x、y、x²、y²、xy 的二次代理模型，在 31 × 31 网格上排除不满足约束的组合，再最大化“归一化响应 − 资源惩罚权重 × 约束代价”。40 个独立点检验代理误差。优化只对当前模型与网格成立。</p>"
+        },
+        {
+          "no": 3,
+          "en": "DATA",
+          "title": "教学实验与真实数据的区别",
+          "html": "<p>演示里的数值、样本及响应关系全部为教学构造，用于观察算法行为，不宣称现场精度。CSV 和实验记录可保存样本、种子、参数及结果。</p><table class=\"t\"><thead><tr><th>真实场景需要的数据</th><th>规模或形式</th><th>标注 / 验证</th></tr></thead><tbody><tr><td>井况数据</td><td>井径、温度、压力窗口</td><td>无需标注</td></tr><tr><td>施工记录</td><td>密度、排量、返高</td><td>数百井次</td></tr><tr><td>施工结果</td><td>CBL 评价与漏失情况</td><td>作为标签</td></tr></tbody></table>"
+        },
+        {
+          "no": 4,
+          "en": "VALIDATION",
+          "title": "应用边界与升级路径",
+          "html": "<p><b>边界：</b>演示没有计算真实等效循环密度、浆体流变或漏失压力窗口，结果不构成施工参数。</p><p>用实验室流变数据和经过校核的顶替模拟结果训练代理模型，将压力窗口和施工设备能力一起纳入约束。</p><p>专业概念参考：<a href=\"https://www.slb.com/zh-cn/resource-library/oilfield-review/defining-series/defining-cementing\" target=\"_blank\" rel=\"noopener noreferrer\">SLB · Well Cementing Fundamentals</a>。参考资料用于解释概念，未提供本演示的训练数据或验证指标。</p>"
+        }
+      ]
+    },
+    "workflow": {
+      "label": "案例流程",
+      "title": "注水泥参数优化：从输入到验证",
+      "lead": [
+        "顶替更充分与井底压力更低，往往需要在同一张参数图上权衡。",
+        "每一步说明数据如何变化、结果如何观察，以及哪里可能失效。"
+      ],
+      "stats": [
+        [
+          "流程步骤",
+          "4"
+        ],
+        [
+          "数据来源",
+          "教学构造"
+        ],
+        [
+          "运行位置",
+          "浏览器"
+        ]
+      ],
+      "steps": [
+        {
+          "name": "构造试验样本",
+          "role": "输入",
+          "do": "生成排量、密度与教学响应的合成样本。",
+          "effect": "得到可用于拟合的二维设计空间。",
+          "trap": "样本公式不是通用固井水力学模型。"
+        },
+        {
+          "name": "拟合二次代理",
+          "role": "处理",
+          "do": "用一次项、平方项和交互项近似目标响应。",
+          "effect": "把离散样本转成可观察的响应曲面。",
+          "trap": "超出样本范围的外推没有验证依据。"
+        },
+        {
+          "name": "施加压力约束",
+          "role": "推断",
+          "do": "逐个网格检查教学压力指标是否低于上限。",
+          "effect": "区分可行区与被排除的参数组合。",
+          "trap": "真实工程还需考虑孔隙压力、破裂压力和流变变化。"
+        },
+        {
+          "name": "比较候选组合",
+          "role": "验证",
+          "do": "在可行网格中选取代理目标较好的组合。",
+          "effect": "显示约束收紧造成的目标损失和参数变化。",
+          "trap": "网格最优只对当前代理公式与搜索范围成立。"
+        }
+      ],
+      "metrics": {
+        "title": "如何验证这个实验",
+        "html": "<p>以 72 个合成观测拟合含 x、y、x²、y²、xy 的二次代理模型，在 31 × 31 网格上排除不满足约束的组合，再最大化“归一化响应 − 资源惩罚权重 × 约束代价”。40 个独立点检验代理误差。优化只对当前模型与网格成立。</p><div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"顶替更充分与井底压力更低，往往需要在同一张参数图上权衡。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><rect x=\"24\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(190,220,190)\"/><rect x=\"41\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(180,220,190)\"/><rect x=\"58\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(170,220,190)\"/><rect x=\"75\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(160,220,190)\"/><rect x=\"92\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(150,220,190)\"/><rect x=\"109\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(140,220,190)\"/><rect x=\"126\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(130,220,190)\"/><rect x=\"143\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(120,220,190)\"/><rect x=\"160\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(110,220,190)\"/><rect x=\"177\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(100,220,190)\"/><rect x=\"24\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(190,211,190)\"/><rect x=\"41\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(180,211,190)\"/><rect x=\"58\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(170,211,190)\"/><rect x=\"75\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(160,211,190)\"/><rect x=\"92\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(150,211,190)\"/><rect x=\"109\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(140,211,190)\"/><rect x=\"126\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(130,211,190)\"/><rect x=\"143\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(120,211,190)\"/><rect x=\"160\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(110,211,190)\"/><rect x=\"177\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(100,211,190)\"/><rect x=\"24\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(190,202,190)\"/><rect x=\"41\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(180,202,190)\"/><rect x=\"58\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(170,202,190)\"/><rect x=\"75\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(160,202,190)\"/><rect x=\"92\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(150,202,190)\"/><rect x=\"109\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(140,202,190)\"/><rect x=\"126\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(130,202,190)\"/><rect x=\"143\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(120,202,190)\"/><rect x=\"160\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(110,202,190)\"/><rect x=\"177\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(100,202,190)\"/><rect x=\"24\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(190,193,190)\"/><rect x=\"41\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(180,193,190)\"/><rect x=\"58\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(170,193,190)\"/><rect x=\"75\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(160,193,190)\"/><rect x=\"92\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(150,193,190)\"/><rect x=\"109\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(140,193,190)\"/><rect x=\"126\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(130,193,190)\"/><rect x=\"143\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(120,193,190)\"/><rect x=\"160\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(110,193,190)\"/><rect x=\"177\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(100,193,190)\"/><rect x=\"24\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(190,184,190)\"/><rect x=\"41\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(180,184,190)\"/><rect x=\"58\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(170,184,190)\"/><rect x=\"75\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(160,184,190)\"/><rect x=\"92\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(150,184,190)\"/><rect x=\"109\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(140,184,190)\"/><rect x=\"126\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(130,184,190)\"/><rect x=\"143\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(120,184,190)\"/><rect x=\"160\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(110,184,190)\"/><rect x=\"177\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(100,184,190)\"/><rect x=\"24\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(190,175,190)\"/><rect x=\"41\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(180,175,190)\"/><rect x=\"58\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(170,175,190)\"/><rect x=\"75\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(160,175,190)\"/><rect x=\"92\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(150,175,190)\"/><rect x=\"109\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(140,175,190)\"/><rect x=\"126\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(130,175,190)\"/><rect x=\"143\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(120,175,190)\"/><rect x=\"160\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(110,175,190)\"/><rect x=\"177\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(100,175,190)\"/><path d=\"M60 100 135 8\" stroke=\"#c38c50\" stroke-width=\"2\" stroke-dasharray=\"5 4\"/><text x=\"245\" y=\"40\" font-size=\"14\">收益与约束一起看</text><text x=\"245\" y=\"66\" font-size=\"12\">可行域内寻找更好组合</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">顶替排量</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">浆体密度</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">压力约束</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">可行参数区</text></svg></div>"
+      },
+      "fails": [
+        {
+          "name": "数据迁移",
+          "why": "施工样本有限，且\"好结果\"受多因素影响，标签噪声大。"
+        },
+        {
+          "name": "模型边界",
+          "why": "演示没有计算真实等效循环密度、浆体流变或漏失压力窗口，结果不构成施工参数。"
+        },
+        {
+          "name": "现场落地",
+          "why": "用实验室流变数据和经过校核的顶替模拟结果训练代理模型，将压力窗口和施工设备能力一起纳入约束。"
+        }
+      ]
+    },
+    "demo": {
+      "mode": "page",
+      "html": "demo/index.html",
+      "js": "demo/demo.js",
+      "label": "交互演示",
+      "intro": "顶替更充分与井底压力更低，往往需要在同一张参数图上权衡。",
+      "height": 1300
+    }
+  }
+}

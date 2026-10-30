@@ -1,0 +1,121 @@
+{
+  "id": "atlas-e1-lab",
+  "sceneId": "e1",
+  "title": "压裂参数智能优化",
+  "methods": [
+    "opt"
+  ],
+  "status": "ready",
+  "version": "2.0.0",
+  "updated": "2026-10-29",
+  "tabs": {
+    "background": {
+      "label": "专业背景",
+      "lede": "在压力预算内寻找排量与支撑剂的平衡，观察约束如何改变最优点。",
+      "sections": [
+        {
+          "no": 1,
+          "en": "CONCEPT",
+          "title": "专业概念：先看懂问题",
+          "html": "<div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"在压力预算内寻找排量与支撑剂的平衡，观察约束如何改变最优点。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><rect x=\"24\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(190,220,190)\"/><rect x=\"41\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(180,220,190)\"/><rect x=\"58\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(170,220,190)\"/><rect x=\"75\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(160,220,190)\"/><rect x=\"92\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(150,220,190)\"/><rect x=\"109\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(140,220,190)\"/><rect x=\"126\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(130,220,190)\"/><rect x=\"143\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(120,220,190)\"/><rect x=\"160\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(110,220,190)\"/><rect x=\"177\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(100,220,190)\"/><rect x=\"24\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(190,211,190)\"/><rect x=\"41\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(180,211,190)\"/><rect x=\"58\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(170,211,190)\"/><rect x=\"75\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(160,211,190)\"/><rect x=\"92\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(150,211,190)\"/><rect x=\"109\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(140,211,190)\"/><rect x=\"126\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(130,211,190)\"/><rect x=\"143\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(120,211,190)\"/><rect x=\"160\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(110,211,190)\"/><rect x=\"177\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(100,211,190)\"/><rect x=\"24\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(190,202,190)\"/><rect x=\"41\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(180,202,190)\"/><rect x=\"58\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(170,202,190)\"/><rect x=\"75\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(160,202,190)\"/><rect x=\"92\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(150,202,190)\"/><rect x=\"109\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(140,202,190)\"/><rect x=\"126\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(130,202,190)\"/><rect x=\"143\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(120,202,190)\"/><rect x=\"160\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(110,202,190)\"/><rect x=\"177\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(100,202,190)\"/><rect x=\"24\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(190,193,190)\"/><rect x=\"41\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(180,193,190)\"/><rect x=\"58\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(170,193,190)\"/><rect x=\"75\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(160,193,190)\"/><rect x=\"92\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(150,193,190)\"/><rect x=\"109\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(140,193,190)\"/><rect x=\"126\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(130,193,190)\"/><rect x=\"143\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(120,193,190)\"/><rect x=\"160\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(110,193,190)\"/><rect x=\"177\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(100,193,190)\"/><rect x=\"24\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(190,184,190)\"/><rect x=\"41\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(180,184,190)\"/><rect x=\"58\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(170,184,190)\"/><rect x=\"75\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(160,184,190)\"/><rect x=\"92\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(150,184,190)\"/><rect x=\"109\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(140,184,190)\"/><rect x=\"126\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(130,184,190)\"/><rect x=\"143\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(120,184,190)\"/><rect x=\"160\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(110,184,190)\"/><rect x=\"177\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(100,184,190)\"/><rect x=\"24\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(190,175,190)\"/><rect x=\"41\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(180,175,190)\"/><rect x=\"58\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(170,175,190)\"/><rect x=\"75\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(160,175,190)\"/><rect x=\"92\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(150,175,190)\"/><rect x=\"109\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(140,175,190)\"/><rect x=\"126\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(130,175,190)\"/><rect x=\"143\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(120,175,190)\"/><rect x=\"160\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(110,175,190)\"/><rect x=\"177\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(100,175,190)\"/><path d=\"M60 100 135 8\" stroke=\"#c38c50\" stroke-width=\"2\" stroke-dasharray=\"5 4\"/><text x=\"245\" y=\"40\" font-size=\"14\">收益与约束一起看</text><text x=\"245\" y=\"66\" font-size=\"12\">可行域内寻找更好组合</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">注入排量</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">支撑剂</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">响应面</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">约束寻优</text></svg></div><p><b>注入排量：</b>排量描述单位时间进入地层的压裂液体积；提高排量会同时改变施工压力与裂缝扩展条件。</p><p><b>支撑剂：</b>支撑剂在卸压后帮助裂缝保持导流能力，本例用加砂强度表示这一控制量。</p><p><b>响应面：</b>用 72 个合成试验点拟合带交叉项的二次收益代理，关系由教学公式预设。</p><p><b>约束寻优：</b>剔除超压力代理上限的组合，再最大化归一化收益减去加权约束代价的综合目标。</p>"
+        },
+        {
+          "no": 2,
+          "en": "METHOD",
+          "title": "业务问题与本例算法",
+          "html": "<p>压裂设计要确定段簇划分、排量、砂比与液体体系，目标是在给定地质条件下最大化改造体积与产能。</p><p><b>业务难点：</b>参数组合爆炸，现场多按邻井经验套用；不同井的应力与天然裂缝差异大，套用方案常失效。</p><p><b>实际实现：</b>以 72 个合成观测拟合含 x、y、x²、y²、xy 的二次代理模型，在 31 × 31 网格上排除不满足约束的组合，再最大化“归一化响应 − 资源惩罚权重 × 约束代价”。40 个独立点检验代理误差。优化只对当前模型与网格成立。</p>"
+        },
+        {
+          "no": 3,
+          "en": "DATA",
+          "title": "教学实验与真实数据的区别",
+          "html": "<p>演示里的数值、样本及响应关系全部为教学构造，用于观察算法行为，不宣称现场精度。CSV 和实验记录可保存样本、种子、参数及结果。</p><table class=\"t\"><thead><tr><th>真实场景需要的数据</th><th>规模或形式</th><th>标注 / 验证</th></tr></thead><tbody><tr><td>地质与岩石力学</td><td>应力剖面、脆性指数、天然裂缝</td><td>无需标注</td></tr><tr><td>压裂施工曲线</td><td>排量、压力、砂比</td><td>数千段</td></tr><tr><td>压后产能</td><td>测试产量、EUR</td><td>作为目标</td></tr></tbody></table>"
+        },
+        {
+          "no": 4,
+          "en": "VALIDATION",
+          "title": "应用边界与升级路径",
+          "html": "<p><b>边界：</b>演示没有考虑地应力、天然裂缝、砂堵、设备能力与邻井干扰，不能把网格推荐值用于压裂施工。</p><p>真实研究应把地质力学与压裂模拟结果作为训练或校验来源，再进行跨井验证和不确定性分析。</p><p>专业概念参考：<a href=\"https://www.slb.com/resource-library/oilfield-review/defining-series/defining-hydraulic-fracturing\" target=\"_blank\" rel=\"noopener noreferrer\">SLB · Defining Hydraulic Fracturing</a>。参考资料用于解释概念，未提供本演示的训练数据或验证指标。</p>"
+        }
+      ]
+    },
+    "workflow": {
+      "label": "案例流程",
+      "title": "压裂参数智能优化：从输入到验证",
+      "lead": [
+        "在压力预算内寻找排量与支撑剂的平衡，观察约束如何改变最优点。",
+        "每一步说明数据如何变化、结果如何观察，以及哪里可能失效。"
+      ],
+      "stats": [
+        [
+          "流程步骤",
+          "4"
+        ],
+        [
+          "数据来源",
+          "教学构造"
+        ],
+        [
+          "运行位置",
+          "浏览器"
+        ]
+      ],
+      "steps": [
+        {
+          "name": "构造施工试验",
+          "role": "输入",
+          "do": "在排量与加砂强度参数域内生成 72 个带噪声的教学试验点。",
+          "effect": "为代理拟合提供覆盖参数域的样本。",
+          "trap": "本例收益是人为定义的响应，不是产能预测。"
+        },
+        {
+          "name": "拟合二次代理",
+          "role": "处理",
+          "do": "用线性项、平方项与交叉项拟合响应面。",
+          "effect": "热力图把两个控制量的共同影响展开。",
+          "trap": "样本噪声会移动表观最优点。"
+        },
+        {
+          "name": "施加压力预算",
+          "role": "推断",
+          "do": "对每个候选组合计算教学约束代价，屏蔽超预算区域。",
+          "effect": "可行域与高收益区域可以直接比较。",
+          "trap": "压力代理并非井筒水力学计算。"
+        },
+        {
+          "name": "比较可行方案",
+          "role": "验证",
+          "do": "枚举 31×31 网格，标出综合目标最高的可行点并对照当前点。",
+          "effect": "观察预算与资源惩罚权重如何改变推荐。",
+          "trap": "网格最优只针对本次参数域和简化代理。"
+        }
+      ],
+      "metrics": {
+        "title": "如何验证这个实验",
+        "html": "<p>以 72 个合成观测拟合含 x、y、x²、y²、xy 的二次代理模型，在 31 × 31 网格上排除不满足约束的组合，再最大化“归一化响应 − 资源惩罚权重 × 约束代价”。40 个独立点检验代理误差。优化只对当前模型与网格成立。</p><div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"在压力预算内寻找排量与支撑剂的平衡，观察约束如何改变最优点。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><rect x=\"24\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(190,220,190)\"/><rect x=\"41\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(180,220,190)\"/><rect x=\"58\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(170,220,190)\"/><rect x=\"75\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(160,220,190)\"/><rect x=\"92\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(150,220,190)\"/><rect x=\"109\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(140,220,190)\"/><rect x=\"126\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(130,220,190)\"/><rect x=\"143\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(120,220,190)\"/><rect x=\"160\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(110,220,190)\"/><rect x=\"177\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(100,220,190)\"/><rect x=\"24\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(190,211,190)\"/><rect x=\"41\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(180,211,190)\"/><rect x=\"58\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(170,211,190)\"/><rect x=\"75\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(160,211,190)\"/><rect x=\"92\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(150,211,190)\"/><rect x=\"109\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(140,211,190)\"/><rect x=\"126\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(130,211,190)\"/><rect x=\"143\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(120,211,190)\"/><rect x=\"160\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(110,211,190)\"/><rect x=\"177\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(100,211,190)\"/><rect x=\"24\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(190,202,190)\"/><rect x=\"41\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(180,202,190)\"/><rect x=\"58\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(170,202,190)\"/><rect x=\"75\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(160,202,190)\"/><rect x=\"92\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(150,202,190)\"/><rect x=\"109\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(140,202,190)\"/><rect x=\"126\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(130,202,190)\"/><rect x=\"143\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(120,202,190)\"/><rect x=\"160\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(110,202,190)\"/><rect x=\"177\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(100,202,190)\"/><rect x=\"24\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(190,193,190)\"/><rect x=\"41\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(180,193,190)\"/><rect x=\"58\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(170,193,190)\"/><rect x=\"75\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(160,193,190)\"/><rect x=\"92\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(150,193,190)\"/><rect x=\"109\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(140,193,190)\"/><rect x=\"126\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(130,193,190)\"/><rect x=\"143\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(120,193,190)\"/><rect x=\"160\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(110,193,190)\"/><rect x=\"177\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(100,193,190)\"/><rect x=\"24\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(190,184,190)\"/><rect x=\"41\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(180,184,190)\"/><rect x=\"58\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(170,184,190)\"/><rect x=\"75\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(160,184,190)\"/><rect x=\"92\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(150,184,190)\"/><rect x=\"109\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(140,184,190)\"/><rect x=\"126\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(130,184,190)\"/><rect x=\"143\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(120,184,190)\"/><rect x=\"160\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(110,184,190)\"/><rect x=\"177\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(100,184,190)\"/><rect x=\"24\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(190,175,190)\"/><rect x=\"41\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(180,175,190)\"/><rect x=\"58\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(170,175,190)\"/><rect x=\"75\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(160,175,190)\"/><rect x=\"92\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(150,175,190)\"/><rect x=\"109\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(140,175,190)\"/><rect x=\"126\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(130,175,190)\"/><rect x=\"143\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(120,175,190)\"/><rect x=\"160\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(110,175,190)\"/><rect x=\"177\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(100,175,190)\"/><path d=\"M60 100 135 8\" stroke=\"#c38c50\" stroke-width=\"2\" stroke-dasharray=\"5 4\"/><text x=\"245\" y=\"40\" font-size=\"14\">收益与约束一起看</text><text x=\"245\" y=\"66\" font-size=\"12\">可行域内寻找更好组合</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">注入排量</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">支撑剂</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">响应面</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">约束寻优</text></svg></div>"
+      },
+      "fails": [
+        {
+          "name": "数据迁移",
+          "why": "需要可靠的压裂模拟器，代理模型精度受仿真保真度限制。"
+        },
+        {
+          "name": "模型边界",
+          "why": "演示没有考虑地应力、天然裂缝、砂堵、设备能力与邻井干扰，不能把网格推荐值用于压裂施工。"
+        },
+        {
+          "name": "现场落地",
+          "why": "真实研究应把地质力学与压裂模拟结果作为训练或校验来源，再进行跨井验证和不确定性分析。"
+        }
+      ]
+    },
+    "demo": {
+      "mode": "page",
+      "html": "demo/index.html",
+      "js": "demo/demo.js",
+      "label": "交互演示",
+      "intro": "在压力预算内寻找排量与支撑剂的平衡，观察约束如何改变最优点。",
+      "height": 1300
+    }
+  }
+}

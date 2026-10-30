@@ -1,0 +1,122 @@
+{
+  "id": "atlas-d5-lab",
+  "sceneId": "d5",
+  "title": "钻井液性能智能调控",
+  "methods": [
+    "ts",
+    "opt"
+  ],
+  "status": "ready",
+  "version": "2.0.0",
+  "updated": "2026-10-29",
+  "tabs": {
+    "background": {
+      "label": "专业背景",
+      "lede": "配方并非加得越多越好：在性能响应与黏度限制之间寻找平衡。",
+      "sections": [
+        {
+          "no": 1,
+          "en": "CONCEPT",
+          "title": "专业概念：先看懂问题",
+          "html": "<div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"配方并非加得越多越好：在性能响应与黏度限制之间寻找平衡。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><rect x=\"24\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(190,220,190)\"/><rect x=\"41\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(180,220,190)\"/><rect x=\"58\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(170,220,190)\"/><rect x=\"75\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(160,220,190)\"/><rect x=\"92\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(150,220,190)\"/><rect x=\"109\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(140,220,190)\"/><rect x=\"126\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(130,220,190)\"/><rect x=\"143\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(120,220,190)\"/><rect x=\"160\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(110,220,190)\"/><rect x=\"177\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(100,220,190)\"/><rect x=\"24\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(190,211,190)\"/><rect x=\"41\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(180,211,190)\"/><rect x=\"58\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(170,211,190)\"/><rect x=\"75\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(160,211,190)\"/><rect x=\"92\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(150,211,190)\"/><rect x=\"109\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(140,211,190)\"/><rect x=\"126\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(130,211,190)\"/><rect x=\"143\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(120,211,190)\"/><rect x=\"160\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(110,211,190)\"/><rect x=\"177\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(100,211,190)\"/><rect x=\"24\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(190,202,190)\"/><rect x=\"41\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(180,202,190)\"/><rect x=\"58\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(170,202,190)\"/><rect x=\"75\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(160,202,190)\"/><rect x=\"92\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(150,202,190)\"/><rect x=\"109\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(140,202,190)\"/><rect x=\"126\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(130,202,190)\"/><rect x=\"143\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(120,202,190)\"/><rect x=\"160\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(110,202,190)\"/><rect x=\"177\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(100,202,190)\"/><rect x=\"24\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(190,193,190)\"/><rect x=\"41\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(180,193,190)\"/><rect x=\"58\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(170,193,190)\"/><rect x=\"75\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(160,193,190)\"/><rect x=\"92\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(150,193,190)\"/><rect x=\"109\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(140,193,190)\"/><rect x=\"126\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(130,193,190)\"/><rect x=\"143\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(120,193,190)\"/><rect x=\"160\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(110,193,190)\"/><rect x=\"177\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(100,193,190)\"/><rect x=\"24\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(190,184,190)\"/><rect x=\"41\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(180,184,190)\"/><rect x=\"58\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(170,184,190)\"/><rect x=\"75\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(160,184,190)\"/><rect x=\"92\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(150,184,190)\"/><rect x=\"109\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(140,184,190)\"/><rect x=\"126\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(130,184,190)\"/><rect x=\"143\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(120,184,190)\"/><rect x=\"160\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(110,184,190)\"/><rect x=\"177\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(100,184,190)\"/><rect x=\"24\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(190,175,190)\"/><rect x=\"41\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(180,175,190)\"/><rect x=\"58\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(170,175,190)\"/><rect x=\"75\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(160,175,190)\"/><rect x=\"92\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(150,175,190)\"/><rect x=\"109\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(140,175,190)\"/><rect x=\"126\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(130,175,190)\"/><rect x=\"143\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(120,175,190)\"/><rect x=\"160\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(110,175,190)\"/><rect x=\"177\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(100,175,190)\"/><path d=\"M60 100 135 8\" stroke=\"#c38c50\" stroke-width=\"2\" stroke-dasharray=\"5 4\"/><text x=\"245\" y=\"40\" font-size=\"14\">收益与约束一起看</text><text x=\"245\" y=\"66\" font-size=\"12\">可行域内寻找更好组合</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">配方浓度</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">流变响应</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">代理曲面</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">约束配方</text></svg></div><p><b>配方浓度：</b>本例把聚合物和黏土浓度作为可调变量，代表配方试验的两个维度。</p><p><b>流变响应：</b>钻井液性能由多种成分与环境共同影响，示范只构造携岩能力指数。</p><p><b>代理曲面：</b>用二次回归拟合 72 个内部合成试验点，观察成分交互作用。</p><p><b>约束配方：</b>在教学黏度代理上限内，最大化响应减资源惩罚的综合目标。</p>"
+        },
+        {
+          "no": 2,
+          "en": "METHOD",
+          "title": "业务问题与本例算法",
+          "html": "<p>钻井液的密度、黏度、滤失量直接影响井壁稳定与携岩能力，现场按班测量并人工调整处理剂加量。</p><p><b>业务难点：</b>测量间隔长（每班 1—2 次），性能变化滞后于井下实际；处理剂加量靠经验，常出现&quot;过调&quot;再&quot;回调&quot;的振荡。</p><p><b>实际实现：</b>以 72 个合成观测拟合含 x、y、x²、y²、xy 的二次代理模型，在 31 × 31 网格上排除不满足约束的组合，再最大化“归一化响应 − 资源惩罚权重 × 约束代价”。40 个独立点检验代理误差。优化只对当前模型与网格成立。</p>"
+        },
+        {
+          "no": 3,
+          "en": "DATA",
+          "title": "教学实验与真实数据的区别",
+          "html": "<p>演示里的数值、样本及响应关系全部为教学构造，用于观察算法行为，不宣称现场精度。CSV 和实验记录可保存样本、种子、参数及结果。</p><table class=\"t\"><thead><tr><th>真实场景需要的数据</th><th>规模或形式</th><th>标注 / 验证</th></tr></thead><tbody><tr><td>钻井液性能测量</td><td>密度、黏度、滤失、含砂</td><td>每班 1—2 次，样本稀疏</td></tr><tr><td>循环与返出参数</td><td>流量、温度、压力</td><td>高频</td></tr><tr><td>处理剂加量记录</td><td>类型、加量、时间</td><td>作为动作标签</td></tr></tbody></table>"
+        },
+        {
+          "no": 4,
+          "en": "VALIDATION",
+          "title": "应用边界与升级路径",
+          "html": "<p><b>边界：</b>本例未模拟温压、盐污染、滤失或完整流变曲线；合成最优点不能作为现场配方。</p><p>真实调控需标准化室内试验、温压和污染条件、流变与滤失联合评价，再开展受约束的配方优化。</p><p>专业概念参考：<a href=\"https://www.slb.com/-/media/files/oilfield-review/defining-drilling-fluids.ashx\" target=\"_blank\" rel=\"noopener noreferrer\">SLB · Drilling Fluid Basics</a>。参考资料用于解释概念，未提供本演示的训练数据或验证指标。</p>"
+        }
+      ]
+    },
+    "workflow": {
+      "label": "案例流程",
+      "title": "钻井液性能智能调控：从输入到验证",
+      "lead": [
+        "配方并非加得越多越好：在性能响应与黏度限制之间寻找平衡。",
+        "每一步说明数据如何变化、结果如何观察，以及哪里可能失效。"
+      ],
+      "stats": [
+        [
+          "流程步骤",
+          "4"
+        ],
+        [
+          "数据来源",
+          "教学构造"
+        ],
+        [
+          "运行位置",
+          "浏览器"
+        ]
+      ],
+      "steps": [
+        {
+          "name": "建立配方试验点",
+          "role": "输入",
+          "do": "内部生成两种浓度与携岩能力指数的合成样本。",
+          "effect": "形成响应曲面的拟合依据。",
+          "trap": "评分没有实际配方验收含义。"
+        },
+        {
+          "name": "拟合二次代理",
+          "role": "处理",
+          "do": "用平方项与交互项拟合响应。",
+          "effect": "观察浓度变化的非线性趋势。",
+          "trap": "代理模型只描述给定试验范围。"
+        },
+        {
+          "name": "加入黏度约束",
+          "role": "推断",
+          "do": "排除超过黏度代理指数上限的网格。",
+          "effect": "看到高响应点可能不可行。",
+          "trap": "真实流变不能由一个标量概括。"
+        },
+        {
+          "name": "比较候选组合",
+          "role": "验证",
+          "do": "对比当前组合与综合目标最高的可行网格点。",
+          "effect": "解释性能和资源惩罚的竞争。",
+          "trap": "不输出现场投药指令。"
+        }
+      ],
+      "metrics": {
+        "title": "如何验证这个实验",
+        "html": "<p>以 72 个合成观测拟合含 x、y、x²、y²、xy 的二次代理模型，在 31 × 31 网格上排除不满足约束的组合，再最大化“归一化响应 − 资源惩罚权重 × 约束代价”。40 个独立点检验代理误差。优化只对当前模型与网格成立。</p><div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"配方并非加得越多越好：在性能响应与黏度限制之间寻找平衡。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><rect x=\"24\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(190,220,190)\"/><rect x=\"41\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(180,220,190)\"/><rect x=\"58\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(170,220,190)\"/><rect x=\"75\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(160,220,190)\"/><rect x=\"92\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(150,220,190)\"/><rect x=\"109\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(140,220,190)\"/><rect x=\"126\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(130,220,190)\"/><rect x=\"143\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(120,220,190)\"/><rect x=\"160\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(110,220,190)\"/><rect x=\"177\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(100,220,190)\"/><rect x=\"24\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(190,211,190)\"/><rect x=\"41\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(180,211,190)\"/><rect x=\"58\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(170,211,190)\"/><rect x=\"75\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(160,211,190)\"/><rect x=\"92\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(150,211,190)\"/><rect x=\"109\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(140,211,190)\"/><rect x=\"126\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(130,211,190)\"/><rect x=\"143\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(120,211,190)\"/><rect x=\"160\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(110,211,190)\"/><rect x=\"177\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(100,211,190)\"/><rect x=\"24\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(190,202,190)\"/><rect x=\"41\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(180,202,190)\"/><rect x=\"58\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(170,202,190)\"/><rect x=\"75\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(160,202,190)\"/><rect x=\"92\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(150,202,190)\"/><rect x=\"109\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(140,202,190)\"/><rect x=\"126\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(130,202,190)\"/><rect x=\"143\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(120,202,190)\"/><rect x=\"160\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(110,202,190)\"/><rect x=\"177\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(100,202,190)\"/><rect x=\"24\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(190,193,190)\"/><rect x=\"41\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(180,193,190)\"/><rect x=\"58\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(170,193,190)\"/><rect x=\"75\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(160,193,190)\"/><rect x=\"92\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(150,193,190)\"/><rect x=\"109\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(140,193,190)\"/><rect x=\"126\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(130,193,190)\"/><rect x=\"143\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(120,193,190)\"/><rect x=\"160\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(110,193,190)\"/><rect x=\"177\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(100,193,190)\"/><rect x=\"24\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(190,184,190)\"/><rect x=\"41\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(180,184,190)\"/><rect x=\"58\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(170,184,190)\"/><rect x=\"75\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(160,184,190)\"/><rect x=\"92\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(150,184,190)\"/><rect x=\"109\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(140,184,190)\"/><rect x=\"126\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(130,184,190)\"/><rect x=\"143\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(120,184,190)\"/><rect x=\"160\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(110,184,190)\"/><rect x=\"177\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(100,184,190)\"/><rect x=\"24\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(190,175,190)\"/><rect x=\"41\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(180,175,190)\"/><rect x=\"58\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(170,175,190)\"/><rect x=\"75\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(160,175,190)\"/><rect x=\"92\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(150,175,190)\"/><rect x=\"109\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(140,175,190)\"/><rect x=\"126\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(130,175,190)\"/><rect x=\"143\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(120,175,190)\"/><rect x=\"160\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(110,175,190)\"/><rect x=\"177\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(100,175,190)\"/><path d=\"M60 100 135 8\" stroke=\"#c38c50\" stroke-width=\"2\" stroke-dasharray=\"5 4\"/><text x=\"245\" y=\"40\" font-size=\"14\">收益与约束一起看</text><text x=\"245\" y=\"66\" font-size=\"12\">可行域内寻找更好组合</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">配方浓度</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">流变响应</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">代理曲面</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">约束配方</text></svg></div>"
+      },
+      "fails": [
+        {
+          "name": "数据迁移",
+          "why": "性能测量频率低、标签稀疏，需要与高频循环参数做多源融合。"
+        },
+        {
+          "name": "模型边界",
+          "why": "本例未模拟温压、盐污染、滤失或完整流变曲线；合成最优点不能作为现场配方。"
+        },
+        {
+          "name": "现场落地",
+          "why": "真实调控需标准化室内试验、温压和污染条件、流变与滤失联合评价，再开展受约束的配方优化。"
+        }
+      ]
+    },
+    "demo": {
+      "mode": "page",
+      "html": "demo/index.html",
+      "js": "demo/demo.js",
+      "label": "交互演示",
+      "intro": "配方并非加得越多越好：在性能响应与黏度限制之间寻找平衡。",
+      "height": 1300
+    }
+  }
+}

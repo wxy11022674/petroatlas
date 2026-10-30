@@ -1,0 +1,122 @@
+{
+  "id": "atlas-e4-lab",
+  "sceneId": "e4",
+  "title": "蒸汽吞吐注采参数优化",
+  "methods": [
+    "ts",
+    "opt"
+  ],
+  "status": "ready",
+  "version": "2.0.0",
+  "updated": "2026-10-29",
+  "tabs": {
+    "background": {
+      "label": "专业背景",
+      "lede": "将注汽、焖井、生产三个阶段串起来，观察热量预算下的参数取舍。",
+      "sections": [
+        {
+          "no": 1,
+          "en": "CONCEPT",
+          "title": "专业概念：先看懂问题",
+          "html": "<div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"将注汽、焖井、生产三个阶段串起来，观察热量预算下的参数取舍。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><rect x=\"24\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(190,220,190)\"/><rect x=\"41\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(180,220,190)\"/><rect x=\"58\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(170,220,190)\"/><rect x=\"75\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(160,220,190)\"/><rect x=\"92\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(150,220,190)\"/><rect x=\"109\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(140,220,190)\"/><rect x=\"126\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(130,220,190)\"/><rect x=\"143\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(120,220,190)\"/><rect x=\"160\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(110,220,190)\"/><rect x=\"177\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(100,220,190)\"/><rect x=\"24\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(190,211,190)\"/><rect x=\"41\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(180,211,190)\"/><rect x=\"58\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(170,211,190)\"/><rect x=\"75\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(160,211,190)\"/><rect x=\"92\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(150,211,190)\"/><rect x=\"109\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(140,211,190)\"/><rect x=\"126\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(130,211,190)\"/><rect x=\"143\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(120,211,190)\"/><rect x=\"160\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(110,211,190)\"/><rect x=\"177\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(100,211,190)\"/><rect x=\"24\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(190,202,190)\"/><rect x=\"41\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(180,202,190)\"/><rect x=\"58\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(170,202,190)\"/><rect x=\"75\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(160,202,190)\"/><rect x=\"92\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(150,202,190)\"/><rect x=\"109\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(140,202,190)\"/><rect x=\"126\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(130,202,190)\"/><rect x=\"143\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(120,202,190)\"/><rect x=\"160\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(110,202,190)\"/><rect x=\"177\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(100,202,190)\"/><rect x=\"24\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(190,193,190)\"/><rect x=\"41\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(180,193,190)\"/><rect x=\"58\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(170,193,190)\"/><rect x=\"75\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(160,193,190)\"/><rect x=\"92\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(150,193,190)\"/><rect x=\"109\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(140,193,190)\"/><rect x=\"126\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(130,193,190)\"/><rect x=\"143\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(120,193,190)\"/><rect x=\"160\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(110,193,190)\"/><rect x=\"177\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(100,193,190)\"/><rect x=\"24\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(190,184,190)\"/><rect x=\"41\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(180,184,190)\"/><rect x=\"58\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(170,184,190)\"/><rect x=\"75\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(160,184,190)\"/><rect x=\"92\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(150,184,190)\"/><rect x=\"109\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(140,184,190)\"/><rect x=\"126\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(130,184,190)\"/><rect x=\"143\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(120,184,190)\"/><rect x=\"160\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(110,184,190)\"/><rect x=\"177\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(100,184,190)\"/><rect x=\"24\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(190,175,190)\"/><rect x=\"41\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(180,175,190)\"/><rect x=\"58\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(170,175,190)\"/><rect x=\"75\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(160,175,190)\"/><rect x=\"92\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(150,175,190)\"/><rect x=\"109\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(140,175,190)\"/><rect x=\"126\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(130,175,190)\"/><rect x=\"143\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(120,175,190)\"/><rect x=\"160\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(110,175,190)\"/><rect x=\"177\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(100,175,190)\"/><path d=\"M60 100 135 8\" stroke=\"#c38c50\" stroke-width=\"2\" stroke-dasharray=\"5 4\"/><text x=\"245\" y=\"40\" font-size=\"14\">收益与约束一起看</text><text x=\"245\" y=\"66\" font-size=\"12\">可行域内寻找更好组合</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">注汽</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">焖井</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">周期响应</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">热量预算</text></svg></div><p><b>注汽：</b>蒸汽进入地层带来热量，帮助稠油降低流动阻力；本例以注汽强度作为控制量。</p><p><b>焖井：</b>焖井阶段给热量重新分布留出时间，过长停井也有时间成本。</p><p><b>周期响应：</b>教学二次代理把注汽强度与焖井时长映射为周期收益指标。</p><p><b>热量预算：</b>在热耗代理上限内，综合目标还扣除加权资源代价，使推荐点不必具有最大注汽强度。</p>"
+        },
+        {
+          "no": 2,
+          "en": "METHOD",
+          "title": "业务问题与本例算法",
+          "html": "<p>稠油蒸汽吞吐的周期注汽量、焖井时间与采液速度直接决定周期产量与油汽比。</p><p><b>业务难点：</b>参数按周期经验调整，周期之间相互影响，单周期最优不等于累计最优。</p><p><b>实际实现：</b>以 72 个合成观测拟合含 x、y、x²、y²、xy 的二次代理模型，在 31 × 31 网格上排除不满足约束的组合，再最大化“归一化响应 − 资源惩罚权重 × 约束代价”。40 个独立点检验代理误差。优化只对当前模型与网格成立。</p>"
+        },
+        {
+          "no": 3,
+          "en": "DATA",
+          "title": "教学实验与真实数据的区别",
+          "html": "<p>演示里的数值、样本及响应关系全部为教学构造，用于观察算法行为，不宣称现场精度。CSV 和实验记录可保存样本、种子、参数及结果。</p><table class=\"t\"><thead><tr><th>真实场景需要的数据</th><th>规模或形式</th><th>标注 / 验证</th></tr></thead><tbody><tr><td>周期注采数据</td><td>注汽量、干度、焖井、产液</td><td>单井 10—30 周期</td></tr><tr><td>油藏与流体</td><td>黏度、厚度、含油饱和度</td><td>作为条件</td></tr><tr><td>温度监测</td><td>井温、测温点</td><td>辅助判断</td></tr></tbody></table>"
+        },
+        {
+          "no": 4,
+          "en": "VALIDATION",
+          "title": "应用边界与升级路径",
+          "html": "<p><b>边界：</b>本例仅展示受约束代理优化，不预测真实油汽比、采收率或蒸汽吞吐施工参数。</p><p>真实模型需要周期历史、井温与流体性质，并检验跨周期记忆和跨井泛化能力。</p><p>专业概念参考：<a href=\"https://glossary.slb.com/Terms/c/cyclic_steam_injection.aspx\" target=\"_blank\" rel=\"noopener noreferrer\">SLB Energy Glossary · cyclic steam injection</a>。参考资料用于解释概念，未提供本演示的训练数据或验证指标。</p>"
+        }
+      ]
+    },
+    "workflow": {
+      "label": "案例流程",
+      "title": "蒸汽吞吐注采参数优化：从输入到验证",
+      "lead": [
+        "将注汽、焖井、生产三个阶段串起来，观察热量预算下的参数取舍。",
+        "每一步说明数据如何变化、结果如何观察，以及哪里可能失效。"
+      ],
+      "stats": [
+        [
+          "流程步骤",
+          "4"
+        ],
+        [
+          "数据来源",
+          "教学构造"
+        ],
+        [
+          "运行位置",
+          "浏览器"
+        ]
+      ],
+      "steps": [
+        {
+          "name": "组织周期样本",
+          "role": "输入",
+          "do": "生成 72 组注汽强度、焖井时长及合成周期收益。",
+          "effect": "为教学二次代理提供样本。",
+          "trap": "各周期被简化为独立样本。"
+        },
+        {
+          "name": "拟合周期代理",
+          "role": "处理",
+          "do": "用二次响应面表示两项控制量的影响。",
+          "effect": "可观察焖井时间变化带来的收益起伏。",
+          "trap": "此代理不含传热方程和黏温关系。"
+        },
+        {
+          "name": "施加热耗限制",
+          "role": "推断",
+          "do": "在搜索网格上排除热耗代理超过教学上限的方案。",
+          "effect": "显示约束边界与剩余高响应区。",
+          "trap": "井筒热损失和蒸汽干度未被显式计算。"
+        },
+        {
+          "name": "比较周期方案",
+          "role": "验证",
+          "do": "搜索综合目标最高的可行点，改变上限或惩罚权重观察位置迁移。",
+          "effect": "解释收益与资源代价之间的取舍。",
+          "trap": "单周期指标不能代表多周期累计收益。"
+        }
+      ],
+      "metrics": {
+        "title": "如何验证这个实验",
+        "html": "<p>以 72 个合成观测拟合含 x、y、x²、y²、xy 的二次代理模型，在 31 × 31 网格上排除不满足约束的组合，再最大化“归一化响应 − 资源惩罚权重 × 约束代价”。40 个独立点检验代理误差。优化只对当前模型与网格成立。</p><div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"将注汽、焖井、生产三个阶段串起来，观察热量预算下的参数取舍。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><rect x=\"24\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(190,220,190)\"/><rect x=\"41\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(180,220,190)\"/><rect x=\"58\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(170,220,190)\"/><rect x=\"75\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(160,220,190)\"/><rect x=\"92\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(150,220,190)\"/><rect x=\"109\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(140,220,190)\"/><rect x=\"126\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(130,220,190)\"/><rect x=\"143\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(120,220,190)\"/><rect x=\"160\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(110,220,190)\"/><rect x=\"177\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(100,220,190)\"/><rect x=\"24\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(190,211,190)\"/><rect x=\"41\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(180,211,190)\"/><rect x=\"58\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(170,211,190)\"/><rect x=\"75\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(160,211,190)\"/><rect x=\"92\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(150,211,190)\"/><rect x=\"109\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(140,211,190)\"/><rect x=\"126\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(130,211,190)\"/><rect x=\"143\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(120,211,190)\"/><rect x=\"160\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(110,211,190)\"/><rect x=\"177\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(100,211,190)\"/><rect x=\"24\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(190,202,190)\"/><rect x=\"41\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(180,202,190)\"/><rect x=\"58\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(170,202,190)\"/><rect x=\"75\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(160,202,190)\"/><rect x=\"92\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(150,202,190)\"/><rect x=\"109\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(140,202,190)\"/><rect x=\"126\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(130,202,190)\"/><rect x=\"143\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(120,202,190)\"/><rect x=\"160\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(110,202,190)\"/><rect x=\"177\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(100,202,190)\"/><rect x=\"24\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(190,193,190)\"/><rect x=\"41\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(180,193,190)\"/><rect x=\"58\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(170,193,190)\"/><rect x=\"75\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(160,193,190)\"/><rect x=\"92\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(150,193,190)\"/><rect x=\"109\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(140,193,190)\"/><rect x=\"126\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(130,193,190)\"/><rect x=\"143\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(120,193,190)\"/><rect x=\"160\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(110,193,190)\"/><rect x=\"177\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(100,193,190)\"/><rect x=\"24\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(190,184,190)\"/><rect x=\"41\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(180,184,190)\"/><rect x=\"58\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(170,184,190)\"/><rect x=\"75\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(160,184,190)\"/><rect x=\"92\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(150,184,190)\"/><rect x=\"109\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(140,184,190)\"/><rect x=\"126\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(130,184,190)\"/><rect x=\"143\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(120,184,190)\"/><rect x=\"160\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(110,184,190)\"/><rect x=\"177\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(100,184,190)\"/><rect x=\"24\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(190,175,190)\"/><rect x=\"41\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(180,175,190)\"/><rect x=\"58\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(170,175,190)\"/><rect x=\"75\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(160,175,190)\"/><rect x=\"92\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(150,175,190)\"/><rect x=\"109\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(140,175,190)\"/><rect x=\"126\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(130,175,190)\"/><rect x=\"143\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(120,175,190)\"/><rect x=\"160\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(110,175,190)\"/><rect x=\"177\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(100,175,190)\"/><path d=\"M60 100 135 8\" stroke=\"#c38c50\" stroke-width=\"2\" stroke-dasharray=\"5 4\"/><text x=\"245\" y=\"40\" font-size=\"14\">收益与约束一起看</text><text x=\"245\" y=\"66\" font-size=\"12\">可行域内寻找更好组合</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">注汽</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">焖井</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">周期响应</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">热量预算</text></svg></div>"
+      },
+      "fails": [
+        {
+          "name": "数据迁移",
+          "why": "周期样本少（单井仅几十个周期），需跨井 pooling 建模。"
+        },
+        {
+          "name": "模型边界",
+          "why": "本例仅展示受约束代理优化，不预测真实油汽比、采收率或蒸汽吞吐施工参数。"
+        },
+        {
+          "name": "现场落地",
+          "why": "真实模型需要周期历史、井温与流体性质，并检验跨周期记忆和跨井泛化能力。"
+        }
+      ]
+    },
+    "demo": {
+      "mode": "page",
+      "html": "demo/index.html",
+      "js": "demo/demo.js",
+      "label": "交互演示",
+      "intro": "将注汽、焖井、生产三个阶段串起来，观察热量预算下的参数取舍。",
+      "height": 1300
+    }
+  }
+}

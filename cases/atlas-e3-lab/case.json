@@ -1,0 +1,121 @@
+{
+  "id": "atlas-e3-lab",
+  "sceneId": "e3",
+  "title": "化学驱配方智能筛选",
+  "methods": [
+    "opt"
+  ],
+  "status": "ready",
+  "version": "2.0.0",
+  "updated": "2026-10-29",
+  "tabs": {
+    "background": {
+      "label": "专业背景",
+      "lede": "把聚合物与表面活性剂的协同作用画成响应面，比较效果和配方成本。",
+      "sections": [
+        {
+          "no": 1,
+          "en": "CONCEPT",
+          "title": "专业概念：先看懂问题",
+          "html": "<div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"把聚合物与表面活性剂的协同作用画成响应面，比较效果和配方成本。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><rect x=\"24\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(190,220,190)\"/><rect x=\"41\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(180,220,190)\"/><rect x=\"58\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(170,220,190)\"/><rect x=\"75\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(160,220,190)\"/><rect x=\"92\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(150,220,190)\"/><rect x=\"109\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(140,220,190)\"/><rect x=\"126\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(130,220,190)\"/><rect x=\"143\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(120,220,190)\"/><rect x=\"160\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(110,220,190)\"/><rect x=\"177\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(100,220,190)\"/><rect x=\"24\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(190,211,190)\"/><rect x=\"41\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(180,211,190)\"/><rect x=\"58\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(170,211,190)\"/><rect x=\"75\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(160,211,190)\"/><rect x=\"92\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(150,211,190)\"/><rect x=\"109\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(140,211,190)\"/><rect x=\"126\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(130,211,190)\"/><rect x=\"143\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(120,211,190)\"/><rect x=\"160\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(110,211,190)\"/><rect x=\"177\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(100,211,190)\"/><rect x=\"24\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(190,202,190)\"/><rect x=\"41\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(180,202,190)\"/><rect x=\"58\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(170,202,190)\"/><rect x=\"75\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(160,202,190)\"/><rect x=\"92\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(150,202,190)\"/><rect x=\"109\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(140,202,190)\"/><rect x=\"126\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(130,202,190)\"/><rect x=\"143\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(120,202,190)\"/><rect x=\"160\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(110,202,190)\"/><rect x=\"177\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(100,202,190)\"/><rect x=\"24\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(190,193,190)\"/><rect x=\"41\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(180,193,190)\"/><rect x=\"58\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(170,193,190)\"/><rect x=\"75\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(160,193,190)\"/><rect x=\"92\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(150,193,190)\"/><rect x=\"109\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(140,193,190)\"/><rect x=\"126\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(130,193,190)\"/><rect x=\"143\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(120,193,190)\"/><rect x=\"160\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(110,193,190)\"/><rect x=\"177\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(100,193,190)\"/><rect x=\"24\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(190,184,190)\"/><rect x=\"41\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(180,184,190)\"/><rect x=\"58\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(170,184,190)\"/><rect x=\"75\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(160,184,190)\"/><rect x=\"92\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(150,184,190)\"/><rect x=\"109\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(140,184,190)\"/><rect x=\"126\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(130,184,190)\"/><rect x=\"143\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(120,184,190)\"/><rect x=\"160\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(110,184,190)\"/><rect x=\"177\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(100,184,190)\"/><rect x=\"24\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(190,175,190)\"/><rect x=\"41\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(180,175,190)\"/><rect x=\"58\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(170,175,190)\"/><rect x=\"75\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(160,175,190)\"/><rect x=\"92\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(150,175,190)\"/><rect x=\"109\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(140,175,190)\"/><rect x=\"126\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(130,175,190)\"/><rect x=\"143\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(120,175,190)\"/><rect x=\"160\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(110,175,190)\"/><rect x=\"177\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(100,175,190)\"/><path d=\"M60 100 135 8\" stroke=\"#c38c50\" stroke-width=\"2\" stroke-dasharray=\"5 4\"/><text x=\"245\" y=\"40\" font-size=\"14\">收益与约束一起看</text><text x=\"245\" y=\"66\" font-size=\"12\">可行域内寻找更好组合</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">聚合物浓度</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">表活剂浓度</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">配方响应</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">成本约束</text></svg></div><p><b>聚合物浓度：</b>聚合物配方常用于调节驱替流体流动特征，浓度只是配方的一个维度。</p><p><b>表活剂浓度：</b>表面活性剂可改变油水界面作用，效果还受盐度、温度和岩石影响。</p><p><b>配方响应：</b>本例用合成试验训练二次代理，交叉项表现两种组分的教学协同或竞争关系。</p><p><b>成本约束：</b>在成本代理上限内，最大化归一化驱替响应减去加权成本代价，直观看到预算与效果的取舍。</p>"
+        },
+        {
+          "no": 2,
+          "en": "METHOD",
+          "title": "业务问题与本例算法",
+          "html": "<p>聚合物驱、表面活性剂驱的配方（类型、浓度、段塞）需通过大量室内实验筛选，再进入矿场试验。</p><p><b>业务难点：</b>实验周期长（单配方数周），配方空间大，靠经验设计实验只能覆盖很小一部分。</p><p><b>实际实现：</b>以 72 个合成观测拟合含 x、y、x²、y²、xy 的二次代理模型，在 31 × 31 网格上排除不满足约束的组合，再最大化“归一化响应 − 资源惩罚权重 × 约束代价”。40 个独立点检验代理误差。优化只对当前模型与网格成立。</p>"
+        },
+        {
+          "no": 3,
+          "en": "DATA",
+          "title": "教学实验与真实数据的区别",
+          "html": "<p>演示里的数值、样本及响应关系全部为教学构造，用于观察算法行为，不宣称现场精度。CSV 和实验记录可保存样本、种子、参数及结果。</p><table class=\"t\"><thead><tr><th>真实场景需要的数据</th><th>规模或形式</th><th>标注 / 验证</th></tr></thead><tbody><tr><td>配方与性能实验</td><td>类型、浓度、界面张力、驱油效率</td><td>数百至数千组</td></tr><tr><td>原油与储层物性</td><td>黏度、温度、矿化度</td><td>作为条件</td></tr><tr><td>矿场试验</td><td>增油效果</td><td>少量真值</td></tr></tbody></table>"
+        },
+        {
+          "no": 4,
+          "en": "VALIDATION",
+          "title": "应用边界与升级路径",
+          "html": "<p><b>边界：</b>演示没有模拟吸附、黏度保持、盐敏性或地层伤害，不能作为药剂配伍试验或现场注入依据。</p><p>可用实际岩心驱替、黏度与界面张力数据替换合成评分，增加配伍限制并保留外部验证集。</p><p>专业概念参考：<a href=\"https://glossary.slb.com/en/terms/s/surfactant_flooding\" target=\"_blank\" rel=\"noopener noreferrer\">SLB Energy Glossary · surfactant flooding</a>。参考资料用于解释概念，未提供本演示的训练数据或验证指标。</p>"
+        }
+      ]
+    },
+    "workflow": {
+      "label": "案例流程",
+      "title": "化学驱配方智能筛选：从输入到验证",
+      "lead": [
+        "把聚合物与表面活性剂的协同作用画成响应面，比较效果和配方成本。",
+        "每一步说明数据如何变化、结果如何观察，以及哪里可能失效。"
+      ],
+      "stats": [
+        [
+          "流程步骤",
+          "4"
+        ],
+        [
+          "数据来源",
+          "教学构造"
+        ],
+        [
+          "运行位置",
+          "浏览器"
+        ]
+      ],
+      "steps": [
+        {
+          "name": "设计配方样本",
+          "role": "输入",
+          "do": "在两个浓度轴上生成 72 个带噪声的合成驱替样本。",
+          "effect": "为教学响应面提供拟合数据。",
+          "trap": "界面百分数是合成驱替指标，不是真实岩心驱替效率。"
+        },
+        {
+          "name": "建立代理响应",
+          "role": "处理",
+          "do": "拟合浓度一次项、平方项和交互项。",
+          "effect": "二维色阶揭示高响应区和边际收益变化。",
+          "trap": "样本范围外的曲面延伸不可信。"
+        },
+        {
+          "name": "加入费用限制",
+          "role": "推断",
+          "do": "计算候选组合的教学成本代理并裁剪可行域。",
+          "effect": "昂贵的高响应配方可能被排除。",
+          "trap": "实际成本还包含配伍、处理和注入等费用。"
+        },
+        {
+          "name": "搜索与敏感性比较",
+          "role": "验证",
+          "do": "在 31×31 网格中最大化综合目标，再改变预算或惩罚权重观察推荐点。",
+          "effect": "说明配方选择不是单纯把浓度调到最大。",
+          "trap": "推荐仅用于本次合成实验。"
+        }
+      ],
+      "metrics": {
+        "title": "如何验证这个实验",
+        "html": "<p>以 72 个合成观测拟合含 x、y、x²、y²、xy 的二次代理模型，在 31 × 31 网格上排除不满足约束的组合，再最大化“归一化响应 − 资源惩罚权重 × 约束代价”。40 个独立点检验代理误差。优化只对当前模型与网格成立。</p><div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"把聚合物与表面活性剂的协同作用画成响应面，比较效果和配方成本。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><rect x=\"24\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(190,220,190)\"/><rect x=\"41\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(180,220,190)\"/><rect x=\"58\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(170,220,190)\"/><rect x=\"75\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(160,220,190)\"/><rect x=\"92\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(150,220,190)\"/><rect x=\"109\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(140,220,190)\"/><rect x=\"126\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(130,220,190)\"/><rect x=\"143\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(120,220,190)\"/><rect x=\"160\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(110,220,190)\"/><rect x=\"177\" y=\"10\" width=\"16\" height=\"14\" fill=\"rgb(100,220,190)\"/><rect x=\"24\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(190,211,190)\"/><rect x=\"41\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(180,211,190)\"/><rect x=\"58\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(170,211,190)\"/><rect x=\"75\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(160,211,190)\"/><rect x=\"92\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(150,211,190)\"/><rect x=\"109\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(140,211,190)\"/><rect x=\"126\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(130,211,190)\"/><rect x=\"143\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(120,211,190)\"/><rect x=\"160\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(110,211,190)\"/><rect x=\"177\" y=\"25\" width=\"16\" height=\"14\" fill=\"rgb(100,211,190)\"/><rect x=\"24\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(190,202,190)\"/><rect x=\"41\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(180,202,190)\"/><rect x=\"58\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(170,202,190)\"/><rect x=\"75\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(160,202,190)\"/><rect x=\"92\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(150,202,190)\"/><rect x=\"109\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(140,202,190)\"/><rect x=\"126\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(130,202,190)\"/><rect x=\"143\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(120,202,190)\"/><rect x=\"160\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(110,202,190)\"/><rect x=\"177\" y=\"40\" width=\"16\" height=\"14\" fill=\"rgb(100,202,190)\"/><rect x=\"24\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(190,193,190)\"/><rect x=\"41\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(180,193,190)\"/><rect x=\"58\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(170,193,190)\"/><rect x=\"75\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(160,193,190)\"/><rect x=\"92\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(150,193,190)\"/><rect x=\"109\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(140,193,190)\"/><rect x=\"126\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(130,193,190)\"/><rect x=\"143\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(120,193,190)\"/><rect x=\"160\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(110,193,190)\"/><rect x=\"177\" y=\"55\" width=\"16\" height=\"14\" fill=\"rgb(100,193,190)\"/><rect x=\"24\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(190,184,190)\"/><rect x=\"41\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(180,184,190)\"/><rect x=\"58\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(170,184,190)\"/><rect x=\"75\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(160,184,190)\"/><rect x=\"92\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(150,184,190)\"/><rect x=\"109\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(140,184,190)\"/><rect x=\"126\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(130,184,190)\"/><rect x=\"143\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(120,184,190)\"/><rect x=\"160\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(110,184,190)\"/><rect x=\"177\" y=\"70\" width=\"16\" height=\"14\" fill=\"rgb(100,184,190)\"/><rect x=\"24\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(190,175,190)\"/><rect x=\"41\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(180,175,190)\"/><rect x=\"58\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(170,175,190)\"/><rect x=\"75\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(160,175,190)\"/><rect x=\"92\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(150,175,190)\"/><rect x=\"109\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(140,175,190)\"/><rect x=\"126\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(130,175,190)\"/><rect x=\"143\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(120,175,190)\"/><rect x=\"160\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(110,175,190)\"/><rect x=\"177\" y=\"85\" width=\"16\" height=\"14\" fill=\"rgb(100,175,190)\"/><path d=\"M60 100 135 8\" stroke=\"#c38c50\" stroke-width=\"2\" stroke-dasharray=\"5 4\"/><text x=\"245\" y=\"40\" font-size=\"14\">收益与约束一起看</text><text x=\"245\" y=\"66\" font-size=\"12\">可行域内寻找更好组合</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">聚合物浓度</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">表活剂浓度</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">配方响应</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">成本约束</text></svg></div>"
+      },
+      "fails": [
+        {
+          "name": "数据迁移",
+          "why": "实验数据规整，但样本量小且实验条件不一，需主动学习降低实验次数。"
+        },
+        {
+          "name": "模型边界",
+          "why": "演示没有模拟吸附、黏度保持、盐敏性或地层伤害，不能作为药剂配伍试验或现场注入依据。"
+        },
+        {
+          "name": "现场落地",
+          "why": "可用实际岩心驱替、黏度与界面张力数据替换合成评分，增加配伍限制并保留外部验证集。"
+        }
+      ]
+    },
+    "demo": {
+      "mode": "page",
+      "html": "demo/index.html",
+      "js": "demo/demo.js",
+      "label": "交互演示",
+      "intro": "把聚合物与表面活性剂的协同作用画成响应面，比较效果和配方成本。",
+      "height": 1300
+    }
+  }
+}

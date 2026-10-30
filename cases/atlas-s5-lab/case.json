@@ -1,0 +1,121 @@
+{
+  "id": "atlas-s5-lab",
+  "sceneId": "s5",
+  "title": "地震资料噪声压制",
+  "methods": [
+    "cv"
+  ],
+  "status": "ready",
+  "version": "2.0.0",
+  "updated": "2026-10-29",
+  "tabs": {
+    "background": {
+      "label": "专业背景",
+      "lede": "去噪让图像更平滑，但也可能一起抹去真正的反射细节。",
+      "sections": [
+        {
+          "no": 1,
+          "en": "CONCEPT",
+          "title": "专业概念：先看懂问题",
+          "html": "<div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"去噪让图像更平滑，但也可能一起抹去真正的反射细节。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><rect x=\"20\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"33\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"46\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"59\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"72\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"85\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"98\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"111\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"124\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"137\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"150\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"163\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"176\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"189\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"202\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"20\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"33\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"46\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"59\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"72\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"85\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"98\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"111\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"124\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"137\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"150\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"163\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"176\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"189\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"202\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"20\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"33\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"46\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"59\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"72\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"85\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"98\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"111\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"124\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"137\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"150\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"163\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"176\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"189\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"202\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"20\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"33\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"46\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"59\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"72\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"85\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"98\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"111\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"124\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"137\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"150\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"163\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"176\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"189\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"202\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"20\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"33\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"46\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"59\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"72\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"85\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"98\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"111\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"124\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"137\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"150\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"163\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"176\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"189\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"202\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"20\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"33\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"46\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"59\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"72\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"85\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"98\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"111\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"124\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"137\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"150\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"163\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"176\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"189\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"202\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><path d=\"M220 56h40m-8-6 8 6-8 6\" stroke=\"#789b8c\" fill=\"none\"/><rect x=\"280\" y=\"24\" width=\"82\" height=\"62\" rx=\"8\" fill=\"#e3eee8\"/><text x=\"321\" y=\"59\" text-anchor=\"middle\" font-size=\"13\">特征 → 判断</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">有效反射</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">叠加噪声</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">空间均值滤波</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">信号保真</text></svg></div><p><b>有效反射：</b>教学剖面先构造反射条带及局部错移，作为已知干净参考。</p><p><b>叠加噪声：</b>随机扰动叠加在参考上，形成可控的观测剖面。</p><p><b>空间均值滤波：</b>邻域均值抵消部分随机波动，窗口越大平滑越强。</p><p><b>信号保真：</b>并排比较输入、输出和干净参考，以 RMSE 检查信号保真。</p>"
+        },
+        {
+          "no": 2,
+          "en": "METHOD",
+          "title": "业务问题与本例算法",
+          "html": "<p>面波、多次波、工业干扰等噪声会掩盖有效反射，去噪是处理流程中最耗人力的环节之一，传统依靠 f-x 反褶积、Radon 变换等方法逐项调参。</p><p><b>业务难点：</b>去噪方法参数多、依赖处理员经验；强噪声区去噪不足，弱信号区又容易伤及有效波。</p><p><b>实际实现：</b>逐像素处理 48 × 48 合成场。光谱图使用三个参考原型；空间化探使用三指标稳健标准化分数；地震断层使用相邻道振幅差；去噪使用邻域均值；其余图像使用阈值与 8 邻域连通区域。仅对当前场景对应的方法计分。</p>"
+        },
+        {
+          "no": 3,
+          "en": "DATA",
+          "title": "教学实验与真实数据的区别",
+          "html": "<p>演示里的数值、样本及响应关系全部为教学构造，用于观察算法行为，不宣称现场精度。CSV 和实验记录可保存样本、种子、参数及结果。</p><table class=\"t\"><thead><tr><th>真实场景需要的数据</th><th>规模或形式</th><th>标注 / 验证</th></tr></thead><tbody><tr><td>含噪炮集 / 叠前道集</td><td>单工区 1 万—10 万道</td><td>干净标签难获取，多用合成数据或自监督</td></tr><tr><td>合成噪声—信号对</td><td>用正演模型生成</td><td>可无限扩增</td></tr><tr><td>处理员标注的噪声区</td><td>按噪声类型分档</td><td>每类 ≥ 500 道</td></tr></tbody></table>"
+        },
+        {
+          "no": 4,
+          "en": "VALIDATION",
+          "title": "应用边界与升级路径",
+          "html": "<p><b>边界：</b>这是均值滤波基线，没有训练去噪网络；不能处理所有相干噪声、多次波或采集脚印。</p><p>可比较结构导向滤波、频率域方法和学习式去噪；实际评估需同时检查频谱、振幅保真和地质解释连续性。</p><p>专业概念参考：<a href=\"https://glossary.slb.com/en/Terms/n/noise.aspx\" target=\"_blank\" rel=\"noopener noreferrer\">SLB · Noise（地震信号与噪声）</a>。参考资料用于解释概念，未提供本演示的训练数据或验证指标。</p>"
+        }
+      ]
+    },
+    "workflow": {
+      "label": "案例流程",
+      "title": "地震资料噪声压制：从输入到验证",
+      "lead": [
+        "去噪让图像更平滑，但也可能一起抹去真正的反射细节。",
+        "每一步说明数据如何变化、结果如何观察，以及哪里可能失效。"
+      ],
+      "stats": [
+        [
+          "流程步骤",
+          "4"
+        ],
+        [
+          "数据来源",
+          "教学构造"
+        ],
+        [
+          "运行位置",
+          "浏览器"
+        ]
+      ],
+      "steps": [
+        {
+          "name": "观察干净参考",
+          "role": "输入",
+          "do": "生成带清晰反射结构的合成剖面。",
+          "effect": "知道哪些细节应该保留。",
+          "trap": "现场通常拿不到完美干净参考。"
+        },
+        {
+          "name": "叠加随机噪声",
+          "role": "处理",
+          "do": "改变噪声幅度保持结构不变。",
+          "effect": "直观看到信噪条件变化。",
+          "trap": "随机噪声不代表全部现场干扰。"
+        },
+        {
+          "name": "调节滤波窗口",
+          "role": "推断",
+          "do": "以空间邻域均值计算输出。",
+          "effect": "比较小窗与大窗平滑效果。",
+          "trap": "跨错移位置平均可能模糊边界。"
+        },
+        {
+          "name": "比较误差与细节",
+          "role": "验证",
+          "do": "并排观察输入、输出和干净参考。",
+          "effect": "判断 RMSE 下降是否伴随细节丢失。",
+          "trap": "视觉更平滑不必然更准确。"
+        }
+      ],
+      "metrics": {
+        "title": "如何验证这个实验",
+        "html": "<p>逐像素处理 48 × 48 合成场。光谱图使用三个参考原型；空间化探使用三指标稳健标准化分数；地震断层使用相邻道振幅差；去噪使用邻域均值；其余图像使用阈值与 8 邻域连通区域。仅对当前场景对应的方法计分。</p><div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"去噪让图像更平滑，但也可能一起抹去真正的反射细节。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><rect x=\"20\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"33\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"46\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"59\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"72\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"85\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"98\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"111\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"124\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"137\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"150\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"163\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"176\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"189\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"202\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"20\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"33\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"46\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"59\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"72\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"85\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"98\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"111\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"124\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"137\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"150\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"163\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"176\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"189\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"202\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"20\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"33\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"46\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"59\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"72\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"85\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"98\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"111\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"124\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"137\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"150\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"163\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"176\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"189\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"202\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"20\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"33\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"46\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"59\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"72\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"85\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"98\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"111\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"124\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"137\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"150\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"163\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"176\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"189\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"202\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"20\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"33\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"46\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"59\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"72\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"85\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"98\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"111\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"124\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"137\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"150\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"163\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"176\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"189\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"202\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"20\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"33\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"46\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"59\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"72\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"85\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"98\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"111\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"124\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"137\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"150\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"163\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"176\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"189\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"202\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><path d=\"M220 56h40m-8-6 8 6-8 6\" stroke=\"#789b8c\" fill=\"none\"/><rect x=\"280\" y=\"24\" width=\"82\" height=\"62\" rx=\"8\" fill=\"#e3eee8\"/><text x=\"321\" y=\"59\" text-anchor=\"middle\" font-size=\"13\">特征 → 判断</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">有效反射</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">叠加噪声</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">空间均值滤波</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">信号保真</text></svg></div>"
+      },
+      "fails": [
+        {
+          "name": "数据迁移",
+          "why": "真实干净信号不可得，只能靠合成数据训练，存在合成—实际的域差异。"
+        },
+        {
+          "name": "模型边界",
+          "why": "这是均值滤波基线，没有训练去噪网络；不能处理所有相干噪声、多次波或采集脚印。"
+        },
+        {
+          "name": "现场落地",
+          "why": "可比较结构导向滤波、频率域方法和学习式去噪；实际评估需同时检查频谱、振幅保真和地质解释连续性。"
+        }
+      ]
+    },
+    "demo": {
+      "mode": "page",
+      "html": "demo/index.html",
+      "js": "demo/demo.js",
+      "label": "交互演示",
+      "intro": "去噪让图像更平滑，但也可能一起抹去真正的反射细节。",
+      "height": 1300
+    }
+  }
+}

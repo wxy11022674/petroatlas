@@ -1,0 +1,121 @@
+{
+  "id": "atlas-g2-lab",
+  "sceneId": "g2",
+  "title": "油气地球化学异常识别",
+  "methods": [
+    "opt"
+  ],
+  "status": "ready",
+  "version": "2.0.0",
+  "updated": "2026-10-29",
+  "tabs": {
+    "background": {
+      "label": "专业背景",
+      "lede": "异常不是一个高值点，而是相对于背景值得复核的多指标空间偏离。",
+      "sections": [
+        {
+          "no": 1,
+          "en": "CONCEPT",
+          "title": "专业概念：先看懂问题",
+          "html": "<div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"异常不是一个高值点，而是相对于背景值得复核的多指标空间偏离。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><rect x=\"20\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"33\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"46\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"59\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"72\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"85\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"98\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"111\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"124\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"137\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"150\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"163\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"176\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"189\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"202\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"20\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"33\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"46\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"59\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"72\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"85\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"98\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"111\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"124\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"137\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"150\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"163\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"176\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"189\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"202\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"20\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"33\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"46\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"59\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"72\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"85\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"98\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"111\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"124\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"137\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"150\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"163\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"176\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"189\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"202\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"20\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"33\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"46\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"59\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"72\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"85\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"98\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"111\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"124\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"137\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"150\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"163\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"176\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"189\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"202\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"20\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"33\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"46\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"59\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"72\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"85\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"98\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"111\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"124\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"137\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"150\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"163\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"176\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"189\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"202\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"20\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"33\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"46\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"59\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"72\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"85\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"98\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"111\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"124\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"137\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"150\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"163\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"176\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"189\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"202\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><path d=\"M220 56h40m-8-6 8 6-8 6\" stroke=\"#789b8c\" fill=\"none\"/><rect x=\"280\" y=\"24\" width=\"82\" height=\"62\" rx=\"8\" fill=\"#e3eee8\"/><text x=\"321\" y=\"59\" text-anchor=\"middle\" font-size=\"13\">特征 → 判断</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">空间采样</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">参考背景</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">多指标评分</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">异常靶区</text></svg></div><p><b>空间采样：</b>化探点记录地表介质的化学响应，本例内部生成三个合成指标，输入图只显示第一指标。</p><p><b>参考背景：</b>以网格前 6 行作为背景，分别计算各指标的中位数和 MAD 稳健尺度。</p><p><b>多指标评分：</b>把各指标正向标准化偏离取均方根，得到联合异常得分；负偏离不计入。</p><p><b>异常靶区：</b>阈值把连续评分转成候选区域，空间邻接仅是复核线索。</p>"
+        },
+        {
+          "no": 2,
+          "en": "METHOD",
+          "title": "业务问题与本例算法",
+          "html": "<p>土壤吸附烃、酸解烃、ΔC 等化探指标测量的是油气微渗漏在地表留下的化学痕迹，一个区块通常布设数百到数千个采样点，需多指标联合判读才能圈出有利靶区。</p><p><b>业务难点：</b>单指标阈值法受地表污染、地形与季节影响大；多指标组合判读依赖经验，异常与背景的边界模糊，靶区圈定主观。</p><p><b>实际实现：</b>逐像素处理 48 × 48 合成场。光谱图使用三个参考原型；空间化探使用三指标稳健标准化分数；地震断层使用相邻道振幅差；去噪使用邻域均值；其余图像使用阈值与 8 邻域连通区域。仅对当前场景对应的方法计分。</p>"
+        },
+        {
+          "no": 3,
+          "en": "DATA",
+          "title": "教学实验与真实数据的区别",
+          "html": "<p>演示里的数值、样本及响应关系全部为教学构造，用于观察算法行为，不宣称现场精度。CSV 和实验记录可保存样本、种子、参数及结果。</p><table class=\"t\"><thead><tr><th>真实场景需要的数据</th><th>规模或形式</th><th>标注 / 验证</th></tr></thead><tbody><tr><td>化探采样点</td><td>单区块 300—3000 点</td><td>无需逐点标注</td></tr><tr><td>多指标化验值</td><td>吸附烃、酸解烃、ΔC 等 5—10 项</td><td>专家圈定的 3—5 个已知靶区作验证</td></tr><tr><td>地质与遥感背景图层</td><td>与采样区同范围</td><td>无需标注</td></tr></tbody></table>"
+        },
+        {
+          "no": 4,
+          "en": "VALIDATION",
+          "title": "应用边界与升级路径",
+          "html": "<p><b>边界：</b>一般地球化学异常概念适用于背景比较；这里的合成指标不等于真实油气微渗漏测量，不能据此圈定可采油藏。</p><p>现场需要介质一致性、检出限处理、污染排查及独立井资料验证；验证应按空间分区，避免邻近采样点泄漏信息。</p><p>专业概念参考：<a href=\"https://pubs.usgs.gov/of/1984/0782/report.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">USGS · Interpretation of geochemical anomalies（背景与干扰）</a>。参考资料用于解释概念，未提供本演示的训练数据或验证指标。</p>"
+        }
+      ]
+    },
+    "workflow": {
+      "label": "案例流程",
+      "title": "油气地球化学异常识别：从输入到验证",
+      "lead": [
+        "异常不是一个高值点，而是相对于背景值得复核的多指标空间偏离。",
+        "每一步说明数据如何变化、结果如何观察，以及哪里可能失效。"
+      ],
+      "stats": [
+        [
+          "流程步骤",
+          "4"
+        ],
+        [
+          "数据来源",
+          "教学构造"
+        ],
+        [
+          "运行位置",
+          "浏览器"
+        ]
+      ],
+      "steps": [
+        {
+          "name": "查看采样图",
+          "role": "输入",
+          "do": "生成三个指标并显示第一指标的观测图。",
+          "effect": "看到合成异常在空间上的位置。",
+          "trap": "规则网格比真实采样更理想。"
+        },
+        {
+          "name": "建立稳健背景",
+          "role": "处理",
+          "do": "用前 6 行的中位数及 MAD 标准化各指标。",
+          "effect": "把三种响应放在可比较尺度。",
+          "trap": "参考行被污染时仍会失真。"
+        },
+        {
+          "name": "调整判别阈值",
+          "role": "推断",
+          "do": "对正向 z 分数的均方根设阈值，实际阈值为刻度乘 8。",
+          "effect": "观察候选区域扩大或收缩。",
+          "trap": "得分不是油气存在概率。"
+        },
+        {
+          "name": "对照合成真值",
+          "role": "验证",
+          "do": "核查像素 F1、查准率、查全率与空间分布。",
+          "effect": "比较阈值带来的取舍。",
+          "trap": "污染和岩性变化也可能产生异常。"
+        }
+      ],
+      "metrics": {
+        "title": "如何验证这个实验",
+        "html": "<p>逐像素处理 48 × 48 合成场。光谱图使用三个参考原型；空间化探使用三指标稳健标准化分数；地震断层使用相邻道振幅差；去噪使用邻域均值；其余图像使用阈值与 8 邻域连通区域。仅对当前场景对应的方法计分。</p><div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"异常不是一个高值点，而是相对于背景值得复核的多指标空间偏离。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><rect x=\"20\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"33\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"46\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"59\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"72\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"85\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"98\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"111\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"124\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"137\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"150\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"163\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"176\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"189\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"202\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"20\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"33\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"46\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"59\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"72\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"85\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"98\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"111\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"124\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"137\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"150\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"163\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"176\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"189\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"202\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"20\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"33\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"46\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"59\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"72\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"85\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"98\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"111\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"124\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"137\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"150\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"163\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"176\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"189\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"202\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"20\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"33\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"46\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"59\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"72\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"85\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"98\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"111\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"124\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"137\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"150\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"163\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"176\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"189\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"202\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"20\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"33\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"46\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"59\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"72\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"85\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"98\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"111\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"124\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"137\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"150\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"163\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"176\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"189\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"202\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"20\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"33\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"46\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"59\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"72\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"85\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"98\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"111\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"124\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"137\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"150\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"163\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"176\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"189\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"202\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><path d=\"M220 56h40m-8-6 8 6-8 6\" stroke=\"#789b8c\" fill=\"none\"/><rect x=\"280\" y=\"24\" width=\"82\" height=\"62\" rx=\"8\" fill=\"#e3eee8\"/><text x=\"321\" y=\"59\" text-anchor=\"middle\" font-size=\"13\">特征 → 判断</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">空间采样</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">参考背景</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">多指标评分</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">异常靶区</text></svg></div>"
+      },
+      "fails": [
+        {
+          "name": "数据迁移",
+          "why": "样本量小且空间自相关强，必须按空间分块交叉验证，否则精度会被严重高估。"
+        },
+        {
+          "name": "模型边界",
+          "why": "一般地球化学异常概念适用于背景比较；这里的合成指标不等于真实油气微渗漏测量，不能据此圈定可采油藏。"
+        },
+        {
+          "name": "现场落地",
+          "why": "现场需要介质一致性、检出限处理、污染排查及独立井资料验证；验证应按空间分区，避免邻近采样点泄漏信息。"
+        }
+      ]
+    },
+    "demo": {
+      "mode": "page",
+      "html": "demo/index.html",
+      "js": "demo/demo.js",
+      "label": "交互演示",
+      "intro": "异常不是一个高值点，而是相对于背景值得复核的多指标空间偏离。",
+      "height": 1300
+    }
+  }
+}

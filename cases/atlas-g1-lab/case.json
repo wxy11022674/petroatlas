@@ -1,0 +1,121 @@
+{
+  "id": "atlas-g1-lab",
+  "sceneId": "g1",
+  "title": "地质剖面遥感解译",
+  "methods": [
+    "cv"
+  ],
+  "status": "ready",
+  "version": "2.0.0",
+  "updated": "2026-10-29",
+  "tabs": {
+    "background": {
+      "label": "专业背景",
+      "lede": "把光谱差异变成地质单元分区，再观察噪声如何模糊边界。",
+      "sections": [
+        {
+          "no": 1,
+          "en": "CONCEPT",
+          "title": "专业概念：先看懂问题",
+          "html": "<div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"把光谱差异变成地质单元分区，再观察噪声如何模糊边界。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><rect x=\"20\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"33\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"46\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"59\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"72\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"85\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"98\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"111\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"124\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"137\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"150\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"163\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"176\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"189\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"202\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"20\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"33\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"46\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"59\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"72\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"85\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"98\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"111\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"124\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"137\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"150\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"163\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"176\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"189\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"202\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"20\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"33\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"46\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"59\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"72\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"85\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"98\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"111\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"124\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"137\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"150\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"163\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"176\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"189\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"202\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"20\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"33\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"46\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"59\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"72\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"85\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"98\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"111\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"124\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"137\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"150\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"163\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"176\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"189\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"202\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"20\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"33\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"46\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"59\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"72\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"85\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"98\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"111\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"124\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"137\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"150\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"163\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"176\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"189\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"202\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"20\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"33\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"46\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"59\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"72\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"85\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"98\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"111\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"124\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"137\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"150\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"163\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"176\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"189\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"202\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><path d=\"M220 56h40m-8-6 8 6-8 6\" stroke=\"#789b8c\" fill=\"none\"/><rect x=\"280\" y=\"24\" width=\"82\" height=\"62\" rx=\"8\" fill=\"#e3eee8\"/><text x=\"321\" y=\"59\" text-anchor=\"middle\" font-size=\"13\">特征 → 判断</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">地表岩性</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">光谱响应</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">原型分类</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">分区核查</text></svg></div><p><b>地表岩性：</b>露出的岩石、风化物和植被共同决定影像外观；遥感首先观测地表。</p><p><b>光谱响应：</b>真实遥感可联合多个波段；本例只构造一个归一化光谱响应通道。</p><p><b>原型分类：</b>将像素响应与 0.18、0.50、0.82 三个标量原型比较，选择最近类别。</p><p><b>分区核查：</b>把预测图与合成真值并排比较，混淆矩阵显示哪些类别容易混淆。</p>"
+        },
+        {
+          "no": 2,
+          "en": "METHOD",
+          "title": "业务问题与本例算法",
+          "html": "<p>遥感影像是区域地质调查的第一手资料。多光谱、高光谱与 SAR 影像记录了地表岩性、构造与蚀变的差异，解释员据此勾绘岩性界线、断层与褶皱。</p><p><b>业务难点：</b>一幅 1:5 万图幅的目视解译需一到两周，且同一影像不同解释员勾绘的界线可相差上百米；植被与风化层覆盖区信噪比低，人工容易漏判。</p><p><b>实际实现：</b>逐像素处理 48 × 48 合成场。光谱图使用三个参考原型；空间化探使用三指标稳健标准化分数；地震断层使用相邻道振幅差；去噪使用邻域均值；其余图像使用阈值与 8 邻域连通区域。仅对当前场景对应的方法计分。</p>"
+        },
+        {
+          "no": 3,
+          "en": "DATA",
+          "title": "教学实验与真实数据的区别",
+          "html": "<p>演示里的数值、样本及响应关系全部为教学构造，用于观察算法行为，不宣称现场精度。CSV 和实验记录可保存样本、种子、参数及结果。</p><table class=\"t\"><thead><tr><th>真实场景需要的数据</th><th>规模或形式</th><th>标注 / 验证</th></tr></thead><tbody><tr><td>多光谱 / 高光谱影像</td><td>单幅千万像素级，覆盖整个图幅</td><td>人工精修的岩性掩膜 ≥ 20 幅</td></tr><tr><td>历史地质图（弱标签）</td><td>与影像同区域、已矢量化</td><td>可直接投影转为训练标签</td></tr><tr><td>DEM 高程与坡度</td><td>与影像同分辨率</td><td>无需标注</td></tr></tbody></table>"
+        },
+        {
+          "no": 4,
+          "en": "VALIDATION",
+          "title": "应用边界与升级路径",
+          "html": "<p><b>边界：</b>该实验仅有单通道合成响应，不做真实多光谱融合，也不从卫星影像恢复地下剖面；岩性类别只是合成标签。</p><p>真实项目应进行影像校正、野外样点验证与空间分块测试，再考虑多波段分类或语义分割，保留地质解释的不确定性。</p><p>专业概念参考：<a href=\"https://www.usgs.gov/science/remote-sensing-minerals\" target=\"_blank\" rel=\"noopener noreferrer\">USGS · Remote Sensing of Minerals（光谱识别背景）</a>。参考资料用于解释概念，未提供本演示的训练数据或验证指标。</p>"
+        }
+      ]
+    },
+    "workflow": {
+      "label": "案例流程",
+      "title": "地质剖面遥感解译：从输入到验证",
+      "lead": [
+        "把光谱差异变成地质单元分区，再观察噪声如何模糊边界。",
+        "每一步说明数据如何变化、结果如何观察，以及哪里可能失效。"
+      ],
+      "stats": [
+        [
+          "流程步骤",
+          "4"
+        ],
+        [
+          "数据来源",
+          "教学构造"
+        ],
+        [
+          "运行位置",
+          "浏览器"
+        ]
+      ],
+      "steps": [
+        {
+          "name": "构造地质分区",
+          "role": "输入",
+          "do": "生成三种岩性区域并保留逐像素标签。",
+          "effect": "得到可直接对照的真值图。",
+          "trap": "边界与颜色均为教学构造。"
+        },
+        {
+          "name": "加入传感噪声",
+          "role": "处理",
+          "do": "在单通道响应上叠加噪声并裁剪到 0–1。",
+          "effect": "观察同类像素的响应出现波动。",
+          "trap": "现实还存在大气、阴影与植被影响。"
+        },
+        {
+          "name": "最近原型判别",
+          "role": "推断",
+          "do": "比较像素响应与三个参考标量的距离。",
+          "effect": "输出三类分区图及像素准确率。",
+          "trap": "原型固定，不代表训练好的分割网络。"
+        },
+        {
+          "name": "检查错分位置",
+          "role": "验证",
+          "do": "对照混淆矩阵与空间错分区。",
+          "effect": "识别噪声造成的类间混淆。",
+          "trap": "高合成精度不能证明跨地区可用。"
+        }
+      ],
+      "metrics": {
+        "title": "如何验证这个实验",
+        "html": "<p>逐像素处理 48 × 48 合成场。光谱图使用三个参考原型；空间化探使用三指标稳健标准化分数；地震断层使用相邻道振幅差；去噪使用邻域均值；其余图像使用阈值与 8 邻域连通区域。仅对当前场景对应的方法计分。</p><div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"把光谱差异变成地质单元分区，再观察噪声如何模糊边界。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><rect x=\"20\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"33\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"46\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"59\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"72\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"85\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"98\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"111\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"124\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"137\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"150\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"163\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"176\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"189\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"202\" y=\"18\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"20\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"33\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"46\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"59\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"72\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"85\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"98\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"111\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"124\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"137\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"150\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"163\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"176\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"189\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"202\" y=\"31\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"20\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"33\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"46\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"59\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"72\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"85\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"98\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"111\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"124\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"137\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"150\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"163\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"176\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"189\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"202\" y=\"44\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"20\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"33\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"46\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"59\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"72\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"85\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"98\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"111\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"124\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"137\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"150\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"163\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"176\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"189\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"202\" y=\"57\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"20\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"33\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"46\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"59\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"72\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"85\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"98\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"111\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"124\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"137\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"150\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"163\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"176\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"189\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"202\" y=\"70\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"20\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"33\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"46\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"59\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"72\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#9ab1cb\"/><rect x=\"85\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"98\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"111\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"124\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"137\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#a9cebc\"/><rect x=\"150\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"163\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"176\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"189\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><rect x=\"202\" y=\"83\" width=\"12\" height=\"12\" rx=\"1\" fill=\"#d3b889\"/><path d=\"M220 56h40m-8-6 8 6-8 6\" stroke=\"#789b8c\" fill=\"none\"/><rect x=\"280\" y=\"24\" width=\"82\" height=\"62\" rx=\"8\" fill=\"#e3eee8\"/><text x=\"321\" y=\"59\" text-anchor=\"middle\" font-size=\"13\">特征 → 判断</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">地表岩性</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">光谱响应</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">原型分类</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">分区核查</text></svg></div>"
+      },
+      "fails": [
+        {
+          "name": "数据迁移",
+          "why": "公开影像充足，但地质标签稀缺，跨气候区、跨岩性组合的迁移能力差。"
+        },
+        {
+          "name": "模型边界",
+          "why": "该实验仅有单通道合成响应，不做真实多光谱融合，也不从卫星影像恢复地下剖面；岩性类别只是合成标签。"
+        },
+        {
+          "name": "现场落地",
+          "why": "真实项目应进行影像校正、野外样点验证与空间分块测试，再考虑多波段分类或语义分割，保留地质解释的不确定性。"
+        }
+      ]
+    },
+    "demo": {
+      "mode": "page",
+      "html": "demo/index.html",
+      "js": "demo/demo.js",
+      "label": "交互演示",
+      "intro": "把光谱差异变成地质单元分区，再观察噪声如何模糊边界。",
+      "height": 1300
+    }
+  }
+}

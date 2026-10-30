@@ -1,0 +1,121 @@
+{
+  "id": "atlas-d3-lab",
+  "sceneId": "d3",
+  "title": "井眼轨迹智能控制",
+  "methods": [
+    "opt"
+  ],
+  "status": "ready",
+  "version": "2.0.0",
+  "updated": "2026-10-29",
+  "tabs": {
+    "background": {
+      "label": "专业背景",
+      "lede": "让井眼跟上目标轨迹，观察转向能力和跟踪误差之间的关系。",
+      "sections": [
+        {
+          "no": 1,
+          "en": "CONCEPT",
+          "title": "专业概念：先看懂问题",
+          "html": "<div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"让井眼跟上目标轨迹，观察转向能力和跟踪误差之间的关系。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><path d=\"M30 15v90M170 15v90\" stroke=\"#bda480\" stroke-width=\"14\"/><path d=\"M78 15v90M125 15v90\" stroke=\"#7e9baf\" stroke-width=\"9\"/><path d=\"M100 20v65m-5-8 5 8 5-8\" stroke=\"#309883\" fill=\"none\" stroke-width=\"2\"/><text x=\"235\" y=\"45\" font-size=\"14\">几何与载荷</text><text x=\"235\" y=\"70\" font-size=\"12\">变化 → 响应 → 验证</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">计划轨迹</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">位置偏差</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">航向修正</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">曲率限制</text></svg></div><p><b>计划轨迹：</b>计划路径表示希望经过的位置，本例只展示二维教学轨迹。</p><p><b>位置偏差：</b>每一步比较当前位置与前方目标，形成跟踪误差。</p><p><b>航向修正：</b>离散控制器根据偏差修正下一步航向。</p><p><b>曲率限制：</b>限制每步转角可抑制急转弯，但也会降低追踪弯曲目标的能力。 界面可枚举30个反馈增益，推荐当前模型下路径误差较小的参数。</p>"
+        },
+        {
+          "no": 2,
+          "en": "METHOD",
+          "title": "业务问题与本例算法",
+          "html": "<p>定向钻井要求实钻轨迹落在靶区窗口内，传统靠钻井工程师根据随钻测量数据手动调整工具面与滑动段长度。</p><p><b>业务难点：</b>调整依赖个人经验，轨迹波动大；滑动钻进效率低，频繁纠偏增加摩阻与卡钻风险。</p><p><b>实际实现：</b>以 15 m 垂深步长做二维路径跟踪，前视距离 60 m，以横向偏差调整航向，限制每步转角。比较反馈增益、转角约束下的全路径误差和靶点偏差；枚举 30 个反馈增益，以当前教学模型的路径 RMSE 寻优。</p>"
+        },
+        {
+          "no": 3,
+          "en": "DATA",
+          "title": "教学实验与真实数据的区别",
+          "html": "<p>演示里的数值、样本及响应关系全部为教学构造，用于观察算法行为，不宣称现场精度。CSV 和实验记录可保存样本、种子、参数及结果。</p><table class=\"t\"><thead><tr><th>真实场景需要的数据</th><th>规模或形式</th><th>标注 / 验证</th></tr></thead><tbody><tr><td>随钻测量轨迹</td><td>每 10—30 m 一个测点</td><td>无需标注</td></tr><tr><td>工具面与滑动记录</td><td>按立柱记录</td><td>作为控制输入</td></tr><tr><td>地层倾角与岩性</td><td>邻井与随钻伽马</td><td>作为扰动因素</td></tr></tbody></table>"
+        },
+        {
+          "no": 4,
+          "en": "VALIDATION",
+          "title": "应用边界与升级路径",
+          "html": "<p><b>边界：</b>本例不是现场导向控制器，没有地层反力、遥测延迟、避碰或三维测斜误差模型。</p><p>真实应用需引入测斜不确定性、钻具响应、地质靶窗与避碰约束，进行仿真和人工审查后才能讨论闭环应用。</p><p>专业概念参考：<a href=\"https://glossary.slb.com/en/terms/d/directional_drilling\" target=\"_blank\" rel=\"noopener noreferrer\">SLB · Directional drilling</a>。参考资料用于解释概念，未提供本演示的训练数据或验证指标。</p>"
+        }
+      ]
+    },
+    "workflow": {
+      "label": "案例流程",
+      "title": "井眼轨迹智能控制：从输入到验证",
+      "lead": [
+        "让井眼跟上目标轨迹，观察转向能力和跟踪误差之间的关系。",
+        "每一步说明数据如何变化、结果如何观察，以及哪里可能失效。"
+      ],
+      "stats": [
+        [
+          "流程步骤",
+          "4"
+        ],
+        [
+          "数据来源",
+          "教学构造"
+        ],
+        [
+          "运行位置",
+          "浏览器"
+        ]
+      ],
+      "steps": [
+        {
+          "name": "设置目标路径",
+          "role": "输入",
+          "do": "改变目标水平位移以生成二维计划轨迹。",
+          "effect": "观察目标弯曲程度。",
+          "trap": "没有模拟三维井眼和地层。"
+        },
+        {
+          "name": "计算跟踪偏差",
+          "role": "处理",
+          "do": "按固定 15 m 垂深步进更新水平位移。",
+          "effect": "得到各深度的计划与模拟位置。",
+          "trap": "该轨迹由离散控制器计算，无模型训练。"
+        },
+        {
+          "name": "限制航向修正",
+          "role": "推断",
+          "do": "调整反馈增益及每步转角上限。",
+          "effect": "观察欠跟踪与过度修正。",
+          "trap": "转角约束不是完整钻具力学。"
+        },
+        {
+          "name": "仿真搜索与验收",
+          "role": "验证",
+          "do": "在30个反馈增益中比较路径RMSE，应用推荐值并查看靶点误差。",
+          "effect": "让调参有可复核的目标与候选范围。",
+          "trap": "推荐只对当前简化运动模型成立，不是现场自动导向指令。"
+        }
+      ],
+      "metrics": {
+        "title": "如何验证这个实验",
+        "html": "<p>以 15 m 垂深步长做二维路径跟踪，前视距离 60 m，以横向偏差调整航向，限制每步转角。比较反馈增益、转角约束下的全路径误差和靶点偏差；枚举 30 个反馈增益，以当前教学模型的路径 RMSE 寻优。</p><div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"让井眼跟上目标轨迹，观察转向能力和跟踪误差之间的关系。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><path d=\"M30 15v90M170 15v90\" stroke=\"#bda480\" stroke-width=\"14\"/><path d=\"M78 15v90M125 15v90\" stroke=\"#7e9baf\" stroke-width=\"9\"/><path d=\"M100 20v65m-5-8 5 8 5-8\" stroke=\"#309883\" fill=\"none\" stroke-width=\"2\"/><text x=\"235\" y=\"45\" font-size=\"14\">几何与载荷</text><text x=\"235\" y=\"70\" font-size=\"12\">变化 → 响应 → 验证</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">计划轨迹</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">位置偏差</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">航向修正</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">曲率限制</text></svg></div>"
+      },
+      "fails": [
+        {
+          "name": "数据迁移",
+          "why": "控制闭环对安全性要求极高，井下响应模型难以精确辨识，目前多停留在\"建议\"层。"
+        },
+        {
+          "name": "模型边界",
+          "why": "本例不是现场导向控制器，没有地层反力、遥测延迟、避碰或三维测斜误差模型。"
+        },
+        {
+          "name": "现场落地",
+          "why": "真实应用需引入测斜不确定性、钻具响应、地质靶窗与避碰约束，进行仿真和人工审查后才能讨论闭环应用。"
+        }
+      ]
+    },
+    "demo": {
+      "mode": "page",
+      "html": "demo/index.html",
+      "js": "demo/demo.js",
+      "label": "交互演示",
+      "intro": "让井眼跟上目标轨迹，观察转向能力和跟踪误差之间的关系。",
+      "height": 1300
+    }
+  }
+}

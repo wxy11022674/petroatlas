@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PetroAtlas · 石油智能化可视化实验室</title>
+<meta name="description" content="探索 13 个石油作业环节的 61 个可视化案例，比较机器学习、深度学习和规则机理算法，亲手观察数据、学习过程与预测结果。">
+
+<link rel="stylesheet" href="assets/core/tokens.css?v=20261022i">
+<link rel="stylesheet" href="assets/core/layout.css?v=20261022i">
+<link rel="stylesheet" href="assets/core/ui.css?v=20261022i">
+<link rel="stylesheet" href="assets/portal.css?v=20261029">
+<link rel="stylesheet" href="assets/navigation.css?v=20261030">
+<link rel="stylesheet" href="assets/workspace.css?v=20261030b">
+</head>
+<body>
+
+<div id="view">
+  <main class="wrap" style="padding:120px 0">
+    <div class="empty"><b>正在加载</b>如果这行字一直不消失，说明脚本没有正确执行，
+    请检查浏览器控制台。</div>
+  </main>
+</div>
+
+<noscript>
+  <div class="wrap" style="padding:80px 0">
+    <div class="empty"><b>需要启用 JavaScript</b>本站是纯前端渲染的，所有页面由本地脚本生成。</div>
+  </div>
+</noscript>
+
+<!-- =========================================================
+     脚本加载顺序（改这里之前先读 docs/如何添加新案例.md）
+     1. data.js         场景元数据
+     2. registry.js     案例注册表
+     3. kit.js          渲染工具箱
+     4. cases/*         案例插件 —— 新增案例加在这一段
+     5. case-demo-host  示范宿主（整页 iframe / 模块 Shadow DOM）
+     6. case-upload     案例包导入（读 localStorage，必须在 shell 前）
+     7. shell.js        外壳，必须最后
+     ========================================================= -->
+<script src="assets/data.js?v=20261022i"></script>
+<script src="assets/core/registry.js?v=20261022i"></script>
+<script src="assets/core/kit.js?v=20261022i"></script>
+
+<script src="assets/cases/mudlogging.cases.js?v=20261029"></script>
+<script src="assets/cases/all-stages.cases.js?v=20261029b"></script>
+<script src="assets/all-labs-config.js?v=20261029b"></script>
+<script src="assets/cases/catalog.js?v=20261029b"></script>
+<!-- ↑ 新案例加在这里：<script src="assets/cases/你的案例.case.js"></script> -->
+
+<!-- 上传的案例包（localStorage）在这里恢复注册，必须在 shell.js 之前 -->
+<script src="assets/core/case-demo-host.js?v=20261022i"></script>
+<script src="assets/core/case-upload.js?v=20261022i"></script>
+
+<script src="assets/core/admin.js?v=20261022i"></script>
+<script src="assets/navigation.js?v=20261030b"></script>
+<script src="assets/portal.js?v=20261030"></script>
+<script src="assets/portal-full.js?v=20261030b"></script>
+<script src="assets/workspace.js?v=20261030b"></script>
+
+<script src="assets/core/shell.js?v=20261030b"></script>
+
+</body>
+</html>

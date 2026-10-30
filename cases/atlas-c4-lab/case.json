@@ -1,0 +1,121 @@
+{
+  "id": "atlas-c4-lab",
+  "sceneId": "c4",
+  "title": "套管居中度智能评估",
+  "methods": [
+    "opt"
+  ],
+  "status": "ready",
+  "version": "2.0.0",
+  "updated": "2026-10-29",
+  "tabs": {
+    "background": {
+      "label": "专业背景",
+      "lede": "从两侧间隙观测估计套管偏心，再用几何真值检查误差。",
+      "sections": [
+        {
+          "no": 1,
+          "en": "CONCEPT",
+          "title": "专业概念：先看懂问题",
+          "html": "<div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"从两侧间隙观测估计套管偏心，再用几何真值检查误差。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><path d=\"M30 15v90M170 15v90\" stroke=\"#bda480\" stroke-width=\"14\"/><path d=\"M78 15v90M125 15v90\" stroke=\"#7e9baf\" stroke-width=\"9\"/><path d=\"M100 20v65m-5-8 5 8 5-8\" stroke=\"#309883\" fill=\"none\" stroke-width=\"2\"/><text x=\"235\" y=\"45\" font-size=\"14\">几何与载荷</text><text x=\"235\" y=\"70\" font-size=\"12\">变化 → 响应 → 验证</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">截面几何</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">间隙传感器</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">偏心率学习</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">独立验证</text></svg></div><p><b>截面几何：</b>圆形井眼与套管给出可核查的环空间隙。</p><p><b>间隙传感器：</b>两侧间隙含测量噪声，先除以同心间隙归一化。</p><p><b>偏心率学习：</b>80 个合成样本训练岭回归，将两侧间隙映射到偏心率。</p><p><b>独立验证：</b>40 个未参与训练的样本检验 MAE，并与当前真实偏心率比较。</p>"
+        },
+        {
+          "no": 2,
+          "en": "METHOD",
+          "title": "业务问题与本例算法",
+          "html": "<p>套管居中度决定水泥环是否均匀，居中差会导致窄边窜槽。居中度由井径、井斜与扶正器安放共同决定。</p><p><b>业务难点：</b>扶正器安放间距靠经验公式，实际井径不规则时居中效果与设计偏差大；下套管前难以预判。</p><p><b>实际实现：</b>以圆形井眼和圆形套管建立环空几何基线。套管外径固定 140 mm；偏移为偏心率 × 同心间隙，最小间隙为同心间隙 − 偏移。按周向角计算局部间隙，以 80 个带噪两侧间隙样本训练岭回归估计偏心率，40 个独立样本评价 MAE。不模拟流变与扶正器力学。</p>"
+        },
+        {
+          "no": 3,
+          "en": "DATA",
+          "title": "教学实验与真实数据的区别",
+          "html": "<p>演示里的数值、样本及响应关系全部为教学构造，用于观察算法行为，不宣称现场精度。CSV 和实验记录可保存样本、种子、参数及结果。</p><table class=\"t\"><thead><tr><th>真实场景需要的数据</th><th>规模或形式</th><th>标注 / 验证</th></tr></thead><tbody><tr><td>井径与井斜</td><td>全井段</td><td>无需标注</td></tr><tr><td>套管与扶正器参数</td><td>型号、外径、安放记录</td><td>作为输入</td></tr><tr><td>固井质量反馈</td><td>CBL 评级</td><td>作为验证</td></tr></tbody></table>"
+        },
+        {
+          "no": 4,
+          "en": "VALIDATION",
+          "title": "应用边界与升级路径",
+          "html": "<p><b>边界：</b>学习模型只识别教学圆形截面的偏心率，不模拟扶正器力学、水泥流动或固井验收标准。</p><p>将沿程力学模型与井径、井斜数据结合，以最低居中率和下入阻力为约束优化扶正器布置。</p><p>专业概念参考：<a href=\"https://glossary.slb.com/terms/c/centralizer\" target=\"_blank\" rel=\"noopener noreferrer\">SLB Energy Glossary · centralizer</a>。参考资料用于解释概念，未提供本演示的训练数据或验证指标。</p>"
+        }
+      ]
+    },
+    "workflow": {
+      "label": "案例流程",
+      "title": "套管居中度智能评估：从输入到验证",
+      "lead": [
+        "从两侧间隙观测估计套管偏心，再用几何真值检查误差。",
+        "每一步说明数据如何变化、结果如何观察，以及哪里可能失效。"
+      ],
+      "stats": [
+        [
+          "流程步骤",
+          "4"
+        ],
+        [
+          "数据来源",
+          "教学构造"
+        ],
+        [
+          "运行位置",
+          "浏览器"
+        ]
+      ],
+      "steps": [
+        {
+          "name": "建立几何真值",
+          "role": "输入",
+          "do": "计算圆形井眼与偏心套管的周向间隙。",
+          "effect": "给出最小间隙和真实偏心率。",
+          "trap": "圆形截面不表示复杂实际井径。"
+        },
+        {
+          "name": "模拟传感器",
+          "role": "处理",
+          "do": "生成两侧有噪声的归一化间隙。",
+          "effect": "观察噪声对可观测信息的影响。",
+          "trap": "不包含全部仪器响应。"
+        },
+        {
+          "name": "训练偏心率模型",
+          "role": "推断",
+          "do": "用80个样本拟合岭回归。",
+          "effect": "从测量特征估计偏心率。",
+          "trap": "该关系仅对应教学几何。"
+        },
+        {
+          "name": "独立检验",
+          "role": "验证",
+          "do": "在40个独立样本统计MAE。",
+          "effect": "对照真实偏心率与估计值。",
+          "trap": "预测误差不能换算为固井质量结论。"
+        }
+      ],
+      "metrics": {
+        "title": "如何验证这个实验",
+        "html": "<p>以圆形井眼和圆形套管建立环空几何基线。套管外径固定 140 mm；偏移为偏心率 × 同心间隙，最小间隙为同心间隙 − 偏移。按周向角计算局部间隙，以 80 个带噪两侧间隙样本训练岭回归估计偏心率，40 个独立样本评价 MAE。不模拟流变与扶正器力学。</p><div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"从两侧间隙观测估计套管偏心，再用几何真值检查误差。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><path d=\"M30 15v90M170 15v90\" stroke=\"#bda480\" stroke-width=\"14\"/><path d=\"M78 15v90M125 15v90\" stroke=\"#7e9baf\" stroke-width=\"9\"/><path d=\"M100 20v65m-5-8 5 8 5-8\" stroke=\"#309883\" fill=\"none\" stroke-width=\"2\"/><text x=\"235\" y=\"45\" font-size=\"14\">几何与载荷</text><text x=\"235\" y=\"70\" font-size=\"12\">变化 → 响应 → 验证</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">截面几何</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">间隙传感器</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">偏心率学习</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">独立验证</text></svg></div>"
+      },
+      "fails": [
+        {
+          "name": "数据迁移",
+          "why": "以几何计算为主，AI 只用于优化安放方案，可解释性强、风险小。"
+        },
+        {
+          "name": "模型边界",
+          "why": "学习模型只识别教学圆形截面的偏心率，不模拟扶正器力学、水泥流动或固井验收标准。"
+        },
+        {
+          "name": "现场落地",
+          "why": "将沿程力学模型与井径、井斜数据结合，以最低居中率和下入阻力为约束优化扶正器布置。"
+        }
+      ]
+    },
+    "demo": {
+      "mode": "page",
+      "html": "demo/index.html",
+      "js": "demo/demo.js",
+      "label": "交互演示",
+      "intro": "从两侧间隙观测估计套管偏心，再用几何真值检查误差。",
+      "height": 1300
+    }
+  }
+}

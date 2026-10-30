@@ -1,0 +1,121 @@
+{
+  "id": "mud-layering-lab",
+  "sceneId": "m4",
+  "title": "钻时曲线地层划分",
+  "methods": [
+    "ts"
+  ],
+  "status": "ready",
+  "version": "2.0.0",
+  "updated": "2026-10-30",
+  "tabs": {
+    "background": {
+      "label": "专业背景",
+      "lede": "曲线的转折，可能来自地层，也可能来自钻井工况。",
+      "sections": [
+        {
+          "no": 1,
+          "en": "CONCEPT",
+          "title": "先读懂专业概念",
+          "html": "<figure style=\"margin:18px 0;padding:18px;border:1px solid #d7e6de;border-radius:10px;background:#f5f9f6\"><div style=\"overflow-x:auto\" tabindex=\"0\" aria-label=\"专业示意图，窄屏可横向查看\"><svg viewBox=\"0 0 800 250\" role=\"img\" aria-label=\"把专业场景画出来\" style=\"display:block;width:100%;min-width:600px;font-family:system-ui,Microsoft YaHei,sans-serif\"><defs><marker id=\"arrow-把专业场景画出来\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"3\" orient=\"auto\"><path d=\"M0 0L6 3 0 6\" fill=\"none\" stroke=\"#4a967c\"/></marker></defs><text x=\"20\" y=\"27\" font-size=\"16\" font-weight=\"600\" fill=\"#2d715a\">把专业场景画出来</text><text x=\"32\" y=\"63\" font-size=\"13\" fill=\"#63856e\">地层变化</text><text x=\"280\" y=\"63\" font-size=\"13\" fill=\"#63856e\">钻时响应</text><text x=\"548\" y=\"63\" font-size=\"13\" fill=\"#63856e\">工况也会改变曲线</text><rect x=\"30\" y=\"80\" width=\"150\" height=\"40\" fill=\"#ccb58b\"/><rect x=\"30\" y=\"120\" width=\"150\" height=\"50\" fill=\"#9bb9bf\"/><rect x=\"30\" y=\"170\" width=\"150\" height=\"40\" fill=\"#c0cfad\"/><path d=\"M180 120h280M180 170h280\" stroke=\"#b4cbb9\" stroke-dasharray=\"5 4\"/><path d=\"M300 80v36h80v54h-60v40\" fill=\"none\" stroke=\"#3d9276\" stroke-width=\"3\"/><path d=\"M580 80v55h-32v35h32v40\" fill=\"none\" stroke=\"#c19a65\" stroke-width=\"3\"/><text x=\"610\" y=\"128\" font-size=\"12\" fill=\"#957950\">钻压增大</text><text x=\"610\" y=\"150\" font-size=\"12\" fill=\"#957950\">钻时缩短</text><text x=\"610\" y=\"192\" font-size=\"11\" fill=\"#789080\">可能产生伪界面</text><text x=\"31\" y=\"236\" font-size=\"12\" fill=\"#5d806b\">井深向下增加；钻时为钻进单位长度所需时间，单位 min/m。</text></svg></div><figcaption style=\"font-size:12px;color:#6a8275;margin-top:9px;line-height:1.8\">图中曲线为概念示意。工况补偿与层界识别分开讲解；MLP 对 11 点窗口给出界面候选分数，动态规划基线展示完整分层，两者评价对象不同。</figcaption></figure><div class=\"p-diagram\" style=\"padding:16px;background:#f4f8f6;border:1px solid #dce7e1;border-radius:10px\"><svg viewBox=\"0 0 685 125\" role=\"img\" aria-label=\"钻时曲线地层划分概念流程\"><rect x=\"18\" y=\"30\" width=\"145\" height=\"70\" rx=\"9\" fill=\"#e5f0e9\"/><text x=\"31\" y=\"51\" font-size=\"10\" fill=\"#81958d\">01</text><text x=\"90\" y=\"78\" text-anchor=\"middle\" font-size=\"14\" fill=\"#38594f\">钻时序列</text><path d=\"M167 65h14m-5-4 5 4-5 4\" stroke=\"#8da59a\" fill=\"none\"/><rect x=\"186\" y=\"30\" width=\"145\" height=\"70\" rx=\"9\" fill=\"#e8eff5\"/><text x=\"199\" y=\"51\" font-size=\"10\" fill=\"#81958d\">02</text><text x=\"258\" y=\"78\" text-anchor=\"middle\" font-size=\"14\" fill=\"#38594f\">工况校正</text><path d=\"M335 65h14m-5-4 5 4-5 4\" stroke=\"#8da59a\" fill=\"none\"/><rect x=\"354\" y=\"30\" width=\"145\" height=\"70\" rx=\"9\" fill=\"#eceaf5\"/><text x=\"367\" y=\"51\" font-size=\"10\" fill=\"#81958d\">03</text><text x=\"426\" y=\"78\" text-anchor=\"middle\" font-size=\"14\" fill=\"#38594f\">变点分段</text><path d=\"M503 65h14m-5-4 5 4-5 4\" stroke=\"#8da59a\" fill=\"none\"/><rect x=\"522\" y=\"30\" width=\"145\" height=\"70\" rx=\"9\" fill=\"#f4edde\"/><text x=\"535\" y=\"51\" font-size=\"10\" fill=\"#81958d\">04</text><text x=\"594\" y=\"78\" text-anchor=\"middle\" font-size=\"14\" fill=\"#38594f\">层界复核</text></svg></div><div><p><b>钻时序列：</b>钻时表示钻进单位长度所需时间，单位 min/m；与机械钻速 m/h 互为换算关系。</p><p><b>工况校正：</b>模拟钻压变化会改变钻时，先校正以减少工况引入的伪界面。</p><p><b>变点分段：</b>用分段常数拟合解释序列，兼顾拟合误差与界面数量。</p><p><b>层界复核：</b>将预测界面与岩屑和气测共同验证，不能只凭钻时命名岩性。</p></div>"
+        },
+        {
+          "no": 2,
+          "en": "PROBLEM",
+          "title": "业务问题与方法介入点",
+          "html": "<p>同样的岩性在不同钻压和转速下可能有不同钻时。噪声会制造短段，过度平滑又可能漏掉地层界面。</p><p><b>本例实现：</b>本示范使用动态规划最小化“各段平方误差之和 + λ × 界面数”。最小段长 8 m；用累积和快速计算区间误差。改变 λ 可以直接观察过分段与欠分段。 学习实验实际训练 窗口 MLP：工况补偿 11 点窗口 → 20 单元 ReLU → 12 单元 ReLU → 界面候选二类 Softmax；学习局部钻时窗口是否位于界面附近，与相同窗口的 k-NN 对照。动态规划完整分段仍在“原有专业基线实验”中保留。 训练集 144、验证集 48、测试集 72；Adam、交叉熵、批量 12。按验证损失选轮数后再验收测试集，并与相同划分的 k-NN 比较。</p>"
+        },
+        {
+          "no": 3,
+          "en": "DATA",
+          "title": "实验数据与验证边界",
+          "html": "<ul><li>2000–2159 m 的 160 个合成钻时采样点</li><li>真实界面为 2040、2080、2120 m</li><li>2065–2099 m 人为设置 1.55 倍钻压因子，原始钻时按该因子缩短</li><li>独立学习实验：144 个训练源样本、48 个验证源样本、72 个测试源样本；不同集合由独立种子生成，词表与输入缩放范围预先固定。</li></ul><p>所有数值为教学构造，可通过导出数据核查；现场应用需独立真实数据验证。</p>"
+        },
+        {
+          "no": 4,
+          "en": "NEXT STEP",
+          "title": "从示范走向真实智能化",
+          "html": "<p>已实现浏览器端 窗口 MLP 训练与推理，卷积或全连接权重确实更新。窗口分类不等于完整地层解释，不给地层命名；补偿关系仅为合成设定。 演示数据为教学合成，现场应用仍需独立真实资料、按井/样品分组验证与专业复核。</p><p>专业概念参考：<a href=\"https://www.slb.com/resource-library/oilfield-review/defining-series/defining-mud-logging\" target=\"_blank\" rel=\"noopener noreferrer\">SLB · Defining Mud Logging</a>。算法原理参考：<a href=\"https://www.tensorflow.org/tutorials/images/cnn\" target=\"_blank\" rel=\"noopener noreferrer\">TensorFlow CNN 教程</a>、<a href=\"https://scikit-learn.org/stable/modules/neural_networks_supervised.html\" target=\"_blank\" rel=\"noopener noreferrer\">MLP 与反向传播</a>、<a href=\"https://scikit-learn.org/stable/common_pitfalls.html\" target=\"_blank\" rel=\"noopener noreferrer\">防止数据泄漏</a>。本项目用原生 JavaScript 实现，并未加载这些库；合成数据与指标由本项目计算。</p>"
+        }
+      ]
+    },
+    "workflow": {
+      "label": "案例流程",
+      "title": "钻时曲线地层划分的可复现实验流程",
+      "lead": [
+        "曲线的转折，可能来自地层，也可能来自钻井工况。",
+        "每一步都说明输入、处理方法、可观察结果与常见陷阱。"
+      ],
+      "stats": [
+        [
+          "关键步骤",
+          "4"
+        ],
+        [
+          "执行位置",
+          "浏览器"
+        ],
+        [
+          "数据类型",
+          "教学样本"
+        ]
+      ],
+      "steps": [
+        {
+          "name": "整理深度序列",
+          "role": "数据",
+          "do": "将钻时统一为 min/m，检查缺测与重复深度。",
+          "effect": "生成有序且尺度一致的输入。",
+          "trap": "不要混用钻速和钻时的单位。"
+        },
+        {
+          "name": "工况归一化",
+          "role": "特征",
+          "do": "按合成钻压因子补偿原始钻时。",
+          "effect": "消除预设的工况响应。",
+          "trap": "真实项目应独立标定校正模型。"
+        },
+        {
+          "name": "机器学习与深度学习对照",
+          "role": "学习",
+          "do": "保留原有专业基线；另用相同划分比较 k-NN 和 窗口 MLP。工况补偿 11 点窗口 → 20 单元 ReLU → 12 单元 ReLU → 界面候选二类 Softmax。",
+          "effect": "观察实际训练/验证损失、网络激活和参数变化。",
+          "trap": "训练集更新权重，验证集选轮数；测试集不参与二者。"
+        },
+        {
+          "name": "冻结模型与独立验收",
+          "role": "验收",
+          "do": "恢复验证损失最低轮的权重，对 72 个测试样本推理；生成两种方法的混淆矩阵、准确率与宏平均 F1。",
+          "effect": "浏览误判样本，导出数据、逐轮损失和模型权重。",
+          "trap": "指标只对应合成任务；反复看测试集后再调参会削弱其独立验收意义。"
+        }
+      ],
+      "metrics": {
+        "title": "看见训练过程，再判断结果",
+        "html": "<figure style=\"margin:18px 0;padding:18px;border:1px solid #d7e6de;border-radius:10px;background:#f5f9f6\"><div style=\"overflow-x:auto\" tabindex=\"0\" aria-label=\"专业示意图，窄屏可横向查看\"><svg viewBox=\"0 0 800 250\" role=\"img\" aria-label=\"看清模型怎样学习\" style=\"display:block;width:100%;min-width:600px;font-family:system-ui,Microsoft YaHei,sans-serif\"><defs><marker id=\"arrow-看清模型怎样学习\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"3\" orient=\"auto\"><path d=\"M0 0L6 3 0 6\" fill=\"none\" stroke=\"#4a967c\"/></marker></defs><text x=\"20\" y=\"27\" font-size=\"16\" font-weight=\"600\" fill=\"#2d715a\">看清模型怎样学习</text><rect x=\"20\" y=\"62\" width=\"170\" height=\"64\" rx=\"8\" fill=\"#dfeee3\"/><text x=\"38\" y=\"88\" fill=\"#3b765a\" font-size=\"13\">训练 144 / 标签参与</text><text x=\"38\" y=\"110\" fill=\"#698c78\" font-size=\"11\">输入 → 前向计算 → 损失</text><path d=\"M202 94h54m-7-6 7 6-7 6\" fill=\"none\" stroke=\"#4d947a\" stroke-width=\"2\"/><rect x=\"265\" y=\"62\" width=\"255\" height=\"64\" rx=\"8\" fill=\"#e0e9f1\"/><text x=\"285\" y=\"87\" fill=\"#456d87\" font-size=\"13\">反向传播 · Adam 更新参数</text><text x=\"285\" y=\"109\" fill=\"#698393\" font-size=\"11\">每批 12 个样本 / 实时记录交叉熵</text><path d=\"M390 138v30H107v-30m-6 8 6-8 6 8\" fill=\"none\" stroke=\"#789c89\" stroke-width=\"2\"/><text x=\"145\" y=\"191\" fill=\"#6b8e77\" font-size=\"12\">重复训练，权重与损失真实变化</text><rect x=\"556\" y=\"62\" width=\"220\" height=\"64\" rx=\"8\" fill=\"#f1e9d8\"/><text x=\"574\" y=\"88\" fill=\"#99835c\" font-size=\"13\">验证 48 / 选择最低损失轮次</text><text x=\"574\" y=\"110\" fill=\"#99835c\" font-size=\"11\">不进入梯度，不更新权重</text><rect x=\"556\" y=\"160\" width=\"220\" height=\"64\" rx=\"8\" fill=\"#e1ece8\"/><text x=\"574\" y=\"186\" fill=\"#527a65\" font-size=\"13\">测试 72 / 冻结权重后验收</text><text x=\"574\" y=\"208\" fill=\"#789783\" font-size=\"11\">混淆矩阵 · 准确率 · 宏平均 F1</text><path d=\"M666 133v20m-6-8 6 8 6-8\" fill=\"none\" stroke=\"#789c89\" stroke-width=\"2\"/></svg></div><figcaption style=\"font-size:12px;color:#6a8275;margin-top:9px;line-height:1.8\"><b>窗口 MLP：</b>工况补偿 11 点窗口 → 20 单元 ReLU → 12 单元 ReLU → 界面候选二类 Softmax。学习局部钻时窗口是否位于界面附近，与相同窗口的 k-NN 对照。动态规划完整分段仍在“原有专业基线实验”中保留。</figcaption></figure><p>真实界面和预测界面一对一匹配，容差 ±3 m。F1 = 2 × 命中界面 / (预测界面数 + 真实界面数)。MAE 只统计已匹配界面；无命中时显示“—”。 神经网络实验与原专业基线使用不同教学数据，各自独立评估。新实验准确率为正确分类数/72，宏平均 F1 为各类 F1 的均值；只比较同一新实验中的 k-NN 和神经网络。</p><div class=\"p-diagram\" style=\"padding:16px;background:#f4f8f6;border:1px solid #dce7e1;border-radius:10px\"><svg viewBox=\"0 0 685 125\" role=\"img\" aria-label=\"钻时曲线地层划分概念流程\"><rect x=\"18\" y=\"30\" width=\"145\" height=\"70\" rx=\"9\" fill=\"#e5f0e9\"/><text x=\"31\" y=\"51\" font-size=\"10\" fill=\"#81958d\">01</text><text x=\"90\" y=\"78\" text-anchor=\"middle\" font-size=\"14\" fill=\"#38594f\">钻时序列</text><path d=\"M167 65h14m-5-4 5 4-5 4\" stroke=\"#8da59a\" fill=\"none\"/><rect x=\"186\" y=\"30\" width=\"145\" height=\"70\" rx=\"9\" fill=\"#e8eff5\"/><text x=\"199\" y=\"51\" font-size=\"10\" fill=\"#81958d\">02</text><text x=\"258\" y=\"78\" text-anchor=\"middle\" font-size=\"14\" fill=\"#38594f\">工况校正</text><path d=\"M335 65h14m-5-4 5 4-5 4\" stroke=\"#8da59a\" fill=\"none\"/><rect x=\"354\" y=\"30\" width=\"145\" height=\"70\" rx=\"9\" fill=\"#eceaf5\"/><text x=\"367\" y=\"51\" font-size=\"10\" fill=\"#81958d\">03</text><text x=\"426\" y=\"78\" text-anchor=\"middle\" font-size=\"14\" fill=\"#38594f\">变点分段</text><path d=\"M503 65h14m-5-4 5 4-5 4\" stroke=\"#8da59a\" fill=\"none\"/><rect x=\"522\" y=\"30\" width=\"145\" height=\"70\" rx=\"9\" fill=\"#f4edde\"/><text x=\"535\" y=\"51\" font-size=\"10\" fill=\"#81958d\">04</text><text x=\"594\" y=\"78\" text-anchor=\"middle\" font-size=\"14\" fill=\"#38594f\">层界复核</text></svg></div>"
+      },
+      "fails": [
+        {
+          "name": "工况造成伪界面",
+          "why": "关闭校正后可看到非地质因素的影响。"
+        },
+        {
+          "name": "噪声诱发过分段",
+          "why": "适当增加惩罚项可提高稳定性。"
+        },
+        {
+          "name": "薄层分辨率受限",
+          "why": "最小段长约束会让薄于 8 m 的层段难以出现。"
+        }
+      ]
+    },
+    "demo": {
+      "mode": "page",
+      "html": "demo/index.html",
+      "js": "demo/demo.js",
+      "label": "交互演示",
+      "intro": "曲线的转折，可能来自地层，也可能来自钻井工况。",
+      "height": 1100
+    }
+  }
+}

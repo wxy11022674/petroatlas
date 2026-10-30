@@ -1,0 +1,121 @@
+{
+  "id": "atlas-co3-lab",
+  "sceneId": "co3",
+  "title": "完井管柱受力智能分析",
+  "methods": [
+    "opt"
+  ],
+  "status": "ready",
+  "version": "2.0.0",
+  "updated": "2026-10-29",
+  "tabs": {
+    "background": {
+      "label": "专业背景",
+      "lede": "先算清简化力学关系，再训练代理模型学习输入与应力的联系。",
+      "sections": [
+        {
+          "no": 1,
+          "en": "CONCEPT",
+          "title": "专业概念：先看懂问题",
+          "html": "<div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"先算清简化力学关系，再训练代理模型学习输入与应力的联系。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><path d=\"M30 15v90M170 15v90\" stroke=\"#bda480\" stroke-width=\"14\"/><path d=\"M78 15v90M125 15v90\" stroke=\"#7e9baf\" stroke-width=\"9\"/><path d=\"M100 20v65m-5-8 5 8 5-8\" stroke=\"#309883\" fill=\"none\" stroke-width=\"2\"/><text x=\"235\" y=\"45\" font-size=\"14\">几何与载荷</text><text x=\"235\" y=\"70\" font-size=\"12\">变化 → 响应 → 验证</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">轴向载荷</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">热约束</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">代理模型</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">独立测试</text></svg></div><p><b>轴向载荷：</b>一维自重与热约束项提供可解释的最大应力量级。</p><p><b>热约束：</b>温升与约束比例通过交互项共同影响响应。</p><p><b>代理模型：</b>64个带噪力学样本训练含交互项的岭回归代理。</p><p><b>独立测试：</b>36个独立样本检验代理模型能否重现这一简化关系。</p>"
+        },
+        {
+          "no": 2,
+          "en": "METHOD",
+          "title": "业务问题与本例算法",
+          "html": "<p>生产管柱在温度、压力变化下产生轴向力与变形，设计不当会导致管柱屈曲、接头泄漏甚至断脱。</p><p><b>业务难点：</b>受力分析靠商用软件逐工况计算，工况组合多、参数不确定，工程师多按最保守工况设计，材料浪费。</p><p><b>实际实现：</b>固定弹性模量 200 GPa、热膨胀系数 12×10⁻⁶/℃、线重 0.35 kN/m、面积 0.004 m²，计算自重项和受约束热膨胀项。以 64 个带噪样本训练含温升与约束交互项的岭回归代理，以 36 个独立样本计算 RMSE。仅学习此简化模型，不是强度设计。</p>"
+        },
+        {
+          "no": 3,
+          "en": "DATA",
+          "title": "教学实验与真实数据的区别",
+          "html": "<p>演示里的数值、样本及响应关系全部为教学构造，用于观察算法行为，不宣称现场精度。CSV 和实验记录可保存样本、种子、参数及结果。</p><table class=\"t\"><thead><tr><th>真实场景需要的数据</th><th>规模或形式</th><th>标注 / 验证</th></tr></thead><tbody><tr><td>管柱结构与材料</td><td>钢级、壁厚、下深</td><td>无需标注</td></tr><tr><td>工况参数</td><td>温度、压力、产量变化</td><td>可批量仿真生成</td></tr><tr><td>失效案例</td><td>断脱、泄漏记录</td><td>少量真实标签</td></tr></tbody></table>"
+        },
+        {
+          "no": 4,
+          "en": "VALIDATION",
+          "title": "应用边界与升级路径",
+          "html": "<p><b>边界：</b>代理仅学习当前一维教学力学模型。缺少压力、浮力、屈曲与材料强度校核，不能用于管柱设计。</p><p>将完整管柱力学模型生成的数据用于代理学习，保留边界条件和失效准则，并与工程求解器交叉验证。</p><p>专业概念参考：<a href=\"https://www.slb.com/products-and-services/innovating-in-oil-and-gas/completions/well-completions/completion-accessories/expansion-and-slip-joints\" target=\"_blank\" rel=\"noopener noreferrer\">SLB · Expansion and Slip Joints</a>。参考资料用于解释概念，未提供本演示的训练数据或验证指标。</p>"
+        }
+      ]
+    },
+    "workflow": {
+      "label": "案例流程",
+      "title": "完井管柱受力智能分析：从输入到验证",
+      "lead": [
+        "先算清简化力学关系，再训练代理模型学习输入与应力的联系。",
+        "每一步说明数据如何变化、结果如何观察，以及哪里可能失效。"
+      ],
+      "stats": [
+        [
+          "流程步骤",
+          "4"
+        ],
+        [
+          "数据来源",
+          "教学构造"
+        ],
+        [
+          "运行位置",
+          "浏览器"
+        ]
+      ],
+      "steps": [
+        {
+          "name": "建立力学标签",
+          "role": "输入",
+          "do": "计算长度、温升与约束比例对应的应力。",
+          "effect": "明确模型学习的目标。",
+          "trap": "不含浮力、压力和屈曲。"
+        },
+        {
+          "name": "构造训练样本",
+          "role": "处理",
+          "do": "为64个参数组合加入可调标签噪声。",
+          "effect": "模拟数据质量差异。",
+          "trap": "不代表真实现场标签。"
+        },
+        {
+          "name": "训练学习代理",
+          "role": "推断",
+          "do": "以长度、温升、约束比例及温升×约束拟合岭回归。",
+          "effect": "得到快速输入到最大应力的映射。",
+          "trap": "交互项依赖专业知识选择。"
+        },
+        {
+          "name": "独立误差验证",
+          "role": "验证",
+          "do": "对36个未训练样本计算RMSE，并对照当前力学值。",
+          "effect": "观察噪声对代理误差的影响。",
+          "trap": "学习得准不表示力学简化足够真实。"
+        }
+      ],
+      "metrics": {
+        "title": "如何验证这个实验",
+        "html": "<p>固定弹性模量 200 GPa、热膨胀系数 12×10⁻⁶/℃、线重 0.35 kN/m、面积 0.004 m²，计算自重项和受约束热膨胀项。以 64 个带噪样本训练含温升与约束交互项的岭回归代理，以 36 个独立样本计算 RMSE。仅学习此简化模型，不是强度设计。</p><div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"先算清简化力学关系，再训练代理模型学习输入与应力的联系。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><path d=\"M30 15v90M170 15v90\" stroke=\"#bda480\" stroke-width=\"14\"/><path d=\"M78 15v90M125 15v90\" stroke=\"#7e9baf\" stroke-width=\"9\"/><path d=\"M100 20v65m-5-8 5 8 5-8\" stroke=\"#309883\" fill=\"none\" stroke-width=\"2\"/><text x=\"235\" y=\"45\" font-size=\"14\">几何与载荷</text><text x=\"235\" y=\"70\" font-size=\"12\">变化 → 响应 → 验证</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">轴向载荷</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">热约束</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">代理模型</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">独立测试</text></svg></div>"
+      },
+      "fails": [
+        {
+          "name": "数据迁移",
+          "why": "可用机理模型批量生成训练集，真实失效样本仅用于校验。"
+        },
+        {
+          "name": "模型边界",
+          "why": "代理仅学习当前一维教学力学模型。缺少压力、浮力、屈曲与材料强度校核，不能用于管柱设计。"
+        },
+        {
+          "name": "现场落地",
+          "why": "将完整管柱力学模型生成的数据用于代理学习，保留边界条件和失效准则，并与工程求解器交叉验证。"
+        }
+      ]
+    },
+    "demo": {
+      "mode": "page",
+      "html": "demo/index.html",
+      "js": "demo/demo.js",
+      "label": "交互演示",
+      "intro": "先算清简化力学关系，再训练代理模型学习输入与应力的联系。",
+      "height": 1300
+    }
+  }
+}

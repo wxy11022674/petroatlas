@@ -1,0 +1,122 @@
+{
+  "id": "atlas-co1-lab",
+  "sceneId": "co1",
+  "title": "完井方式智能优选",
+  "methods": [
+    "kg",
+    "opt"
+  ],
+  "status": "ready",
+  "version": "2.0.0",
+  "updated": "2026-10-29",
+  "tabs": {
+    "background": {
+      "label": "专业背景",
+      "lede": "把完井方案的适用条件展开，让推荐结果同时说明得分与不适用原因。",
+      "sections": [
+        {
+          "no": 1,
+          "en": "CONCEPT",
+          "title": "专业概念：先看懂问题",
+          "html": "<div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"把完井方案的适用条件展开，让推荐结果同时说明得分与不适用原因。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><path d=\"M100 58L285 24\" stroke=\"#9ebbad\"/><circle cx=\"285\" cy=\"24\" r=\"13\" fill=\"#c8ded2\"/><path d=\"M100 58L285 58\" stroke=\"#9ebbad\"/><circle cx=\"285\" cy=\"58\" r=\"13\" fill=\"#c8ded2\"/><path d=\"M100 58L285 92\" stroke=\"#9ebbad\"/><circle cx=\"285\" cy=\"92\" r=\"13\" fill=\"#c8ded2\"/><circle cx=\"100\" cy=\"58\" r=\"29\" fill=\"#3a8b77\"/><text x=\"100\" y=\"63\" text-anchor=\"middle\" fill=\"white\">证据</text><text x=\"310\" y=\"64\" font-size=\"13\">方案匹配</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">储层条件</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">方案知识</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">约束排除</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">加权排序</text></svg></div><p><b>储层条件：</b>完井方案需要结合储层、出砂倾向和分层控制需求考虑。</p><p><b>方案知识：</b>教学知识库把有限方案写成可读的条件和评分项。</p><p><b>约束排除：</b>硬性不兼容条件先于偏好得分执行，避免高分掩盖明显冲突。</p><p><b>加权排序：</b>剩余方案按权重累计匹配分，并通过证据关系说明排序来源。</p>"
+        },
+        {
+          "no": 2,
+          "en": "METHOD",
+          "title": "业务问题与本例算法",
+          "html": "<p>完井方式（裸眼、射孔、筛管、砾石充填）决定了井与储层的连通方式与后续措施空间，选择依据是储层类型、出砂倾向与出水风险。</p><p><b>业务难点：</b>方案选择强依赖工程师经验与邻井案例，新区块无邻井可参考时容易选错，返工成本高。</p><p><b>实际实现：</b>为三条教学候选方案定义特征原型和排除条件。先检查硬性不相容规则，再按 Σwᵢ(1−|输入ᵢ−原型ᵢ|)/Σwᵢ 排序，显示每项证据贡献。匹配分数不是成功概率。</p>"
+        },
+        {
+          "no": 3,
+          "en": "DATA",
+          "title": "教学实验与真实数据的区别",
+          "html": "<p>演示里的数值、样本及响应关系全部为教学构造，用于观察算法行为，不宣称现场精度。CSV 和实验记录可保存样本、种子、参数及结果。</p><table class=\"t\"><thead><tr><th>真实场景需要的数据</th><th>规模或形式</th><th>标注 / 验证</th></tr></thead><tbody><tr><td>储层与流体特征</td><td>岩性、出砂指数、水层位置</td><td>单区块 100—500 井次</td></tr><tr><td>完井方式与生产表现</td><td>方式、初期产能、出砂情况</td><td>作为标签</td></tr><tr><td>案例文本</td><td>完井设计书与总结</td><td>用于知识抽取</td></tr></tbody></table>"
+        },
+        {
+          "no": 4,
+          "en": "VALIDATION",
+          "title": "应用边界与升级路径",
+          "html": "<p><b>边界：</b>本例是有限知识库中的规则匹配，不是自动完成完井设计。</p><p>建立带适用范围和来源版本的知识图谱，用历史成功与失败案例检验规则，并保留设计人员复核入口。</p><p>专业概念参考：<a href=\"https://www.slb.com/resource-library/oilfield-review/defining-series/defining-completion\" target=\"_blank\" rel=\"noopener noreferrer\">SLB · Introduction to Well Completions</a>。参考资料用于解释概念，未提供本演示的训练数据或验证指标。</p>"
+        }
+      ]
+    },
+    "workflow": {
+      "label": "案例流程",
+      "title": "完井方式智能优选：从输入到验证",
+      "lead": [
+        "把完井方案的适用条件展开，让推荐结果同时说明得分与不适用原因。",
+        "每一步说明数据如何变化、结果如何观察，以及哪里可能失效。"
+      ],
+      "stats": [
+        [
+          "流程步骤",
+          "4"
+        ],
+        [
+          "数据来源",
+          "教学构造"
+        ],
+        [
+          "运行位置",
+          "浏览器"
+        ]
+      ],
+      "steps": [
+        {
+          "name": "描述井的需求",
+          "role": "输入",
+          "do": "选择或调整教学储层条件与目标。",
+          "effect": "得到结构化的方案查询条件。",
+          "trap": "未提供的信息不应默认为满足。"
+        },
+        {
+          "name": "读取方案知识",
+          "role": "处理",
+          "do": "阅读候选方案的匹配依据，并查看输入条件与候选的加权关系图。",
+          "effect": "把推荐依据变成可检查的知识项。",
+          "trap": "小型知识库无法覆盖所有完井组合。"
+        },
+        {
+          "name": "排除并评分",
+          "role": "推断",
+          "do": "先执行不兼容规则，再汇总加权匹配分。",
+          "effect": "显示候选的排除状态与相对匹配分；关系图连线宽度体现分项贡献。",
+          "trap": "分数不是成功率或经济收益概率。"
+        },
+        {
+          "name": "追溯推荐证据",
+          "role": "验证",
+          "do": "查看条件到方案的关系及排名变化。",
+          "effect": "解释调整某个偏好为何改变排序。",
+          "trap": "现场方案仍需完整设计与专家审核。"
+        }
+      ],
+      "metrics": {
+        "title": "如何验证这个实验",
+        "html": "<p>为三条教学候选方案定义特征原型和排除条件。先检查硬性不相容规则，再按 Σwᵢ(1−|输入ᵢ−原型ᵢ|)/Σwᵢ 排序，显示每项证据贡献。匹配分数不是成功概率。</p><div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"把完井方案的适用条件展开，让推荐结果同时说明得分与不适用原因。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><path d=\"M100 58L285 24\" stroke=\"#9ebbad\"/><circle cx=\"285\" cy=\"24\" r=\"13\" fill=\"#c8ded2\"/><path d=\"M100 58L285 58\" stroke=\"#9ebbad\"/><circle cx=\"285\" cy=\"58\" r=\"13\" fill=\"#c8ded2\"/><path d=\"M100 58L285 92\" stroke=\"#9ebbad\"/><circle cx=\"285\" cy=\"92\" r=\"13\" fill=\"#c8ded2\"/><circle cx=\"100\" cy=\"58\" r=\"29\" fill=\"#3a8b77\"/><text x=\"100\" y=\"63\" text-anchor=\"middle\" fill=\"white\">证据</text><text x=\"310\" y=\"64\" font-size=\"13\">方案匹配</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">储层条件</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">方案知识</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">约束排除</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">加权排序</text></svg></div>"
+      },
+      "fails": [
+        {
+          "name": "数据迁移",
+          "why": "决策是多目标权衡（产能、防砂、成本），\"最优\"没有统一定义，模型只能给候选排序。"
+        },
+        {
+          "name": "模型边界",
+          "why": "本例是有限知识库中的规则匹配，不是自动完成完井设计。"
+        },
+        {
+          "name": "现场落地",
+          "why": "建立带适用范围和来源版本的知识图谱，用历史成功与失败案例检验规则，并保留设计人员复核入口。"
+        }
+      ]
+    },
+    "demo": {
+      "mode": "page",
+      "html": "demo/index.html",
+      "js": "demo/demo.js",
+      "label": "交互演示",
+      "intro": "把完井方案的适用条件展开，让推荐结果同时说明得分与不适用原因。",
+      "height": 1300
+    }
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "id": "atlas-p3-lab",
+  "sceneId": "p3",
+  "title": "射孔弹型智能选型",
+  "methods": [
+    "kg"
+  ],
+  "status": "ready",
+  "version": "2.0.0",
+  "updated": "2026-10-29",
+  "tabs": {
+    "background": {
+      "label": "专业背景",
+      "lede": "将深穿透、较大孔径等偏好转为可解释的类型匹配。",
+      "sections": [
+        {
+          "no": 1,
+          "en": "CONCEPT",
+          "title": "专业概念：先看懂问题",
+          "html": "<div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"将深穿透、较大孔径等偏好转为可解释的类型匹配。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><path d=\"M100 58L285 24\" stroke=\"#9ebbad\"/><circle cx=\"285\" cy=\"24\" r=\"13\" fill=\"#c8ded2\"/><path d=\"M100 58L285 58\" stroke=\"#9ebbad\"/><circle cx=\"285\" cy=\"58\" r=\"13\" fill=\"#c8ded2\"/><path d=\"M100 58L285 92\" stroke=\"#9ebbad\"/><circle cx=\"285\" cy=\"92\" r=\"13\" fill=\"#c8ded2\"/><circle cx=\"100\" cy=\"58\" r=\"29\" fill=\"#3a8b77\"/><text x=\"100\" y=\"63\" text-anchor=\"middle\" fill=\"white\">证据</text><text x=\"310\" y=\"64\" font-size=\"13\">方案匹配</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">需求条件</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">类型知识</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">兼容性</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">证据排序</text></svg></div><p><b>需求条件：</b>不同目标强调的性能不同，不能仅凭单项指标给出统一排名。</p><p><b>类型知识：</b>本例把三种教学类型写成有限属性集合。</p><p><b>兼容性：</b>不兼容规则先剔除不满足条件的类型，再讨论偏好。</p><p><b>证据排序：</b>加权匹配分展示各条件的贡献，让推荐能被解释和质疑。</p>"
+        },
+        {
+          "no": 2,
+          "en": "METHOD",
+          "title": "业务问题与本例算法",
+          "html": "<p>不同射孔弹在穿深、孔径与对套管的损伤上各有取舍，选型要匹配岩性、套管钢级与完井方式。</p><p><b>业务难点：</b>选型表靠人工查手册，型号更新后手册滞后；现场倾向用&quot;常用弹&quot;，未必是当前井的最优。</p><p><b>实际实现：</b>为三条教学候选方案定义特征原型和排除条件。先检查硬性不相容规则，再按 Σwᵢ(1−|输入ᵢ−原型ᵢ|)/Σwᵢ 排序，显示每项证据贡献。匹配分数不是成功概率。</p>"
+        },
+        {
+          "no": 3,
+          "en": "DATA",
+          "title": "教学实验与真实数据的区别",
+          "html": "<p>演示里的数值、样本及响应关系全部为教学构造，用于观察算法行为，不宣称现场精度。CSV 和实验记录可保存样本、种子、参数及结果。</p><table class=\"t\"><thead><tr><th>真实场景需要的数据</th><th>规模或形式</th><th>标注 / 验证</th></tr></thead><tbody><tr><td>射孔弹参数库</td><td>型号、穿深、孔径、适用套管</td><td>厂家手册结构化</td></tr><tr><td>井况参数</td><td>岩性、钢级、壁厚</td><td>无需标注</td></tr><tr><td>使用反馈</td><td>实际效果评价</td><td>少量标注</td></tr></tbody></table>"
+        },
+        {
+          "no": 4,
+          "en": "VALIDATION",
+          "title": "应用边界与升级路径",
+          "html": "<p><b>边界：</b>演示仅做抽象类型检索，不涉及爆炸物配方、装配或使用方法。</p><p>为每条类型属性保存经过审核的来源、适用范围和更新时间，将兼容性约束与偏好排序分开维护。</p><p>专业概念参考：<a href=\"https://www.slb.com/resource-library/oilfield-review/defining-series/defining-perforating\" target=\"_blank\" rel=\"noopener noreferrer\">SLB · Defining Perforating</a>。参考资料用于解释概念，未提供本演示的训练数据或验证指标。</p>"
+        }
+      ]
+    },
+    "workflow": {
+      "label": "案例流程",
+      "title": "射孔弹型智能选型：从输入到验证",
+      "lead": [
+        "将深穿透、较大孔径等偏好转为可解释的类型匹配。",
+        "每一步说明数据如何变化、结果如何观察，以及哪里可能失效。"
+      ],
+      "stats": [
+        [
+          "流程步骤",
+          "4"
+        ],
+        [
+          "数据来源",
+          "教学构造"
+        ],
+        [
+          "运行位置",
+          "浏览器"
+        ]
+      ],
+      "steps": [
+        {
+          "name": "表达性能偏好",
+          "role": "输入",
+          "do": "调整教学任务的目标条件及权重。",
+          "effect": "明确本次排序服务的需求。",
+          "trap": "偏好值不应被解释成工程性能要求。"
+        },
+        {
+          "name": "核查类型属性",
+          "role": "处理",
+          "do": "阅读候选方案的匹配依据，并查看输入条件与候选的加权关系图。",
+          "effect": "建立条件到类型的知识关系。",
+          "trap": "候选只代表教学类别，不是实际产品目录。"
+        },
+        {
+          "name": "排除不兼容项",
+          "role": "推断",
+          "do": "按规则过滤冲突，再计算相对匹配分。",
+          "effect": "显示候选的排除状态与相对匹配分；关系图连线宽度体现分项贡献。",
+          "trap": "匹配得分不是使用成功概率。"
+        },
+        {
+          "name": "解释排序变化",
+          "role": "验证",
+          "do": "查看证据关系及改变权重后的排名。",
+          "effect": "理解知识规则如何影响推荐。",
+          "trap": "实际选型必须由具备资质人员和验证资料支持。"
+        }
+      ],
+      "metrics": {
+        "title": "如何验证这个实验",
+        "html": "<p>为三条教学候选方案定义特征原型和排除条件。先检查硬性不相容规则，再按 Σwᵢ(1−|输入ᵢ−原型ᵢ|)/Σwᵢ 排序，显示每项证据贡献。匹配分数不是成功概率。</p><div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"将深穿透、较大孔径等偏好转为可解释的类型匹配。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><path d=\"M100 58L285 24\" stroke=\"#9ebbad\"/><circle cx=\"285\" cy=\"24\" r=\"13\" fill=\"#c8ded2\"/><path d=\"M100 58L285 58\" stroke=\"#9ebbad\"/><circle cx=\"285\" cy=\"58\" r=\"13\" fill=\"#c8ded2\"/><path d=\"M100 58L285 92\" stroke=\"#9ebbad\"/><circle cx=\"285\" cy=\"92\" r=\"13\" fill=\"#c8ded2\"/><circle cx=\"100\" cy=\"58\" r=\"29\" fill=\"#3a8b77\"/><text x=\"100\" y=\"63\" text-anchor=\"middle\" fill=\"white\">证据</text><text x=\"310\" y=\"64\" font-size=\"13\">方案匹配</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">需求条件</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">类型知识</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">兼容性</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">证据排序</text></svg></div>"
+      },
+      "fails": [
+        {
+          "name": "数据迁移",
+          "why": "本质是结构化检索与规则匹配，数据可从手册整理，风险可控。"
+        },
+        {
+          "name": "模型边界",
+          "why": "演示仅做抽象类型检索，不涉及爆炸物配方、装配或使用方法。"
+        },
+        {
+          "name": "现场落地",
+          "why": "为每条类型属性保存经过审核的来源、适用范围和更新时间，将兼容性约束与偏好排序分开维护。"
+        }
+      ]
+    },
+    "demo": {
+      "mode": "page",
+      "html": "demo/index.html",
+      "js": "demo/demo.js",
+      "label": "交互演示",
+      "intro": "将深穿透、较大孔径等偏好转为可解释的类型匹配。",
+      "height": 1300
+    }
+  }
+}

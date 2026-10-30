@@ -1,0 +1,121 @@
+{
+  "id": "atlas-wo2-lab",
+  "sceneId": "wo2",
+  "title": "落物打捞工具智能选型",
+  "methods": [
+    "kg"
+  ],
+  "status": "ready",
+  "version": "2.0.0",
+  "updated": "2026-10-29",
+  "tabs": {
+    "background": {
+      "label": "专业背景",
+      "lede": "先检查落物能从内侧还是外侧接合，再讨论工具偏好。",
+      "sections": [
+        {
+          "no": 1,
+          "en": "CONCEPT",
+          "title": "专业概念：先看懂问题",
+          "html": "<div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"先检查落物能从内侧还是外侧接合，再讨论工具偏好。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><path d=\"M100 58L285 24\" stroke=\"#9ebbad\"/><circle cx=\"285\" cy=\"24\" r=\"13\" fill=\"#c8ded2\"/><path d=\"M100 58L285 58\" stroke=\"#9ebbad\"/><circle cx=\"285\" cy=\"58\" r=\"13\" fill=\"#c8ded2\"/><path d=\"M100 58L285 92\" stroke=\"#9ebbad\"/><circle cx=\"285\" cy=\"92\" r=\"13\" fill=\"#c8ded2\"/><circle cx=\"100\" cy=\"58\" r=\"29\" fill=\"#3a8b77\"/><text x=\"100\" y=\"63\" text-anchor=\"middle\" fill=\"white\">证据</text><text x=\"310\" y=\"64\" font-size=\"13\">方案匹配</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">落物特征</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">接合方式</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">尺寸兼容</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">工具排序</text></svg></div><p><b>落物特征：</b>落物的形态、外径与可接合部位影响可选工具。</p><p><b>接合方式：</b>内捞和外捞具有不同接合位置，不能仅按名称相似选择。</p><p><b>尺寸兼容：</b>本例用教学兼容规则排除条件冲突的候选。</p><p><b>工具排序：</b>剩余工具按权重匹配，展示各项条件的支持证据。</p>"
+        },
+        {
+          "no": 2,
+          "en": "METHOD",
+          "title": "业务问题与本例算法",
+          "html": "<p>井下落物（油管、抽油杆、工具、电缆）形态各异，打捞工具的选择取决于落物尺寸、形态、所在井段与井身结构。</p><p><b>业务难点：</b>选型靠打捞工程师经验与工具手册，现场常带多套工具下井&quot;试着捞&quot;，增加起下钻次数。</p><p><b>实际实现：</b>为三条教学候选方案定义特征原型和排除条件。先检查硬性不相容规则，再按 Σwᵢ(1−|输入ᵢ−原型ᵢ|)/Σwᵢ 排序，显示每项证据贡献。匹配分数不是成功概率。</p>"
+        },
+        {
+          "no": 3,
+          "en": "DATA",
+          "title": "教学实验与真实数据的区别",
+          "html": "<p>演示里的数值、样本及响应关系全部为教学构造，用于观察算法行为，不宣称现场精度。CSV 和实验记录可保存样本、种子、参数及结果。</p><table class=\"t\"><thead><tr><th>真实场景需要的数据</th><th>规模或形式</th><th>标注 / 验证</th></tr></thead><tbody><tr><td>落物描述与图像</td><td>尺寸、形态、材质、深度</td><td>按落物类型标注 300—1000 例</td></tr><tr><td>打捞记录</td><td>工具组合、成功率</td><td>作为标签</td></tr><tr><td>井身结构</td><td>套管尺寸、井斜</td><td>约束条件</td></tr></tbody></table>"
+        },
+        {
+          "no": 4,
+          "en": "VALIDATION",
+          "title": "应用边界与升级路径",
+          "html": "<p><b>边界：</b>只演示工具类别匹配，不给出现场打捞操作、拉力或震击参数。</p><p>把经审核的尺寸范围、接头和鱼顶描述录入知识图谱，结合案例相似度检索并保留未知条件提示。</p><p>专业概念参考：<a href=\"https://glossary.slb.com/en/terms/f/fishing_tool\" target=\"_blank\" rel=\"noopener noreferrer\">SLB Energy Glossary · fishing tool</a>、<a href=\"https://glossary.slb.com/en/terms/o/overshot\" target=\"_blank\" rel=\"noopener noreferrer\">SLB Energy Glossary · overshot</a>。参考资料用于解释概念，未提供本演示的训练数据或验证指标。</p>"
+        }
+      ]
+    },
+    "workflow": {
+      "label": "案例流程",
+      "title": "落物打捞工具智能选型：从输入到验证",
+      "lead": [
+        "先检查落物能从内侧还是外侧接合，再讨论工具偏好。",
+        "每一步说明数据如何变化、结果如何观察，以及哪里可能失效。"
+      ],
+      "stats": [
+        [
+          "流程步骤",
+          "4"
+        ],
+        [
+          "数据来源",
+          "教学构造"
+        ],
+        [
+          "运行位置",
+          "浏览器"
+        ]
+      ],
+      "steps": [
+        {
+          "name": "描述落物条件",
+          "role": "输入",
+          "do": "输入教学形态与需求条件。",
+          "effect": "明确工具选择要回答的几何和接合问题。",
+          "trap": "未知尺寸不能被当成已满足条件。"
+        },
+        {
+          "name": "比较工具知识",
+          "role": "处理",
+          "do": "阅读候选方案的匹配依据，并查看输入条件与候选的加权关系图。",
+          "effect": "把内捞、外捞等关系可视化。",
+          "trap": "教学条目不是厂商尺寸系列。"
+        },
+        {
+          "name": "过滤冲突候选",
+          "role": "推断",
+          "do": "先核对不兼容规则，再计算偏好得分。",
+          "effect": "显示候选的排除状态与相对匹配分；关系图连线宽度体现分项贡献。",
+          "trap": "权重不能覆盖硬性不兼容条件。"
+        },
+        {
+          "name": "追溯选择依据",
+          "role": "验证",
+          "do": "观察条件变化引起的工具排名变化。",
+          "effect": "理解知识推理的可解释性。",
+          "trap": "实际工具与载荷需由专业人员核验。"
+        }
+      ],
+      "metrics": {
+        "title": "如何验证这个实验",
+        "html": "<p>为三条教学候选方案定义特征原型和排除条件。先检查硬性不相容规则，再按 Σwᵢ(1−|输入ᵢ−原型ᵢ|)/Σwᵢ 排序，显示每项证据贡献。匹配分数不是成功概率。</p><div class=\"p-concept-figure\"><svg viewBox=\"0 0 685 215\" role=\"img\" aria-label=\"先检查落物能从内侧还是外侧接合，再讨论工具偏好。\" style=\"width:100%;font-family:system-ui;fill:#47685a\"><path d=\"M100 58L285 24\" stroke=\"#9ebbad\"/><circle cx=\"285\" cy=\"24\" r=\"13\" fill=\"#c8ded2\"/><path d=\"M100 58L285 58\" stroke=\"#9ebbad\"/><circle cx=\"285\" cy=\"58\" r=\"13\" fill=\"#c8ded2\"/><path d=\"M100 58L285 92\" stroke=\"#9ebbad\"/><circle cx=\"285\" cy=\"92\" r=\"13\" fill=\"#c8ded2\"/><circle cx=\"100\" cy=\"58\" r=\"29\" fill=\"#3a8b77\"/><text x=\"100\" y=\"63\" text-anchor=\"middle\" fill=\"white\">证据</text><text x=\"310\" y=\"64\" font-size=\"13\">方案匹配</text><rect x=\"10\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"86\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">落物特征</text><path d=\"M165 170h10\" stroke=\"#9db2a7\"/><rect x=\"177\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"253\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">接合方式</text><path d=\"M332 170h10\" stroke=\"#9db2a7\"/><rect x=\"344\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"420\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">尺寸兼容</text><path d=\"M499 170h10\" stroke=\"#9db2a7\"/><rect x=\"511\" y=\"143\" width=\"153\" height=\"55\" rx=\"7\" fill=\"#edf4ef\" stroke=\"#d4e3d9\"/><text x=\"587\" y=\"175\" text-anchor=\"middle\" font-size=\"12\">工具排序</text></svg></div>"
+      },
+      "fails": [
+        {
+          "name": "数据迁移",
+          "why": "落物描述以文本为主，需要先结构化；样本量有限。"
+        },
+        {
+          "name": "模型边界",
+          "why": "只演示工具类别匹配，不给出现场打捞操作、拉力或震击参数。"
+        },
+        {
+          "name": "现场落地",
+          "why": "把经审核的尺寸范围、接头和鱼顶描述录入知识图谱，结合案例相似度检索并保留未知条件提示。"
+        }
+      ]
+    },
+    "demo": {
+      "mode": "page",
+      "html": "demo/index.html",
+      "js": "demo/demo.js",
+      "label": "交互演示",
+      "intro": "先检查落物能从内侧还是外侧接合，再讨论工具偏好。",
+      "height": 1300
+    }
+  }
+}
