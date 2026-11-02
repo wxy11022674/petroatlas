@@ -12,3 +12,8 @@
 @media(prefers-reduced-motion:reduce){.ns-accuracy-track i{transition:none}}
 
 .mc-report-result{margin:0 28px 18px;padding:16px 20px;border:1px solid #3b665b;border-left:3px solid #68d7bb;border-radius:7px;background:#1b393533}.mc-report-result span,.mc-report-result small{display:block;color:#7ea69e;font-size:11px}.mc-report-result b{display:block;color:#bceede;margin:8px 0;font-size:16px}.mc-report-result p{color:#a7c5c0;font-size:12px;margin:7px 0}
+
+@keyframes neural-signal-travel{from{stroke-dashoffset:0}to{stroke-dashoffset:-31.6}}
+.nn-flow-path{animation:neural-signal-travel var(--flow-duration,2400ms) linear infinite;animation-play-state:var(--flow-state,running)}
+.cc-controls button[aria-pressed=true]{border-color:#659c91;color:#a4edd8}
+@media(prefers-reduced-motion:reduce){.nn-flow-path{animation:none;stroke-opacity:.16}}
