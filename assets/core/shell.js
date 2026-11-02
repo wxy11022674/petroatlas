@@ -952,7 +952,7 @@
       '<div class="upcard">' +
       '<div class="upcard-l">' +
       '<h4>案例包是什么</h4>' +
-      '<p>是一个<b>文件夹</b>：一份 JSON 清单 + 任意演示文件。清单写名称、所属场景和两块正文（专业背景 / 案例流程）；' +
+      '<p>可以是一个<b>ZIP 压缩包或文件夹</b>：一份 JSON 清单 + 任意演示文件。清单写名称、所属场景和两块正文（专业背景 / 案例流程）；' +
       '示范可以是一个完整的 <b>index.html</b>、配套的 <b>demo.js</b> / <b>demo.css</b>，以及图片、JSON 数据等素材。</p>' +
       '<p>拖进弹窗时会整个读进浏览器——<b>html 自动内联 css 与 js、图片自动转成内嵌资源</b>，所以不需要服务器，双击 index.html 也能跑。</p>' +
       '<p>示范页跑在 <b>sandbox iframe</b> 里，你可以随便写样式和脚本，不会污染主站；只有 demo.js 没有 html 时，脚本会挂进 <b>Shadow DOM</b>，样式同样隔离。</p>' +
@@ -960,7 +960,7 @@
       '<button class="btn primary" data-import>＋ 打开「添加案例」</button>' +
       '<button class="btn" data-dl-template>↓ 下载案例包模板（.zip）</button>' +
       '</div>' +
-      '<div class="upcard-note">模板解压后就是一个可直接运行的完整包：清单 + 示范页 + 样式 + 脚本，改完整个文件夹拖回去即可。' +
+      '<div class="upcard-note">可直接选择或拖入 ZIP，网站自动解压并校验；多个案例请保持一例一包，支持多 ZIP 批量添加。也可继续导入解压后的文件和文件夹。' +
       '上传的案例保存在本机浏览器（localStorage），换电脑需重新上传；要永久发布给所有人，用下面的方式 B。</div>' +
       '</div>' +
       '<div class="upcard-r">' +

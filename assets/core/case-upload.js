@@ -1,5 +1,5 @@
 /* =========================================================
-   案例包导入 Case Import（v2：多文件 / 文件夹）
+   案例包导入 Case Import（v3：ZIP / 批量 ZIP / 文件 / 文件夹）
    ---------------------------------------------------------
    一个「案例包」= 一个文件夹，最少一个清单，其余随便：
 
@@ -87,10 +87,36 @@
   /* ---------------------------------------------------------
      1. 存储
      --------------------------------------------------------- */
+  // Shared resources avoid storing each common runtime once per imported case.
+  // The versioned payload remains compatible with legacy plain/gzipped arrays.
+  function packStore(list) {
+    var resources=[],lookup=new Map();
+    var records=list.map(function(rec){
+      var refs=(rec.files||[]).map(function(file){
+        var signature=JSON.stringify([file.name,file.size,file.mime,file.enc,file.data]);
+        if(!lookup.has(signature)){lookup.set(signature,resources.length);resources.push(file);}
+        return lookup.get(signature);
+      });
+      return Object.assign({},rec,{files:refs});
+    });
+    return {schema:'atlas.case-store.shared.v1',resources:resources,records:records};
+  }
+  function unpackStore(raw) {
+    if(Array.isArray(raw))return raw;
+    if(!raw||raw.schema!=='atlas.case-store.shared.v1'||!Array.isArray(raw.resources)||!Array.isArray(raw.records))return [];
+    return raw.records.map(function(rec){
+      if(!rec||!Array.isArray(rec.files))throw Error('案例资源索引格式错误');
+      return Object.assign({},rec,{files:rec.files.map(function(index){
+        if(!Number.isInteger(index)||index<0||index>=raw.resources.length||!raw.resources[index])throw Error('案例资源索引不存在');
+        return Object.assign({},raw.resources[index]);
+      })});
+    });
+  }
   function readStore(key) {
     try {
       var raw = JSON.parse(global.localStorage.getItem(key) || '[]');
-      return Array.isArray(raw) ? raw : [];
+      if (key === KEY && raw && raw.encoding === 'gzip-base64') raw = JSON.parse(new TextDecoder().decode(global.fflate.gunzipSync(Uint8Array.from(atob(raw.data), function(c){return c.charCodeAt(0);})))) ;
+      return key===KEY ? unpackStore(raw) : (Array.isArray(raw)?raw:[]);
     } catch (e) {
       return (key === KEY && memFallback) || [];
     }
@@ -99,7 +125,9 @@
   function writeStore(list) {
     memFallback = list;
     try {
-      global.localStorage.setItem(KEY, JSON.stringify(list));
+      var json = JSON.stringify(packStore(list));
+      if (global.fflate) { var bytes = global.fflate.gzipSync(new TextEncoder().encode(json)); var binary = ''; for (var i=0;i<bytes.length;i++) binary+=String.fromCharCode(bytes[i]); json=JSON.stringify({schema:'atlas.case-store.shared.v1',encoding:'gzip-base64',data:btoa(binary)}); }
+      global.localStorage.setItem(KEY, json);
       return true;
     } catch (e) {
       return false;
@@ -842,7 +870,7 @@
       '<div class="mdl-b">' +
       '<ol class="imp-flow">' +
       '<li><b>01</b><span>下载模板，改内容与示范</span></li>' +
-      '<li><b>02</b><span>拖入整个案例文件夹</span></li>' +
+      '<li><b>02</b><span>选择 ZIP 或拖入案例文件夹</span></li>' +
       '<li><b>03</b><span>校验通过后添加</span></li>' +
       '</ol>' +
 
@@ -851,16 +879,19 @@
 
       '<div class="imp-drop" id="imp-drop">' +
       '<input type="file" id="imp-file" multiple hidden>' +
+      '<input type="file" id="imp-zip" accept=".zip,application/zip" multiple hidden>' +
       '<input type="file" id="imp-dir" webkitdirectory directory multiple hidden>' +
       '<span class="imp-ic">↑</span>' +
-      '<b>拖入案例文件夹，或点击选择</b>' +
-      '<span class="imp-sub">清单 case.json + 示范页 + 脚本 + 素材，上限 6 MB。推荐把整个文件夹<b>直接拖进虚线框</b>；若点按钮弹出的仍是文件选择框（浏览器不支持选文件夹），可点「选择文件」后 Ctrl+A 全选包内文件</span>' +
+      '<b>拖入 ZIP / 案例文件夹，或点击选择</b>' +
+      '<span class="imp-sub">ZIP 自动解压并校验，可一次选择多个案例 ZIP。每包仅含一个 case.json，解压上限 6 MB。原文件和文件夹方式继续支持。推荐把整个文件夹<b>直接拖进虚线框</b>；若点按钮弹出的仍是文件选择框（浏览器不支持选文件夹），可点「选择文件」后 Ctrl+A 全选包内文件</span>' +
       '<span class="imp-choose">' +
-      '<button class="btn sm" id="imp-pick-files" type="button">选择文件</button>' +
+      '<button class="btn sm" id="imp-pick-zip" type="button">选择 ZIP 压缩包</button>' +
+      '<button class="btn sm ghost" id="imp-pick-files" type="button">选择文件</button>' +
       '<button class="btn sm ghost" id="imp-pick-dir" type="button">选择文件夹</button>' +
       '</span>' +
       '</div>' +
 
+      '<section id="imp-batch" hidden style="margin:12px 0;padding:14px;background:var(--paper-2);border:1px solid var(--line);border-radius:10px" aria-live="polite"></section>' +
       '<div class="imp-pack" id="imp-pack" hidden>' +
       '<div class="imp-pack-h">' +
       '<span id="imp-pack-sum">0 个文件</span>' +
@@ -961,6 +992,7 @@
   }
 
   function preview() {
+    if(batchMode){batchSummary();return;}
     if (!S.pkg) { paintResults([]); return; }
     paintResults(checkAll(S.pkg, metaNow(), S.files));
   }
@@ -1005,7 +1037,9 @@
   /* ---- 载入一组文件 ---- */
   function loadFiles(fileList) {
     var files = [].slice.call(fileList || []).filter(function (f) { return f && f.name && f.name !== '.DS_Store'; });
-    if (!files.length) return;
+    if (!files.length || S.loading) return;
+    if (files.some(function(f){return /\.zip$/i.test(f.name);})) { loadZips(files); return; }
+    batchMode=false;batchRecords=[]; if(S.el){q('#imp-batch').hidden=true;importAction(false);}
 
     if (S.loading) return;
     S.loading = true;
@@ -1020,6 +1054,83 @@
       paintResults([{ level: 'error', msg: '读取文件失败', hint: e.message }]);
       tip('读取失败，换一个文件夹再试', 'is-err');
     });
+  }
+
+
+  var batchRecords=[],zipEpoch=0,batchMode=false,batchChecks=[],batchTotal=0;
+  function batchSummary(){
+    paintResults(batchChecks);
+    q('#imp-count').textContent=batchRecords.length+' / '+batchTotal+' 个通过';
+  }
+  function importAction(busy){
+    var button=q('#imp-ok');
+    button.disabled=!!busy||(batchMode&&!batchRecords.length);
+    button.textContent=busy?'正在处理…':batchMode?'添加这 '+batchRecords.length+' 个案例':'校验并添加';
+  }
+  function uniqueZipId(id, used) {
+    var candidate=id, n=1;
+    while(global.Cases.get(candidate)||used[candidate]) candidate=id+'-import-'+(n++);
+    used[candidate]=true;return candidate;
+  }
+  function zipRecord(arrs, used) {
+    var mf=arrs.filter(function(f){return f.name==='case.json';})[0];
+    if(!mf)throw Error('缺少 case.json');
+    var pkg=JSON.parse(mf.data), meta={id:pkg.id,sceneId:pkg.sceneId,title:pkg.title,version:pkg.version||'1.0.0',updated:pkg.updated||today(),methods:pkg.methods||[]};
+    if(!ID_RE.test(meta.id||''))throw Error('案例 id 不合法');
+    meta.id=uniqueZipId(meta.id,used);
+    var files=arrs.filter(function(f){return f!==mf;});
+    files.filter(function(f){return /\.(html|css)$/.test(f.name);}).forEach(function(f){
+      var re=/(?:src|href)\s*=\s*["']([^"'#]+)["']|url\(\s*["']?([^"')]+)["']?\s*\)/gi,m;
+      while((m=re.exec(f.data))){var ref=m[1]||m[2];if(/^(data:|https?:|mailto:|tel:|#|\/\/)/i.test(ref))continue;
+        var url=new URL(ref,'https://case.local/'+f.name), name=decodeURIComponent(url.pathname.slice(1));
+        if(!files.some(function(x){return x.name===name;}))throw Error('缺少演示资源：'+f.name+' → '+ref);
+      }
+    });
+    var checks=checkAll(pkg,meta,files), errors=checks.filter(function(x){return x.level==='error';});
+    if(errors.length)throw Error(errors.map(function(x){return x.msg;}).join('；'));
+    return {v:2,pkg:pkg,meta:meta,files:files,savedAt:new Date().toISOString()};
+  }
+  function zipFiles(entries){return entries.map(function(e){
+    var text=isTextName(e.name),mime=MIME[extOf(e.name)]||(text?'text/plain':'application/octet-stream'),data;
+    if(text)data=new TextDecoder('utf-8',{fatal:true}).decode(e.bytes);
+    else {var binary='';for(var i=0;i<e.bytes.length;i++)binary+=String.fromCharCode(e.bytes[i]);data='data:'+mime+';base64,'+btoa(binary);}
+    return {name:e.name,size:e.size,mime:mime,enc:text?'text':'dataurl',data:data};
+  });}
+  async function loadZips(files){
+    if(S.loading)return;
+    files=Array.from(files);if(files.length>100){tip('一次最多导入 100 个 ZIP','is-err');return;}
+    if(files.some(function(f){return !/\.zip$/i.test(f.name);})){tip('ZIP 批量导入请仅选择 .zip 文件','is-err');return;}
+    S.loading=true;batchRecords=[];batchMode=files.length>1;batchChecks=[];batchTotal=files.length;importAction(true);var epoch=++zipEpoch,used=Object.create(null),rows=[],expandedTotal=0;
+    var box=q('#imp-batch');box.hidden=false;box.textContent='正在逐包解压与校验…';
+    S.pkg=null;S.files=[];S.raw=[];S.manifest=null;paintFiles();paintResults([]);
+    try {
+      for(var file of files){
+        try {
+          if(file.size>MAX_TOTAL)throw Error('压缩文件超过 6 MB');
+          var buffer=await file.arrayBuffer();if(epoch!==zipEpoch)return;
+          var arrs=zipFiles(global.CaseZip.decode(buffer));
+          expandedTotal+=arrs.reduce(function(n,f){return n+f.size;},0);if(expandedTotal>32*1024*1024)throw Error('本批解压总量超过 32 MB，请减少选择的 ZIP');
+          var rec=zipRecord(arrs,used);batchRecords.push(rec);
+          batchChecks.push({level:'ok',msg:file.name+' · 校验通过',hint:rec.meta.id!==rec.pkg.id?'重名已改为 '+rec.meta.id:''});
+          rows.push('<li><b>'+esc(file.name)+'</b> · 校验通过'+(rec.meta.id!==rec.pkg.id?'（重名已改为 '+esc(rec.meta.id)+'）':'')+'</li>');
+          if(files.length===1){['#imp-title-in','#imp-id','#imp-ver','#imp-scene'].forEach(function(id){q(id).value='';});adopt(arrs);q('#imp-id').value=rec.meta.id;preview();}
+        }catch(e){batchChecks.push({level:'error',msg:file.name+' · 未添加',hint:e.message});rows.push('<li style="color:var(--bad)"><b>'+esc(file.name)+'</b> · 未添加：'+esc(e.message)+'</li>');}
+        if(batchMode)batchSummary();
+        box.innerHTML='<b>已检查 '+rows.length+' / '+files.length+' 个 ZIP</b><ol style="max-height:220px;overflow:auto;padding-left:22px">'+rows.join('')+'</ol>';
+      }
+      if(batchMode)box.innerHTML+='<p>将添加 '+batchRecords.length+' 个有效案例；已有案例保留，同名使用新的 id。请点击弹窗底部的添加按钮。刷新后仍可使用。</p>';
+      tip('ZIP 校验完成：'+batchRecords.length+' / '+files.length+' 个通过；请确认后添加',batchRecords.length?'is-ok':'is-err');
+    } finally {if(epoch===zipEpoch){S.loading=false;importAction(false);}}
+  }
+  function commitBatch(){
+    if(S.loading||!batchRecords.length)return;
+    importAction(true);
+    var used=Object.create(null),records=batchRecords.map(function(r){r.meta.id=uniqueZipId(r.meta.id,used);return r;});
+    var next=saved.concat(records);
+    if(!writeStore(next)){importAction(false);tip('浏览器存储空间不足，未添加。请在案例库移除不再需要的上传案例后重试。','is-err');return;}
+    saved=next;records.forEach(function(r){global.Cases.register(toCase(r));});
+    var count=records.length;batchRecords=[];close();toast('已添加 '+count+' 个 ZIP 案例','已压缩保存在当前浏览器，可在案例库查看');
+    if(global.location.hash==='#/cases')global.dispatchEvent(new Event('hashchange'));else global.location.hash='#/cases';
   }
 
   function adopt(arrs) {
@@ -1161,6 +1272,8 @@
 
   /* ---- 提交 ---- */
   function commit() {
+    if(S.loading)return;
+    if(batchMode){commitBatch();return;}
     var meta = metaNow();
     var list = checkAll(S.pkg, meta, S.files);
     paintResults(list);
@@ -1196,6 +1309,9 @@
     });
 
     var drop = q('#imp-drop'), fileIn = q('#imp-file'), dirIn = q('#imp-dir');
+    q('#imp-pick-zip').addEventListener('click', function(e){e.stopPropagation();q('#imp-zip').click();});
+    q('#imp-zip').addEventListener('click',function(e){e.stopPropagation();});
+    q('#imp-zip').addEventListener('change',function(){loadZips(q('#imp-zip').files);q('#imp-zip').value='';});
 
     /* 有些环境（国产浏览器兼容模式等）解析 innerHTML 时会丢非标准属性，
        或压根不支持 webkitdirectory —— 弹出的仍是普通文件框。这里补一次属性，
@@ -1337,6 +1453,7 @@
     q('#imp-ok').addEventListener('click', commit);
 
     q('#imp-clear').addEventListener('click', function () {
+      zipEpoch++;S.loading=false;batchMode=false;batchRecords=[];q('#imp-batch').hidden=true;importAction(false);
       S.pkg = null; S.manifest = null; S.files = []; S.raw = [];
       paintFiles();
       paintResults([]);
@@ -1389,6 +1506,7 @@
   }
 
   function reset(opts) {
+    zipEpoch++;S.loading=false;batchMode=false;batchRecords=[];q('#imp-batch').hidden=true;importAction(false);
     S.pkg = null; S.manifest = null; S.files = []; S.raw = [];
     q('#imp-file').value = '';
     q('#imp-dir').value = '';
@@ -1414,6 +1532,7 @@
   }
 
   function close() {
+    zipEpoch++;S.loading=false;
     if (!S.el) return;
     closePreview();
     S.el.hidden = true;
@@ -1535,6 +1654,8 @@
     template: templateManifest,
     check: function (pkg, meta) { return checkAll(pkg, meta, S.files); },
     makeZip: makeZip,
+    zipRecord: zipRecord,
+    zipFiles: zipFiles,
     templates: { manifest: TPL_README, html: TPL_HTML, css: TPL_CSS, js: TPL_JS }
   };
 
