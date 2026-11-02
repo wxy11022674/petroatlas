@@ -15,6 +15,31 @@ const META={
 };
 function textVector(text){return VOCAB.map(t=>text.includes(t)?1:0);}
 function imageFeatures(a){const m=mean(a);let dx=0,dy=0;for(let y=0;y<12;y++)for(let x=0;x<12;x++){if(x)dx+=Math.abs(a[y*12+x]-a[y*12+x-1]);if(y)dy+=Math.abs(a[y*12+x]-a[(y-1)*12+x]);}return[m,Math.sqrt(mean(a.map(v=>(v-m)**2))),dx/132,dy/132];}
+// Fixed, transparent teaching comparators. These rules never read labels or fit parameters.
+const CONVENTIONAL={
+ cuttings:{name:'纹理阈值规则',rule:'横纵平均梯度的较大值 ≥ 0.07 且方向比 ≥ 1.6，判为泥岩纹理；否则，平均梯度 ≤ 0.065 判为灰岩纹理，其余判为砂岩纹理。',assumption:'用条带方向性与纹理粗细作固定判别；拍摄变化可能使固定阈值失效。',parameters:{directionRatio:1.6,strongGradient:.07,smoothGradient:.065}},
+ gas:{name:'固定阈值 + 连续点判别',rule:'校正气测窗口中，全烃 > 1.2% 连续至少 3 点，判为持续异常；否则归为背景 / 短峰。',assumption:'持续抬升比孤立短峰更值得复核；固定阈值不随背景水平自动学习。',parameters:{thresholdTG:1.2,minRun:3}},
+ fluorescence:{name:'中心像素阈值',rule:'曝光校正后的中心像素强度 > 0.35，判为发光区域；否则判为背景。',assumption:'亮度可提供直接判别依据，但中心像素的噪声可能造成误判。',parameters:{threshold:.35}},
+ layering:{name:'相邻点突变阈值',rule:'校正钻时窗口中，相邻采样点最大绝对差 > 1.5 min/m，判为界面附近；否则判为无界面。',assumption:'层界可能产生钻时突变；噪声尖峰同样可能越过阈值。',parameters:{jump:1.5}},
+ report:{name:'关键词计数规则',rule:'分别统计三组固定关键词的命中数，选命中最多的复核方向；并列时按显示复核、工况排查、层界复核的顺序选择。',assumption:'词表内且意图清晰的文本可能仅靠规则就能处理；不把简单任务包装成必须使用深度学习。',parameters:{groups:[['砂岩','荧光','全烃','连续','油气','显示'],['接单根','短峰','工况','迟到','核对','仪器'],['钻压','钻时','界面','岩性','变化','校正']],tieOrder:[0,1,2]}}
+};
+function conventionalPredict(kind,x){
+ const p=CONVENTIONAL[kind].parameters;let pred,reason,evidence;
+ if(kind==='cuttings'){const [brightness,spread,dx,dy]=imageFeatures(x),ratio=Math.max(dx,dy)/Math.max(1e-9,Math.min(dx,dy)),gradient=(dx+dy)/2;pred=Math.max(dx,dy)>=p.strongGradient&&ratio>=p.directionRatio?1:gradient<=p.smoothGradient?2:0;evidence=[['横向平均梯度',dx],['纵向平均梯度',dy],['方向比',ratio],['平均梯度',gradient]];reason=pred===1?'方向性与梯度同时达到条带规则':pred===2?'未满足条带规则，且平均梯度达到平滑纹理规则':'未满足条带或平滑规则，进入颗粒纹理分支';}
+ else if(kind==='gas'){let run=0,longest=0;for(const v of x){run=v*4>p.thresholdTG?run+1:0;longest=Math.max(longest,run);}pred=+(longest>=p.minRun);evidence=[['超过 1.2% 的最长连续点数',longest]];reason=pred?'连续点数达到 3 点阈值':'连续点数不足 3 点';}
+ else if(kind==='fluorescence'){pred=+(x[4]>p.threshold);evidence=[['校正后的中心像素强度',x[4]]];reason=pred?'中心强度超过 0.35':'中心强度未超过 0.35';}
+ else if(kind==='layering'){const jump=Math.max(...x.slice(1).map((v,i)=>Math.abs(v-x[i])*12));pred=+(jump>p.jump);evidence=[['最大相邻钻时差 / min·m⁻¹',jump]];reason=pred?'最大相邻差超过 1.5':'最大相邻差未超过 1.5';}
+ else if(kind==='report'){const votes=p.groups.map(g=>g.reduce((sum,w)=>sum+(x[VOCAB.indexOf(w)]>0?1:0),0));pred=argmax(votes);evidence=votes.map((v,i)=>[META[kind].labels[i]+'关键词数',v]);reason='按固定关键词命中数选择；并列使用预设顺序';}
+ else throw new Error('Unknown conventional comparator');
+ return{pred,evidence,reason};
+}
+function conventionalScore(kind,rows){const n=META[kind].labels.length,matrix=Array.from({length:n},()=>Array(n).fill(0)),predictions=rows.map(r=>{const p=conventionalPredict(kind,r.x);matrix[r.c][p.pred]++;return{id:r.id,truth:r.c,...p};});return{predictions,matrix,accuracy:predictions.filter(r=>r.pred===r.truth).length/rows.length,macroF1:mean(matrix.map((r,i)=>2*r[i]/Math.max(1,r.reduce((a,b)=>a+b)+matrix.reduce((s,r)=>s+r[i],0))))};}
+function compareWithConventional(conventional,method){
+ if(conventional.predictions.length!==method.predictions.length)throw new Error('Different evaluation samples');
+ let corrected=0,introduced=0,bothWrong=0,bothCorrect=0;
+ conventional.predictions.forEach((r,i)=>{const m=method.predictions[i];if(r.id!==m.id||r.truth!==m.truth)throw new Error('Evaluation samples must align');const a=r.pred===r.truth,b=m.pred===m.truth;if(!a&&b)corrected++;else if(a&&!b)introduced++;else if(a&&b)bothCorrect++;else bothWrong++;});
+ return{corrected,introduced,bothWrong,bothCorrect,net:corrected-introduced};
+}
 function glowImage(random,noise=.18,size=16){const r=random,cx=4+r()*8,cy=4+r()*8,radius=3+r()*3,exposure=.65+r()*.8,amp=.42+r()*.35,truth=[],pixels=[];for(let y=0;y<size;y++)for(let x=0;x<size;x++){const on=(x-cx)**2+(y-cy)**2<radius**2;truth.push(+on);let v=on?amp:.08+r()*.12;if(r()<.04)v=on?.16:.6;pixels.push(clip((v+(r()+r()-1)*noise)*exposure)/exposure);}return{size,pixels,truth,exposure};}
 function patch(a,x,y,n){const p=[];for(let j=-1;j<=1;j++)for(let i=-1;i<=1;i++)p.push(a[clip(y+j,0,n-1)*n+clip(x+i,0,n-1)]);return p;}
 function sample(kind,c,r,noise,id){let x=[],meta={};if(kind==='cuttings'){
@@ -67,7 +92,7 @@ function shuffle(a,r){for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1)
 function createSession(kind,options={}){const seed=options.seed??17,data=dataset(kind,seed,options.noise??.18,options.captureVariation!==false),random=rng(seed+505);if(options.shuffleLabels){const labels=shuffle(data.train.map(r=>r.c),rng(seed+606));data.train.forEach((r,i)=>r.c=labels[i]);}
  const model=init(kind,seed),baseline=knnModel(data),initialTrain=score(model,data.train),initialValidation=score(model,data.validation);return{kind,options:{seed,noise:options.noise??.18,captureVariation:data.captureVariation,shuffleLabels:!!options.shuffleLabels,lr:options.lr??.008},data,model,opt:optimizer(model),random,epoch:0,history:[{epoch:0,trainLoss:initialTrain.loss,valLoss:initialValidation.loss,trainAccuracy:initialTrain.accuracy,valAccuracy:initialValidation.accuracy}],best:copy(model),bestEpoch:0,bestLoss:initialValidation.loss,baseline,initialWeights:tensors(model).map(a=>a.slice())};}
 function trainEpoch(session){const s=session,order=shuffle(s.data.train.slice(),s.random);for(let i=0;i<order.length;i+=12)update(s.model,gradients(s.model,order.slice(i,i+12)),s.opt,s.options.lr);s.epoch++;const tr=score(s.model,s.data.train),va=score(s.model,s.data.validation);s.history.push({epoch:s.epoch,trainLoss:tr.loss,valLoss:va.loss,trainAccuracy:tr.accuracy,valAccuracy:va.accuracy});if(va.loss<s.bestLoss){s.bestLoss=va.loss;s.best=copy(s.model);s.bestEpoch=s.epoch;}return s.history.at(-1);}
-function finish(session){const s=session,selected=copy(s.best),nn=score(selected,s.data.test),baseline=baselineScore(s.baseline,s.data.test),weights=tensors(selected);return{model:selected,nn,baseline,untrained:score(init(s.kind,s.options.seed),s.data.test),bestEpoch:s.bestEpoch,epochs:s.epoch,changed:weights.reduce((sum,a,k)=>sum+a.reduce((sum,v,i)=>sum+Math.abs(v-s.initialWeights[k][i]),0),0)};}
+function finish(session){const s=session,selected=copy(s.best),nn=score(selected,s.data.test),baseline=baselineScore(s.baseline,s.data.test),weights=tensors(selected);return{model:selected,nn,baseline,conventional:conventionalScore(s.kind,s.data.test),untrained:score(init(s.kind,s.options.seed),s.data.test),bestEpoch:s.bestEpoch,epochs:s.epoch,changed:weights.reduce((sum,a,k)=>sum+a.reduce((sum,v,i)=>sum+Math.abs(v-s.initialWeights[k][i]),0),0)};}
 function segment(model,seed=17,noise=.18){const image=glowImage(rng(seed+9876),noise),pred=image.pixels.map((_,i)=>argmax(forward(model,patch(image.pixels,i%16,Math.floor(i/16),16)).probabilities));let tp=0,fp=0,fn=0;pred.forEach((v,i)=>{if(v&&image.truth[i])tp++;if(v&&!image.truth[i])fp++;if(!v&&image.truth[i])fn++;});return{...image,pred,f1:2*tp/Math.max(1,2*tp+fp+fn)};}
 // Controlled local input removal. Replacement values use training inputs only.
 function evidenceRegions(kind){
@@ -82,6 +107,6 @@ function removeEvidence(kind,input,train,region=0){
  return{x,indices:r.indices.slice(),name:r.name,replacement:kind==='report'?'将选中词的编码置零':'替换为训练集对应位置的平均值'};
 }
 function scanEvidence(model,input,train){const base=forward(model,input).probabilities,target=argmax(base);return{target,base:base[target],regions:evidenceRegions(model.kind).map((r,i)=>{const x=removeEvidence(model.kind,input,train,i).x,probability=forward(model,x).probabilities[target];return{index:i,name:r.name,probability,delta:probability-base[target]};})};}
-const api={META,VOCAB,rng,dataset,init,forward,tensors,gradients,optimizer,update,score,knnModel,knnPredict,baselineScore,createSession,trainEpoch,finish,segment,textVector,softmax,evidenceRegions,removeEvidence,scanEvidence};
+const api={META,VOCAB,CONVENTIONAL,conventionalPredict,conventionalScore,compareWithConventional,rng,dataset,init,forward,tensors,gradients,optimizer,update,score,knnModel,knnPredict,baselineScore,createSession,trainEpoch,finish,segment,textVector,softmax,evidenceRegions,removeEvidence,scanEvidence};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else g.NeuralLab=api;
 })(typeof window!=='undefined'?window:globalThis);
