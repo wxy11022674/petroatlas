@@ -1150,6 +1150,15 @@
       '检查地址，或<a href="#/" style="color:var(--jade-d)">回到总览</a>。</div></main>';
   }
 
+  // A sandboxed demo cannot scroll its host document directly. Accept a focus
+  // request only from an iframe currently mounted in the visible case panel.
+  window.addEventListener('message', function (event) {
+    if (!event.data || event.data.petroLabScroll !== true) return;
+    var frame = Array.from(document.querySelectorAll('#case-panel-demo iframe')).find(function (f) { return f.contentWindow === event.source; });
+    if (!frame) return;
+    var offset = Number.isFinite(event.data.offset) ? Math.max(0, Math.min(frame.clientHeight, event.data.offset)) : 0;
+    window.scrollTo({top: Math.max(0, window.scrollY + frame.getBoundingClientRect().top + offset - 140), behavior: 'instant'});
+  });
   window.addEventListener('hashchange', render);
   render();
 
