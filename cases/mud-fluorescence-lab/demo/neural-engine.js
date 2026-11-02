@@ -69,6 +69,19 @@ function createSession(kind,options={}){const seed=options.seed??17,data=dataset
 function trainEpoch(session){const s=session,order=shuffle(s.data.train.slice(),s.random);for(let i=0;i<order.length;i+=12)update(s.model,gradients(s.model,order.slice(i,i+12)),s.opt,s.options.lr);s.epoch++;const tr=score(s.model,s.data.train),va=score(s.model,s.data.validation);s.history.push({epoch:s.epoch,trainLoss:tr.loss,valLoss:va.loss,trainAccuracy:tr.accuracy,valAccuracy:va.accuracy});if(va.loss<s.bestLoss){s.bestLoss=va.loss;s.best=copy(s.model);s.bestEpoch=s.epoch;}return s.history.at(-1);}
 function finish(session){const s=session,selected=copy(s.best),nn=score(selected,s.data.test),baseline=baselineScore(s.baseline,s.data.test),weights=tensors(selected);return{model:selected,nn,baseline,untrained:score(init(s.kind,s.options.seed),s.data.test),bestEpoch:s.bestEpoch,epochs:s.epoch,changed:weights.reduce((sum,a,k)=>sum+a.reduce((sum,v,i)=>sum+Math.abs(v-s.initialWeights[k][i]),0),0)};}
 function segment(model,seed=17,noise=.18){const image=glowImage(rng(seed+9876),noise),pred=image.pixels.map((_,i)=>argmax(forward(model,patch(image.pixels,i%16,Math.floor(i/16),16)).probabilities));let tp=0,fp=0,fn=0;pred.forEach((v,i)=>{if(v&&image.truth[i])tp++;if(v&&!image.truth[i])fp++;if(!v&&image.truth[i])fn++;});return{...image,pred,f1:2*tp/Math.max(1,2*tp+fp+fn)};}
-const api={META,VOCAB,rng,dataset,init,forward,tensors,gradients,optimizer,update,score,knnModel,knnPredict,baselineScore,createSession,trainEpoch,finish,segment,textVector,softmax};
+// Controlled local input removal. Replacement values use training inputs only.
+function evidenceRegions(kind){
+ if(kind==='cuttings')return Array.from({length:16},(_,i)=>({name:`第 ${Math.floor(i/4)+1} 行、第 ${i%4+1} 列纹理块`,indices:Array.from({length:9},(_,j)=>(Math.floor(i/4)*3+Math.floor(j/3))*12+i%4*3+j%3)}));
+ if(kind==='report')return VOCAB.map((name,i)=>({name:'关键词「'+name+'」',indices:[i]}));
+ if(kind==='fluorescence')return Array.from({length:9},(_,i)=>({name:i===4?'中心像素':`邻域像素（${Math.floor(i/3)+1}, ${i%3+1}）`,indices:[i]}));
+ return Array.from({length:9},(_,i)=>({name:`窗口第 ${i+1}–${i+3} 个采样点`,indices:[i,i+1,i+2]}));
+}
+function removeEvidence(kind,input,train,region=0){
+ const regions=evidenceRegions(kind),r=regions[region];if(!r)throw new Error('Unknown evidence region');
+ const x=input.slice();r.indices.forEach(i=>{x[i]=kind==='report'?0:mean(train.map(row=>row.x[i]));});
+ return{x,indices:r.indices.slice(),name:r.name,replacement:kind==='report'?'将选中词的编码置零':'替换为训练集对应位置的平均值'};
+}
+function scanEvidence(model,input,train){const base=forward(model,input).probabilities,target=argmax(base);return{target,base:base[target],regions:evidenceRegions(model.kind).map((r,i)=>{const x=removeEvidence(model.kind,input,train,i).x,probability=forward(model,x).probabilities[target];return{index:i,name:r.name,probability,delta:probability-base[target]};})};}
+const api={META,VOCAB,rng,dataset,init,forward,tensors,gradients,optimizer,update,score,knnModel,knnPredict,baselineScore,createSession,trainEpoch,finish,segment,textVector,softmax,evidenceRegions,removeEvidence,scanEvidence};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else g.NeuralLab=api;
 })(typeof window!=='undefined'?window:globalThis);

@@ -48,5 +48,18 @@ function scenario(c,which){
  const pair={image:[{noise:.03},{noise:.30}],classify:[{k:1},{k:15}],regress:[{noise:.01},{noise:.18}],optimize:[{budget:.3},{budget:.9}],anomaly:[{run:1},{run:5}],retrieve:[{weight:.2},{weight:5}],arrival:[{threshold:2},{threshold:10}],segment:[{penalty:10},{penalty:1500}],repair:[{method:'linear'},{method:'ridge'}],trajectory:[{gain:.1},{gain:.6}],geometry:[{sensorNoise:0},{sensorNoise:.2}],stress:[{trainNoise:0},{trainNoise:20}],forecast:[{noise:.005},{noise:.08}],calibrate:[{noise:0},{noise:5}],balance:[{leak:0},{leak:2}],quality:[{text:c.example},{text:String(c.example||'').split('\n').slice(0,3).join('\n')}]};
  return pair[c.kind][which];
 }
-return {profile,evidence,scenario};
+function measure(c,d){
+ const spec={classify:['测试准确率',d.accuracy,1,'%',100],regress:['测试 RMSE',d.error,-1,c.target?.unit||''],forecast:['未来段 RMSE',d.error,-1,c.unit||''],optimize:['可行域最优目标',d.best?.score??null,0,''],anomaly:['逐点 F1',d.metrics?.f1,1,'%',100],retrieve:['首选匹配分数',d.best?.score??null,0,'%',100],arrival:['容差内命中道数',d.hits,1,'道'],segment:['层界 F1',d.f1,1,'%',100],repair:['缺失段 RMSE',d.error,-1,'API'],trajectory:['路径 RMSE',d.error,-1,'m'],geometry:['偏心率 MAE',d.error,-1,''],stress:['测试 RMSE',d.error,-1,'MPa'],calibrate:['校准后 RMSE',d.after,-1,c.unit||''],balance:['报警 F1',d.metrics?.f1,1,'%',100],quality:['发现的问题数',d.issues?.length,0,'项']};
+ const p=c.kind==='image'?(c.type==='denoise'?['滤波后 RMSE',d.after,-1,'']:c.type==='spectral'?['像素准确率',d.metrics.accuracy,1,'%',100]:['像素 F1',d.metrics.f1,1,'%',100]):spec[c.kind];
+ return {label:p[0],value:Number.isFinite(p[1])?p[1]*(p[4]||1):null,direction:p[2],unit:p[3]};
+}
+function comparison(a,b){
+ if(a.value===null||b.value===null)return '至少一组没有可计算的评价值，请先检查可行条件或有效样本。';
+ const delta=b.value-a.value,amount=Math.abs(delta).toFixed(3)+(b.unit==='%'?' 个百分点':' '+b.unit);
+ const trend=delta===0?'保持不变':(delta>0?'增加 ':'减少 ')+amount;
+ return `${b.label}${trend}。`+(b.direction===0?'这个量不直接代表效果好坏，需结合输入条件与具体结果判断。':delta===0?'这项指标未体现差异；可以结合图形、误判位置或其他指标继续判断。':delta*b.direction>0?'B 在这项指标上更好；结论只针对本次设置。':'B 在这项指标上更差，说明当前改变可能破坏有效信息或引入不合适的设置。');
+}
+const parameterNames={noise:'样本噪声',k:'近邻数 k',budget:'约束上限（归一化）',run:'连续报警点数',weight:'特征 / 代价权重',threshold:'判断阈值',penalty:'分层惩罚',method:'重建方法',gain:'反馈增益',sensorNoise:'传感器噪声',trainNoise:'训练标签噪声',leak:'泄漏量',text:'输入记录',seed:'随机种子',count:'训练样本量',ridge:'正则强度',radius:'滤波半径',severity:'异常强度',gap:'缺失长度',cut:'历史分界',x:'输入一（归一化）',y:'输入二（归一化）',bias:'零点偏差',slope:'比例因子',ecc:'偏心率',bore:'井眼直径',length:'长度',temp:'温升',restraint:'约束比例',offset:'靶点偏移',curvature:'转角上限',values:'业务输入'};
+function changes(a,b){return [...new Set([...Object.keys(a),...Object.keys(b)])].filter(k=>JSON.stringify(a[k])!==JSON.stringify(b[k])).map(k=>({label:parameterNames[k]||k,a:k==='text'?String(a[k]||'').split('\n').length+' 行':Array.isArray(a[k])?a[k].join(' / '):String(a[k]??'默认'),b:k==='text'?String(b[k]||'').split('\n').length+' 行':Array.isArray(b[k])?b[k].join(' / '):String(b[k]??'默认')}));}
+return {profile,evidence,scenario,measure,comparison,changes};
 });

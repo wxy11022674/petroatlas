@@ -6,8 +6,8 @@
     "ts"
   ],
   "status": "ready",
-  "version": "2.0.0",
-  "updated": "2026-10-29",
+  "version": "2.2.0",
+  "updated": "2026-11-02",
   "tabs": {
     "background": {
       "label": "专业背景",
