@@ -1,0 +1,60 @@
+(function(g){
+'use strict';
+const names=['岩屑输入','卷积提取','平均池化','全连接层','岩性判断'];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function phase(t){return t===0?0:t<=100?1:t<=125?2:t<=141?3:4;}
+function stateAt(t){t=Math.max(0,Math.min(142,Math.round(t)));return{t,phase:phase(t),position:Math.max(0,Math.min(99,t-1)),convCount:Math.min(100,t),poolCount:Math.max(0,Math.min(25,t-100)),denseCount:Math.max(0,Math.min(16,t-125)),complete:t===142};}
+function denseEvidence(model,f,unit){const l=model.layers[0],contributions=f.pooled.map((v,i)=>v*l.w[unit*l.input+i]);const sum=contributions.reduce((s,v)=>s+v,l.b[unit]);return{contributions,sum,activation:Math.max(0,sum),top:contributions.map((v,i)=>({i,v})).sort((a,b)=>Math.abs(b.v)-Math.abs(a.v)).slice(0,8)};}
+function svg(s,t,k,unit){
+ const a=stateAt(t),f=s.forward,m=s.model,selected=Math.min(15,unit),colors=['#a997ff','#5cdbcf','#e5b573','#79b3ed'];
+ function tile(values,n,x,y,cell,color,count=values.length,mark=[]){const max=Math.max(.00001,...values.map(Math.abs));return `<g>${values.map((v,i)=>{const active=i<count,q=Math.min(1,Math.abs(v)/max);return `<rect x="${x+i%n*cell}" y="${y+Math.floor(i/n)*cell}" width="${cell-1}" height="${cell-1}" rx="1" fill="${active?color:'#1a293b'}" opacity="${active?.1+q*.9:.65}"><title>${active?v.toFixed(4):'等待演示至此位置'}</title></rect>`;}).join('')}${mark.map(i=>`<rect x="${x+i%n*cell-1}" y="${y+Math.floor(i/n)*cell-1}" width="${cell+1}" height="${cell+1}" fill="none" stroke="#ffd383" stroke-width="2"/>`).join('')}</g>`;}
+ const col=a.position%10,row=Math.floor(a.position/10),activeConv=a.phase===1,activePool=a.phase===2;
+ const mapX=[332,446,332,446],mapY=[123,123,253,253];
+ let out=`<svg viewBox="0 0 1140 450" role="img" aria-label="CNN 真实前向计算动画：${names[a.phase]}"><defs><linearGradient id="cinema-edge"><stop stop-color="#53d9c0"/><stop offset="1" stop-color="#aa8efa"/></linearGradient><filter id="cinema-glow"><feGaussianBlur stdDeviation="3"/></filter></defs><path d="M32 222H1100" stroke="#22394c" fill="none" stroke-width="2"/>`;
+ [[25,'01','图像输入','12 × 12'],[253,'02','卷积 + ReLU','4 × 10 × 10'],[575,'03','平均池化','4 × 5 × 5'],[804,'04','全连接','100 → 16'],[1017,'05','类别输出','3 类']].forEach(([x,no,label,shape],i)=>{out+=`<text x="${x}" y="40" fill="${a.phase===i?'#66e7cb':'#688298'}" font-size="13" font-family="monospace">${no}</text><text x="${x}" y="69" fill="#e2edf6" font-size="18" font-weight="600">${label}</text><text x="${x}" y="93" fill="#7792a5" font-size="12">${shape}</text>`;});
+ out+=`<rect x="16" y="132" width="198" height="198" rx="12" fill="#0c1829" stroke="#355466"/>${tile(s.row.x,12,25,141,15,'#62cdb4')}`;
+ if(activeConv)out+=`<rect x="${25+col*15-2}" y="${141+row*15-2}" width="47" height="47" rx="3" fill="#ffd38322" stroke="#ffd383" stroke-width="2.5"/><path d="M${25+col*15+45} ${141+row*15+22}L248 ${141+k*59}" stroke="#ffd383" stroke-width="1.5" stroke-dasharray="5 5" opacity=".7"/>`;
+ out+=`<text x="115" y="354" fill="#9cb5c1" font-size="12" text-anchor="middle">合成岩屑纹理</text><text x="115" y="377" fill="#637e91" font-size="11" text-anchor="middle">橙框 = 当前 3 × 3 感受野</text>`;
+ for(let j=0;j<4;j++){
+  const y=123+j*59,w=m.conv.w.slice(j*9,j*9+9),max=Math.max(.001,...w.map(Math.abs));
+  out+=`<g data-cinema-k="${j}" role="button" tabindex="0" aria-label="选择卷积核 ${j+1}"><rect x="244" y="${y-4}" width="64" height="51" rx="6" fill="${k===j?'#2f2b4c':'#142336'}" stroke="${k===j?colors[j]:'#294052'}"/>${w.map((v,i)=>`<rect x="${250+i%3*12}" y="${y+Math.floor(i/3)*12}" width="11" height="11" fill="${v>=0?colors[j]:'#deab6a'}" opacity="${.2+Math.abs(v)/max*.8}"/>`).join('')}<text x="292" y="${y+26}" fill="${colors[j]}" font-size="11">${j+1}</text></g>`;
+  const mark=activeConv&&j===k?[a.position]:activePool&&j===k?[Math.floor((a.poolCount-1)/5)*20+(a.poolCount-1)%5*2,Math.floor((a.poolCount-1)/5)*20+(a.poolCount-1)%5*2+1,Math.floor((a.poolCount-1)/5)*20+(a.poolCount-1)%5*2+10,Math.floor((a.poolCount-1)/5)*20+(a.poolCount-1)%5*2+11]:[];
+  out+=`<rect x="${mapX[j]-5}" y="${mapY[j]-5}" width="108" height="108" rx="6" fill="#0b192a" stroke="${k===j?colors[j]:'#294052'}"/>${tile(f.conv.slice(j*100,j*100+100),10,mapX[j],mapY[j],10,colors[j],a.convCount,mark)}<text x="${mapX[j]+50}" y="${mapY[j]+117}" text-anchor="middle" fill="${colors[j]}" font-size="11">特征 ${j+1}</text>`;
+  const px=585+(j%2)*82,py=151+Math.floor(j/2)*116;
+  out+=`${tile(f.pooled.slice(j*25,j*25+25),5,px,py,13,colors[j],a.poolCount,activePool&&j===k?[a.poolCount-1]:[])}<text x="${px+32}" y="${py+84}" text-anchor="middle" fill="${colors[j]}" font-size="11">池化 ${j+1}</text>`;
+ }
+ out+=`<path d="M555 226h21m-6-5 6 5-6 5M745 226h24m-6-5 6 5-6 5M980 226h23m-6-5 6 5-6 5" stroke="url(#cinema-edge)" stroke-width="2" fill="none"/><text x="650" y="399" text-anchor="middle" fill="#7b94a5" font-size="12">每 2 × 2 区域取均值</text>`;
+ // The 100 pooled activations are flattened without dropping any input.
+ const flat=f.pooled,maxFlat=Math.max(.001,...flat),d=denseEvidence(m,f,selected),maxAct=Math.max(.001,...f.acts[1]);
+ for(let i=0;i<100;i++)out+=`<circle cx="${789+i%5*8}" cy="${130+Math.floor(i/5)*11}" r="2.5" fill="#6ed7c1" opacity="${a.phase>=3?.12+flat[i]/maxFlat*.88:.08}"/>`;
+ if(a.phase>=3)for(const {i,v} of d.top){const dx=887+(selected%2)*44,dy=137+Math.floor(selected/2)*30;out+=`<path d="M${789+i%5*8} ${130+Math.floor(i/5)*11}C850 ${130+Math.floor(i/5)*11} 845 ${dy} ${dx} ${dy}" fill="none" stroke="${v>=0?'#b398f3':'#caa46b'}" opacity=".45" stroke-width="1"/>`;}
+ for(let i=0;i<16;i++){const x=887+i%2*44,y=137+Math.floor(i/2)*30,active=i<a.denseCount;out+=`<g data-cinema-unit="${i}" role="button" tabindex="0" aria-label="查看隐藏单元 ${i+1}"><circle cx="${x}" cy="${y}" r="12" fill="${active?'#ad8ded':'#203045'}" fill-opacity="${active?.2+f.acts[1][i]/maxAct*.8:1}" stroke="${i===selected?'#eadfff':'#594775'}" stroke-width="${i===selected?2:1}"/><text x="${x}" y="${y+4}" fill="#eee7fd" font-size="9" text-anchor="middle">${i+1}</text></g>`;}
+ out+=`<text x="869" y="399" text-anchor="middle" fill="#7b94a5" font-size="11">100 个输入 → 16 个隐藏单元</text><text x="869" y="419" text-anchor="middle" fill="#60798b" font-size="10">连线：所选单元的 8 个最大贡献</text>`;
+ const winner=f.probabilities.indexOf(Math.max(...f.probabilities));
+ for(let i=0;i<3;i++){const y=161+i*86,win=a.complete&&winner===i;out+=`<path d="M943 242C980 242 980 ${y} 1021 ${y}" fill="none" stroke="${win?'#79e5c9':'#284052'}" stroke-width="${win?3:1}"/><circle cx="1045" cy="${y}" r="24" fill="${win?'#23534e':'#172738'}" stroke="${win?'#73e6c8':'#365069'}" stroke-width="${win?2:1}"/>${win?`<circle cx="1045" cy="${y}" r="29" fill="none" stroke="#73e6c8" opacity=".3"/>`:''}<text x="1045" y="${y+5}" fill="${win?'#a6ffdf':'#7c95a8'}" font-size="15" text-anchor="middle">${['砂','泥','灰'][i]}</text><text x="1080" y="${y+5}" fill="${win?'#b9fbe6':'#738b9f'}" font-size="12">${esc(s.meta.labels[i].replace('纹理',''))}</text>`;}
+ return out+'</svg>';
+}
+function mount(host,s,actions={}){
+ let t=142,k=0,unit=0,timer=null,delay=100,disposed=false;
+ const node=document.createElement('section');node.className='cnn-cinema';
+ node.innerHTML=`<div class="cc-intro"><div><span>DEEP LEARNING / CNN</span><h3>看见岩屑被识别的全过程</h3><p>同一份岩屑纹理，沿真实网络结构逐层传递。</p></div><b>${s.result?'已训练模型':'初始化模型 · 尚未训练'}</b></div><div class="cc-stage-nav">${names.map((n,i)=>`<button type="button" data-cc-jump="${[0,1,101,126,142][i]}"><small>0${i+1}</small>${n}</button>`).join('')}</div><div class="cc-canvas"></div><div class="cc-controls"><button type="button" id="cc-play">▶ 播放完整动画</button><button type="button" id="cc-prev" aria-label="上一步">←</button><button type="button" id="cc-next" aria-label="下一步">→</button><button type="button" id="cc-restart">重新播放</button><label>演示速度<select id="cc-speed"><option value="180">慢速</option><option value="100" selected>标准</option><option value="40">快速</option></select></label><span id="cc-position"></span></div><label class="cc-scrub">过程进度<input id="cc-scrub" aria-label="CNN 演示进度" type="range" min="0" max="142" value="0"></label><div class="cc-explanation"><b id="cc-caption"></b><p id="cc-description"></p></div><details class="cc-math"><summary>查看当前步骤的实际计算</summary><div id="cc-math"></div></details><p class="cc-boundary">这是当前权重下的前向识别演示；播放不会训练模型。图像为教学合成纹理，特征图亮度按各图最大响应归一化。</p>`;
+ host.append(node);const q=id=>node.querySelector('#cc-'+id),canvas=node.querySelector('.cc-canvas');
+ function stop(){if(timer!==null)clearInterval(timer);timer=null;if(!disposed)q('play').textContent=t===142?'↺ 再看一遍':'▶ 播放完整动画';}
+ function draw(){if(disposed)return;const a=stateAt(t),f=s.forward;canvas.innerHTML=svg(s,t,k,unit);q('scrub').value=t;q('position').textContent=`${String(a.phase+1).padStart(2,'0')} / 05 · ${names[a.phase]}`;q('prev').disabled=t===0;q('next').disabled=t===142;
+  node.querySelectorAll('[data-cc-jump]').forEach((b,i)=>b.setAttribute('aria-pressed',String(i===a.phase)));
+  const captions=['从一张岩屑纹理出发','四个卷积核，逐窗寻找纹理响应','把局部响应压缩，保留整体特征','把 100 个特征综合成 16 个隐藏响应','根据三个输出分数选择岩性'];
+  const descriptions=['点击播放，橙色窗口会扫描图像。每个窗口对应四张特征图中的同一个位置。',`已扫描 ${a.convCount} / 100 个位置。每个 3 × 3 区域与四组权重分别相乘求和，ReLU 将负值置零。点击小卷积核可以切换观察通道。`,`每张特征图已生成 ${a.poolCount} / 25 个池化值。橙框中的 2 × 2 响应取平均，形成更小的 5 × 5 特征图。`,`已展开 ${a.denseCount} / 16 个隐藏单元。每个单元接收全部 100 个池化值；点击圆点可以核对该单元的加权计算。`,`当前预测：${s.meta.labels[f.probabilities.indexOf(Math.max(...f.probabilities))]}。这是一个样本的判断；模型整体效果看上方同一测试集的准确率。`];
+  q('caption').textContent=captions[a.phase];q('description').textContent=descriptions[a.phase];
+  if(a.phase<=1){const c=g.NeuralStudio.convolution(s.model,s.row.x,k,a.position);q('math').textContent=`卷积核 ${k+1} · 第 ${c.row+1} 行 / 第 ${c.col+1} 列：Σ[(像素 − 0.5) × 权重] + 偏置 = ${c.sum.toFixed(5)}；ReLU 输出 = ${c.response.toFixed(5)}。`;}
+  else if(a.phase===2){const p=a.poolCount-1,x=p%5*2,y=Math.floor(p/5)*2,values=[0,1,10,11].map(d=>f.conv[k*100+y*10+x+d]);q('math').textContent=`通道 ${k+1}：(${values.map(v=>v.toFixed(4)).join(' + ')}) ÷ 4 = ${f.pooled[k*25+p].toFixed(5)}。`;}
+  else if(a.phase===3){const d=denseEvidence(s.model,f,unit);q('math').textContent=`隐藏单元 ${unit+1}：100 个加权输入求和 + 偏置 = ${d.sum.toFixed(5)}；ReLU 输出 = ${d.activation.toFixed(5)}。紫线表示正贡献，橙线表示负贡献。`;}
+  else q('math').textContent='Softmax 输出：'+f.probabilities.map((v,i)=>s.meta.labels[i]+' '+v.toFixed(5)).join('；')+'。这是分类分数，不是准确率，也不是校准的现场可靠性。';
+  canvas.querySelectorAll('[data-cinema-k]').forEach(b=>{const select=()=>{k=+b.dataset.cinemaK;draw();};b.onclick=select;b.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select();}};});
+  canvas.querySelectorAll('[data-cinema-unit]').forEach(b=>{const select=()=>{unit=+b.dataset.cinemaUnit;draw();};b.onclick=select;b.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select();}};});
+ }
+ function play(){if(!s.result&&actions.train){actions.train();return;}if(timer!==null){stop();return;}if(t===142)t=0;node.tabIndex=-1;node.focus({preventScroll:true});window.scrollTo({top:Math.max(0,window.scrollY+node.getBoundingClientRect().top-16),behavior:'instant'});if(window.parent!==window)window.parent.postMessage({petroLabScroll:true,offset:node.getBoundingClientRect().top},'*');q('play').textContent='Ⅱ 暂停演示';timer=setInterval(()=>{if(!node.isConnected||document.hidden){stop();return;}t=Math.min(142,t+1);draw();if(t===142)stop();},delay);}
+ q('play').onclick=play;q('restart').onclick=()=>{stop();t=0;draw();play();};q('prev').onclick=()=>{stop();t=Math.max(0,t-1);draw();};q('next').onclick=()=>{stop();t=Math.min(142,t+1);draw();};q('scrub').oninput=e=>{stop();t=+e.target.value;draw();};q('speed').onchange=e=>{const was=timer!==null;stop();delay=+e.target.value;if(was)play();};node.querySelectorAll('[data-cc-jump]').forEach(b=>b.onclick=()=>{stop();t=+b.dataset.ccJump;draw();});
+ draw();return{play,dispose:()=>{stop();disposed=true;node.remove();}};
+}
+const api={phase,stateAt,denseEvidence,svg,mount};if(typeof module!=='undefined'&&module.exports)module.exports=api;else g.CNNCinema=api;
+})(typeof window!=='undefined'?window:globalThis);
